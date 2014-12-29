@@ -1,33 +1,5 @@
-ThursUI
-=======
+/******************************************************************************
 
-![Logo](bin/logo.png)
-
-**Straight-forward, lightweight, pretty, skinnable, immediate-mode UI library.**
-
-This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue development of my game and engine. 
-
-Currently supports the following controls:
-  * Button
-  * Progressbar
-
-Currently there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). Should be easy to write a custom renderer - take a look in `include/renderers/thurs.renderer.nanovg.hpp` for a place to start.
-
-## Hello world
-
-## Building
-
-I've only built on OS X so far, but the code should work fine on *NX and Windows. If compiling for windows, you're gonna have to create a VS project file to compile it, or use MinGW. The included makefile might work for Linux, but I have yet to test it. Will use a cross-platform build system eventually.
-
-### Dependencies
-
-Thurs depend on the following libraries:
-  * libjson
-
-Note that you also need to link with the libraries needed to support the rendering back-end in your application.
-
-
-## License
 
 Copyright (c) 2014, Chris Vasseng - github.com/cvasseng - cvasseng@gmail.com
 All rights reserved.
@@ -52,3 +24,57 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+******************************************************************************/
+
+#ifndef h__thurs_surface__
+#define h__thurs_surface__
+
+#include <map>
+
+#include "thurs.types.hpp"
+#include "thurs.renderer.hpp"
+#include "thurs.input.hpp"
+
+namespace thurs {
+
+  class Control;
+
+	//A UI Surface
+	/*
+		All controls live inside a surface.
+	*/
+	class Surface {
+    friend class Control;
+	public:
+    typedef std::map<uint16, Control*> ControlMap;
+    typedef ControlMap::iterator ControlMapIt;
+    #define ControlMapPair(x, y) std::pair<uint16, Control*>(x, y)
+
+    ///////////////////////////////////////////////////////////////////////////
+
+		Surface(Renderer *renderer, Input *input);
+
+    //Update the surface
+    void updateAndRender();
+
+		//Returns the attached input handler
+		Input* const input();
+    //Returns the attached renderer
+    Renderer* const renderer();
+
+	protected:
+		//Our renderer 
+		Renderer *m_renderer;
+		//Input injector
+		Input *m_input;
+    //Controls in the surface
+    ControlMap m_controls;
+    //The size of the surface
+    Vector2s m_size;
+	private:
+	};
+
+}
+
+#endif
