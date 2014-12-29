@@ -11,7 +11,7 @@ Currently supports the following controls:
   * Button
   * Progressbar
 
-Currently there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). Should be easy to write a custom renderer - take a look in `include/renderers/thurs.renderer.nanovg.hpp` for a place to start.
+Currently there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). Should be easy to write a custom renderer - take a look in [`include/renderers/thurs.renderer.nanovg.hpp`](include/renderers/thurs.renderer.nanovg.hpp) for a place to start.
 
 ## Hello world
 
