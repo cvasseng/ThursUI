@@ -7,11 +7,12 @@ ThursUI
 
 *This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine.* 
 
-Currently supports the following controls:
+**Currently supported controls:**
   * Button
   * Progressbar
+  * Window
 
-As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/renderers/thurs/thurs.renderer.nanovg.hpp) for a place to start. 
+As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
 
 <insert gif here>
 
