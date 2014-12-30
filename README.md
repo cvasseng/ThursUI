@@ -19,7 +19,7 @@ As of now, there's only a renderer back-end for [NanoVG](https://github.com/memo
 ## Hello world
 
 ## Motivation
-So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I tried the usual suspects and had major troubles getting everything to compile and work on my box. If I can't get a library working within an hour of downloading it, I cross it of the list and look for an alternative. I crossed all of them off of my list. A lot of the existing libraries are largely undocumented. A lot of them are old and unmaintained. I wanted something that suited my coding style more, and so I reluctantly ended up writing my own.
+So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I tried the usual suspects and had major troubles getting everything to compile and work on my box. If I can't get a library working within an hour of downloading it, I cross it of the list and look for an alternative. A lot of the existing libraries are largely undocumented. A lot of them are old and unmaintained. Finally, I wanted something that suited my coding style more, and so I reluctantly ended up writing my own.
 
 ## Building
 
