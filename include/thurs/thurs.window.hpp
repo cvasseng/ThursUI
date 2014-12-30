@@ -27,37 +27,46 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-//OSX + Linux
-#if (defined(__MACH__) && defined(__APPLE__)) || defined(__linux__)
-  #include <mach/mach.h>
-  #include <mach/mach_time.h>
-  #include <sys/time.h>
-#endif
+#ifndef h__thurs__window__
+#define h__thurs__window__
 
-//Windows
-#ifdef _WIN32
-  #include <windows.h>
-  #include <mmsystem.h>
-  #pragma comment(lib, "winmm.lib")
-#endif
-
-#include "../include/thurs/thurs.types.hpp"
+#include "thurs.surface.hpp"
+#include "thurs.skin.hpp"
 
 namespace thurs {
 
-  uint32 getTime() {
-    //OSX 
-    #if defined(__MACH__) || defined(__linux__) 
-      timeval time;
-      gettimeofday(&time, NULL);
-      return (time.tv_sec * 1000) + (time.tv_usec / 1000);
-    #endif
+  class Window : public Surface {
+  public:
+    Window(Surface* surface);
+    virtual ~Window();
 
-    #ifdef _WIN32
-      return timeGetTime();
-    #endif
+    virtual void setSkinClass(const std::string& name);
+  protected:
+    //The window size
+    Vector2s m_winSize;
+    //The window position
+    Vector2s m_winPos;
 
-    return 0;
-  }
+    //We override this to draw the window itself
+    void _onUpdate();
+  private:
+    //The internal window id
+    uint16 m_id;
+    //The owner surface
+    Surface* m_owner;
+    //Mouse delta
+    Vector2s m_mdelta;
+    //Pre move pos
+    Vector2s m_preMovePos;
+    //Moving?
+    bool m_moving;
+
+    //The window skin class
+    Skin::SkinClass m_skinClass;
+
+    
+  };
 
 }
+
+#endif

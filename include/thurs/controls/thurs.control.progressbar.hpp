@@ -30,6 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef h__thurs__progressbar__
 #define h__thurs__progressbar__
 
+#include "../thurs.skin.hpp"
 #include "../thurs.control.hpp"
 #include "../thurs.color.hpp"
 
@@ -42,6 +43,9 @@ namespace thurs {
     //Update and draw
     void update();
 
+    //Set the currently used skin class
+    void setSkinClass(const std::string& name);
+
     //Min value
     int32 Min;
     //Max value
@@ -49,6 +53,10 @@ namespace thurs {
     //Value
     int32 Value;
   protected:
+    //Our background
+    Skin::SkinClass *m_background;
+    //Our Bar
+    Skin::SkinClass *m_bar;
   private:
   };
 

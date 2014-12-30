@@ -27,46 +27,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
+#include "thurs.os.hpp"
 #include "../include/thurs/thurs.hpp"
 
 namespace thurs {
-
-  //Constructor
-  SkinPart::SkinPart() {
-    for (int8 i = 0; i < S_COUNT; i++) {
-      m_states[i].active = false;
-    }
-  }
-  
-  //Set the current state
-  void SkinPart::setState(SkinState s) {
-    if (s == S_COUNT) {
-      return;
-    }
-
-    m_state = s;
-    
-    if (m_states[s].active) {
-      //Start tweening everything to the new state
-      Active.fill.tween(m_states[s].fill);
-      Active.stroke.tween(m_states[s].stroke);
-      Active.text.tween(m_states[s].text);
-    }
-  }
-
-  //Update the skin
-  void SkinPart::update() {
-    Active.fill.update();
-    Active.stroke.update();
-    Active.text.update();
-  }
-
-  void SkinPart::add(SkinState s, SkinPart::Atom props) {
-    if (s != S_COUNT) {
-      m_states[s] = props;
-      m_states[s].active = true;
-    }
-  }
 
   /////////////////////////////////////////////////////////////////////////////
 
@@ -125,18 +89,15 @@ namespace thurs {
       }
     } 
 
-
     //HANDLE GENERIC EVENTS
     if (mi) {
 
       if (!m_mouseWasInside) {
         //on mouse over
-         MouseIn();
-         m_background.tween(Color(43, 102, 236));
-         m_foreground.tween(Color(255));
-         //We should tween the color here
-
-          m_mouseWasInside = true;
+        MouseIn();
+        m_mouseWasInside = true;
+        m_skinClass.setState(S_HOVER);
+        m_mouseOverTime = getTime();
       }
 
       if (m_input->mouseClick()) {
@@ -147,27 +108,31 @@ namespace thurs {
       if (m_input->mouseDown()) {
         //mouse down
          MouseDown();
-         m_background.tween(Color(43, 102, 136));
+         m_skinClass.setState(S_ACTIVE);
       }
 
 
       if (m_input->mouseUp()) {
-        m_background.tween(Color(43, 102, 236));
         //mouse up
         MouseUp();
+        m_skinClass.setState(S_HOVER);
       }
 
+      //Render tooltip
+      if (Tooltip.size() > 0 && getTime() - m_mouseOverTime > 1000) {
+        m_renderer->renderText(m_tooltipSkinClass.Attr.textFill, 0, Tooltip, m_input->mouseCoords());
+      }
 
     } else if (m_mouseWasInside) {
       //on mouse leave
       MouseOut();
-      m_foreground.tween(Color(190));
-      m_background.tween(Color(40));
+
+      m_skinClass.setState(S_NORMAL);
+
       m_mouseWasInside = false;
     }
 
-    m_background.update();
-    m_foreground.update();
+    m_skinClass.update();
 
   }
 
@@ -213,6 +178,15 @@ namespace thurs {
   void Control::setSize(uint16 w, uint16 h) {
     m_size.x = w;
     m_size.y = h;
+  }
+
+  void Control::setWPosition(const Vector2s& pos) {
+    m_wposition = pos;
+  }
+
+  void Control::setSkinClass(const std::string& name) {
+    m_skinClass = m_surface->m_skin.getClass(name);
+    m_tooltipSkinClass = m_surface->m_skin.getClass("Tooltip");
   }
 
   /////////////////////////////////////////////////////////////////////////////

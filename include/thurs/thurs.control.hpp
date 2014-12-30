@@ -33,94 +33,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "sigslot.h"
 #include "thurs.types.hpp"
 #include "thurs.surface.hpp"
+#include "thurs.skin.hpp"
 
 namespace thurs {
 
-  /*
-    Skinning stuff:
-      
-    states:
-      * normal
-      * hover
-      * active
-      * focus
-  
-    {
-      "normal": {
-        "fill":"color",
-        "stroke":"color",
-        "fontSize": number,
-        "font": "blah"
-      },
-      "hover": {
-        "fill":"other color",
-      }
-
-    }
-
-    Then tween everything based on that when states change.
-    So have one master struct or whatever that contains the current state.
-
-  */
-
-  enum SkinState {
-    S_NORMAL,  
-    S_HOVER,   
-    S_ACTIVE, 
-    S_FOCUS,
-    S_COUNT, 
-  };
-
-
-  class SkinPart {
+  class Control {
   public:
-    
-    struct Atom {
-      bool active;
-      Color fill;
-      Color stroke;
-      Color text;
-    };
-
-    //Constructor
-    SkinPart();
-    //Set the current state
-    void setState(SkinState s);
-    //Update the skin
-    void update();
-    //Add a state
-    void add(SkinState s, Atom props);
-
-    //The active settings
-    Atom Active;
-  protected:
-    //Current state
-    SkinState m_state;
-    //State atoms
-    Atom m_states[S_COUNT];
-  private:
-  };
-
-  class Skin {
-  public:
-    //Update
-    void update();
-    //Set state
-    void setState(SkinState s);
-  protected:
-  private:
-  };
-
-
-	class Control {
-	public:
     ///////////////////////////////////////////////////////////////////////////
 
     Control(uint32 id, Surface *surface);
     virtual ~Control();
 
     ///////////////////////////////////////////////////////////////////////////
-		//Signals
+    //Signals
 
     sigslot::signal0<> Clicked;
     sigslot::signal0<> MouseDown;
@@ -133,55 +58,67 @@ namespace thurs {
     virtual void update();
 
     ///////////////////////////////////////////////////////////////////////////
-		
-		//Return true or false based on the current focus state
-		bool focused();
+    
+    //Return true or false based on the current focus state
+    bool focused();
     //Return the id
     uint32 id();
 
-		//If set to true, the user can move the control by dragging
-		void canMove(bool flag);
-		//If set to true, the user can resize the control by dragging
-		void canResize(bool flag);
+    //If set to true, the user can move the control by dragging
+    void canMove(bool flag);
+    //If set to true, the user can resize the control by dragging
+    void canResize(bool flag);
 
-		//Set the position of the control
-		void setPosition(const Vector2s& pos);
-		void setPosition(Vector2s pos);
-		void setPosition(uint16 x, uint16 y);
+    //Set the position of the control
+    void setPosition(const Vector2s& pos);
+    void setPosition(Vector2s pos);
+    void setPosition(uint16 x, uint16 y);
 
-		//Set the size of the control
-		void setSize(const Vector2s& size);
-		void setSize(Vector2s size);
-		void setSize(uint16 w, uint16 h);
-	protected:
-		//Surface
-		Surface *m_surface;
+    //Set the size of the control
+    void setSize(const Vector2s& size);
+    void setSize(Vector2s size);
+    void setSize(uint16 w, uint16 h);
+
+    //Set the world position
+    void setWPosition(const Vector2s& pos);
+
+    //Set the currently used skin class
+    virtual void setSkinClass(const std::string& name);
+
+    //Tooltip
+    std::string Tooltip;
+  protected:
+    //Surface
+    Surface *m_surface;
     //Input
     Input *m_input;
     //Renderer
     Renderer *m_renderer;
+    //Mouse over time
+    uint32 m_mouseOverTime;
 
-		//The size of the control
-		Vector2s m_size;
-		//The position of the control
-		Vector2s m_position;
+    //The size of the control
+    Vector2s m_size;
+    //The position of the control
+    Vector2s m_position;
     //The world position of the control
     Vector2s m_wposition;
 
-		//Return true/false if the mouse is inside the control
-		bool mouseInside();
+    //The styling assigned to this control
+    Skin::SkinClass m_skinClass;
+    //The tooltip styling
+    Skin::SkinClass m_tooltipSkinClass;
 
-    //Background color - temporary
-    Color m_background;
-    Color m_foreground;
+    //Return true/false if the mouse is inside the control
+    bool mouseInside();
 
-	private:
+  private:
     //ID
     uint32 m_id;
-		//Can move?
-		bool m_canMove;
-		//Can resize?
-		bool m_canResize;
+    //Can move?
+    bool m_canMove;
+    //Can resize?
+    bool m_canResize;
     //Are we moving?
     bool m_isMoving;
     //Are we resizing?
@@ -196,7 +133,7 @@ namespace thurs {
     bool m_mouseWasInside;
 
 
-	};
+  };
 
 }
 

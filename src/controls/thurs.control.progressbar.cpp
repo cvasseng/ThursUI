@@ -37,16 +37,29 @@ namespace thurs {
     Min = 0;
     Max = 100;
     Value = 50;
+    
+    //Set default class
+    setSkinClass("ProgressBar");
   }
-  
+
+  void ProgressBar::setSkinClass(const std::string& name) {
+    Control::setSkinClass(name);
+
+    //Find the subclasses that contain the styling
+    m_background = m_skinClass.findSub("background");
+    m_bar = m_skinClass.findSub("bar");
+  }
+   
   //Update and draw
   void ProgressBar::update() {
     //Do parent stuff
     Control::update();
 
-    int w = (((float)Value / (float)(Max))) * (m_size.x - 4);
-    m_renderer->renderRect(m_background, m_position + m_wposition, m_size);  
-    m_renderer->renderRect(m_foreground, m_position + m_wposition + Vector2s(2, 2), Vector2s(w, m_size.y - 4));  
-
+    if (m_background && m_bar) {
+      uint16 m = m_bar->Attr.margins;
+      uint16 w = (((float)Value / (float)(Max))) * (m_size.x - (m * 2));
+      m_renderer->renderRect(m_background->Attr.fill, m_position + m_wposition, m_size);  
+      m_renderer->renderRect(m_bar->Attr.fill, m_wposition + m_position + Vector2s(m, m), Vector2s(w, m_size.y - (m * 2)));  
+    }
   }
 }

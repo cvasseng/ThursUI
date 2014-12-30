@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -O2 -static -Wall -I/usr/local/include -I/usr/include 
 
-SOURCES=src/thurs.control.cpp src/thurs.input.cpp src/thurs.renderer.cpp src/thurs.surface.cpp src/thurs.color.cpp src/thurs.os.cpp src/controls/thurs.control.button.cpp src/controls/thurs.control.progressbar.cpp
+SOURCES=src/thurs.control.cpp src/thurs.input.cpp src/thurs.renderer.cpp src/thurs.surface.cpp src/thurs.color.cpp src/thurs.os.cpp src/controls/thurs.control.button.cpp src/controls/thurs.control.progressbar.cpp src/thurs.skin.cpp src/thurs.window.cpp
 
 LIBPATH=/usr/local/lib
 LIBRARIES=
@@ -22,8 +22,9 @@ $(OUT): $(OBJECTS)
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 clean:
-	rm -rf src/*.o 
+	rm -rf src/*.o samples/*.o
 	rm -rf src/controls/*.o
 
 rebuild: clean all

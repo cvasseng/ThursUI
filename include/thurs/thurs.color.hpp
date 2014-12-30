@@ -30,16 +30,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef h__thurs__color__
 #define h__thurs__color__
 
+#include <string>
 #include "thurs.types.hpp"
 
 namespace thurs {
 
   class Color {
   public:
-    uint8 r;
-    uint8 g;
-    uint8 b;
-    uint8 a;
+    uint16 r;
+    uint16 g;
+    uint16 b;
+    uint16 a;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +49,14 @@ namespace thurs {
     Color(uint8 _r, uint8 _g, uint8 _b);
     Color(uint8 rgb, uint8 _a);
     Color(uint8 rgb);
+    Color(const std::string& rgba);
+
+    void operator=(Color other) {
+      r = other.r;
+      g = other.g;
+      b = other.b;
+      a = other.a;
+    }
 
     ///////////////////////////////////////////////////////////////////////////
 

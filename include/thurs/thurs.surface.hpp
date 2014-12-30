@@ -35,10 +35,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "thurs.types.hpp"
 #include "thurs.renderer.hpp"
 #include "thurs.input.hpp"
+#include "thurs.skin.hpp"
 
 namespace thurs {
 
   class Control;
+  class Window;
 
 	//A UI Surface
 	/*
@@ -46,10 +48,15 @@ namespace thurs {
 	*/
 	class Surface {
     friend class Control;
+    friend class Window;
 	public:
     typedef std::map<uint16, Control*> ControlMap;
     typedef ControlMap::iterator ControlMapIt;
     #define ControlMapPair(x, y) std::pair<uint16, Control*>(x, y)
+
+    typedef std::map<uint16, Surface*> SurfaceMap;
+    typedef SurfaceMap::iterator SurfaceMapIt;
+    #define SurfaceMapPair(x, y) std::pair<uint16, Surface*>(x, y)
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -63,15 +70,28 @@ namespace thurs {
     //Returns the attached renderer
     Renderer* const renderer();
 
+    //Load skin - delegates to m_skin.load(..)
+    /*
+      Having this here rather than injecting a skin makes it a bit more
+      manageable to have different skins for different surfaces, since we
+      won't have to maintain a bunch of skin classes outside the library.
+    */
+    bool loadSkin(const std::string& filename);
 	protected:
+    //Our skin
+    Skin m_skin;
 		//Our renderer 
 		Renderer *m_renderer;
 		//Input injector
 		Input *m_input;
     //Controls in the surface
     ControlMap m_controls;
+    //Children in the surface
+    SurfaceMap m_children;
     //The size of the surface
     Vector2s m_size;
+
+    virtual void _onUpdate();
 	private:
 	};
 

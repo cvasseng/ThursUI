@@ -35,6 +35,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "thurs.renderer.hpp"
 #include "thurs.control.hpp"
 #include "thurs.color.hpp"
+#include "thurs.skin.hpp"
+#include "thurs.window.hpp"
 
 namespace thurs {
 

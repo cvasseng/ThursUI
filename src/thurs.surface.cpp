@@ -38,12 +38,20 @@ namespace thurs {
     m_size.y = 1024;
   } 
 
-  void Surface::updateAndRender() {
-    m_renderer->begin(m_size.x, m_size.y, 1.f);
-
+  void Surface::_onUpdate() {
     //Update the children
     for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
       it->second->update();
+    }
+  }
+
+  void Surface::updateAndRender() {
+    m_renderer->begin(m_size.x, m_size.y, 1.f);
+
+    _onUpdate();
+
+    for (SurfaceMapIt it = m_children.begin(); it != m_children.end(); it++) {
+      it->second->updateAndRender();
     }
 
     m_renderer->end();
@@ -58,5 +66,8 @@ namespace thurs {
     return m_renderer;
   }
 
+  bool Surface::loadSkin(const std::string& filename) {
+    return m_skin.load(filename);
+  }
 
 }

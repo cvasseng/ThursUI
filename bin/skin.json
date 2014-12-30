@@ -1,0 +1,41 @@
+{
+  
+  "Window": {
+    "normal": {
+      "fill": "20 20 20 255"
+    }
+  },
+
+  "Button": {
+    "normal": {
+      "fill": "255 0 0 255",
+      "textFill": "255 255 255 255"
+    },
+    "hover": {
+      "fill": "255 255 150 255",
+      "textFill": "255 255 255 255"
+    },
+    "active": {
+      "fill": "255 0 255 255",
+      "textFill": "255 255 255 255"
+    }
+  },
+
+  "ProgressBar": {
+    "background": {
+      "normal": {
+        "fill": "100 100 100 255"
+      }
+    },
+    "bar": {
+      "normal": {
+        "fill": "100 12 12 255",
+        "margins": 1
+      },
+      "hover": {
+        "fill": "140 20 20 255"
+      }
+    }
+  }
+
+}
