@@ -34,36 +34,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace thurs {
 
-	class Input {
-	public:
-		///////////////////////////////////////////////////////////////////////////
-		
-		//Mouse button states
-		enum MouseButton {
-			MB_NONE,
-			MB_LEFT,
-			MB_RIGHT,
-			MB_MIDDLE,
-		};
+  class Input {
+  public:
+    ///////////////////////////////////////////////////////////////////////////
+    
+    //Mouse button states
+    enum MouseButton {
+      MB_NONE,
+      MB_LEFT,
+      MB_RIGHT,
+      MB_MIDDLE,
+    };
 
-		///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
-		Input();
+    Input();
 
-		///////////////////////////////////////////////////////////////////////////
-		//INJECTIONS
+    ///////////////////////////////////////////////////////////////////////////
+    //INJECTIONS
 
-		//Inject mouse coordinates
-		void injectMouseCoords(uint16 x, uint16 y);
-		//Inject mouse button state
-		void injectMouseButton(MouseButton b);
+    //Inject mouse coordinates
+    void injectMouseCoords(uint16 x, uint16 y);
+    //Inject mouse button state
+    void injectMouseButton(MouseButton b);
 
-		///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
-		//Get the current mouse position
-		const Vector2s& mouseCoords();
-		//Get the current mouse button
-		const MouseButton& mouseButton();
+    //Get the current mouse position
+    const Vector2s& mouseCoords();
+    //Get the current mouse button
+    const MouseButton& mouseButton();
     //Returns true if there was a mouse click
     bool mouseClick(MouseButton btn = MB_LEFT);
     //Returns true if the given mouse button was just pressed
@@ -77,17 +77,17 @@ namespace thurs {
     //e.g. character movement etc.
     bool handled();
 
-	protected:
-		//Current mouse coords
-		Vector2s m_coords;
-		//Current mouse button state
-		MouseButton m_mbutton;
+  protected:
+    //Current mouse coords
+    Vector2s m_coords;
+    //Current mouse button state
+    MouseButton m_mbutton;
     //Last state of mouse button
     MouseButton m_mbuttonl;
     //Handled?
     bool m_handled;
-	private:
-	};
+  private:
+  };
 
 }
 
