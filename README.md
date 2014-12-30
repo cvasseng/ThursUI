@@ -5,20 +5,20 @@ ThursUI
 
 **Straight-forward, lightweight, pretty, skinnable, immediate-mode UI library.**
 
-This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue development of my game and engine. 
+*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine.* 
 
 Currently supports the following controls:
   * Button
   * Progressbar
 
-Currently there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). Should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/renderers/thurs/thurs.renderer.nanovg.hpp) for a place to start.
+As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/renderers/thurs/thurs.renderer.nanovg.hpp) for a place to start. 
 
 <insert gif here>
 
 ## Hello world
 
 ## Motivation
-So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I tried the usual suspects and had major troubles getting everything to compile and work on my box. If I can't get a library working within an hour of downloading it, I cross it of the list and look for an alternative. A lot of the libraries are largely undocumented. A lot of them are old and unmaintained. I wanted something a bit more "modern". Something that allowed me, as a programmer, to create something that looks OK. That's just not gonna happen with a library that still relies on texture maps for skinning. Hopefully it will happen with this library. So there you have it.
+So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I tried the usual suspects and had major troubles getting everything to compile and work on my box. If I can't get a library working within an hour of downloading it, I cross it of the list and look for an alternative. I crossed all of them off of my list. A lot of the existing libraries are largely undocumented. A lot of them are old and unmaintained. I wanted something that suited my coding style more, and so I reluctantly ended up writing my own.
 
 ## Building
 
@@ -27,7 +27,7 @@ I've only built on OS X so far, but the code should work fine on *NX and Windows
 ### Dependencies
 
 Thurs depend on the following libraries to compile:
-  * libjson
+  * (jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
 Note that you also need to link with the libraries needed to support the rendering back-end in your application.
 
