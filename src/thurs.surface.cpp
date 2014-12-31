@@ -45,8 +45,8 @@ namespace thurs {
     }
   }
 
-  void Surface::updateAndRender() {
-    m_renderer->begin(m_size.x, m_size.y, 1.f);
+  void Surface::updateAndRender(float pixelFormat) {
+    m_renderer->begin(m_size.x, m_size.y, pixelFormat);
 
     _onUpdate();
 

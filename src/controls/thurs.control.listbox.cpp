@@ -91,20 +91,26 @@ namespace thurs {
       return;
     }
 
+
+    float lsize = 20.f;
+    if (m_items.size() > 0) {
+      lsize = m_renderer->getTextHeight(m_items[0].skinClass.Attr, "m");
+    }
+
     //Render the body
     m_renderer->renderRect(m_bodyClass->Attr, m_position + m_wposition, m_size);  
 
     m_renderer->setScissor(m_position + m_wposition, m_size);
 
-    float height = m_items.size() * 20;
-    float scroll = m_scrollbar.val() * (height - m_size.x);
+    float height = m_items.size() * lsize;
+    float scroll = m_scrollbar.val() * (height - m_size.y);
 
     //Render the items
     for (uint32 i = 0; i < m_items.size(); i++) {
-      float y = (i * 20);
+      float y = (i * lsize);
 
       //Check if the mouse is over this item
-      if (ison && mc.x < m_position.x + m_wposition.x + m_size.x -10 && mc.y >= m_position.y + m_wposition.y + y - scroll && mc.y <= m_position.y + m_wposition.y + y + 20 - scroll) {
+      if (ison && mc.x < m_position.x + m_wposition.x + m_size.x -10 && mc.y >= m_position.y + m_wposition.y + y - scroll && mc.y <= m_position.y + m_wposition.y + y + lsize - scroll) {
         if (m_input->mouseDown()) {
           m_items[i].skinClass.setState(S_ACTIVE);
           m_selItem = i;
@@ -117,8 +123,8 @@ namespace thurs {
       }
 
       m_items[i].skinClass.update();
-      m_renderer->renderRect(m_items[i].skinClass.Attr, m_position + m_wposition + Vector2f(0, y - scroll), Vector2f(m_size.x, 20));
-      m_renderer->renderText(m_items[i].skinClass.Attr, m_items[i].meta.title, m_position + m_wposition + Vector2f(0,  y - scroll), Vector2f(m_size.x - 10, 20));
+      m_renderer->renderRect(m_items[i].skinClass.Attr, m_position + m_wposition + Vector2f(0, y - scroll), Vector2f(m_size.x, lsize));
+      m_renderer->renderText(m_items[i].skinClass.Attr, m_items[i].meta.title, m_position + m_wposition + Vector2f(0,  y - scroll), Vector2f(m_size.x - 10, lsize));
     }
 
     m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));

@@ -61,6 +61,11 @@ namespace thurs {
     VA_BOTTOM
   };
 
+  enum GradientType {
+    GT_LINEAR,
+    GT_RADIAL
+  };
+
   class Renderer;
 
   class Skin {
@@ -77,6 +82,13 @@ namespace thurs {
         Color stroke;
         Color textFill;
         Color textStroke;
+
+        GradientType gradient;
+        Color gradientA;
+        Color gradientB;
+
+        float strokeWidth;
+
         uint16 margins;
         uint16 textSize;
         float cornerRadius;
@@ -95,12 +107,14 @@ namespace thurs {
         bool hasTextSize;
         bool hasCornerRadius;
         bool hasImage;
+        bool hasGradient;
 
         Attributes() {
           margins = 2;
           textSize = 12;
           cornerRadius = 0.f;
           transitionTime = 250;
+          strokeWidth = 1.f;
 
           vTextAlign = VA_MIDDLE;
           hTextAlign = HA_LEFT;
@@ -113,6 +127,7 @@ namespace thurs {
           hasTextSize = false;
           hasCornerRadius = false;
           hasImage = false;
+          hasGradient = false;
 
           imageHandle = 0;
         }

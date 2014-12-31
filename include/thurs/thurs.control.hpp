@@ -47,11 +47,11 @@ namespace thurs {
     ///////////////////////////////////////////////////////////////////////////
     //Signals
 
-    sigslot::signal0<> Clicked;
-    sigslot::signal0<> MouseDown;
-    sigslot::signal0<> MouseUp;
-    sigslot::signal0<> MouseIn;
-    sigslot::signal0<> MouseOut;
+    sigslot::signal1<uint32> OnClick;
+    sigslot::signal1<uint32> OnMouseDown;
+    sigslot::signal1<uint32> OnMouseUp;
+    sigslot::signal1<uint32> OnMouseIn;
+    sigslot::signal1<uint32> OnMouseOut;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -84,9 +84,13 @@ namespace thurs {
 
     //Set the currently used skin class
     virtual void setSkinClass(const std::string& name);
+    //Reload class
+    void reloadSkinClass();
 
     //Set the accepted drop type
     void acceptedDropType(uint32 tp);
+
+    ///////////////////////////////////////////////////////////////////////////
 
     //Tooltip
     std::string Tooltip;
@@ -116,6 +120,8 @@ namespace thurs {
 
     //Set to true to skip state handling
     bool m_noStateHandling;
+    //Loaded class name
+    std::string m_loadedClassName;
 
     //Return true/false if the mouse is inside the control
     bool mouseInside();

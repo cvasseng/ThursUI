@@ -18,14 +18,17 @@
     "normal": {
       "fill": "20 20 20 100",
       "stroke": "100 100 100 255",
-      "cornerRadius": 5
+      "cornerRadius": 5,
+      "gradient": "linear",
+      "gradientFrom": "100 100 100 100",
+      "gradientTo": "40 40 40 100"
     },
     "hover": {
       "fill": "20 20 20 255"
     },
     "titlebar" : {
       "normal": {
-        "fill": "10 10 10 0",
+        "fill": "#FF00FF99",
         "textFill": "255 255 255 255",
         "height": 70,
         "textSize": 20,
@@ -48,7 +51,8 @@
         "cornerRadius": 5
       },
       "hover": {
-        "fill": "0 0 0 180"
+        "margins":2,
+        "fill": "255 255 255 255"
       }
     }
   },
@@ -90,7 +94,7 @@
       "normal": {
         "fill": "0 0 0 0",
         "textFill": "200 200 200 255",
-        "textSize": 15
+        "textSize": 14
       },
       "hover": {
         "fill": "80 80 80 255"
@@ -98,7 +102,7 @@
       "active": {
         "fill": "40 40 100 255",
         "textFill":"250 250 250 255",
-        "textSize": 16
+        "textSize": 14
       }
     }
   },
@@ -115,7 +119,9 @@
         "fill": "60 60 60 255",
         "shape": "circle",
         "textFill": "0 0 0 0",
-        "cornerRadius": 10.0
+        "cornerRadius": 10.0,
+        "stroke": "0 0 0 255",
+        "strokeWidth":0.8
       },
       "hover": {
         "fill": "80 80 80 255",
@@ -126,18 +132,21 @@
 
   "Button": {
     "normal": {
-      "fill": "80 80 80 255",
+      "fill": "27 94 32 255",
       "textFill": "255 255 255 255",
       "textSize": 18,
       "cornerRadius": 5.5,
-      "htextAlign": "center"
+      "htextAlign": "center",
+      "gradient": "linear",
+      "gradientFrom": "100 100 100 100",
+      "gradientTo": "40 40 40 100"
     },
     "hover": {
-      "fill": "255 255 150 255",
+      "fill": "46 125 50 255",
       "textFill": "255 255 255 255"
     },
     "active": {
-      "fill": "255 0 255 255",
+      "fill": "185 246 202 255",
       "textFill": "255 255 255 255"
     }
   },
@@ -153,7 +162,10 @@
       "normal": {
         "fill": "100 12 12 255",
         "margins": 4,
-        "cornerRadius": 4.0
+        "cornerRadius": 4.0,
+        "gradient": "linear",
+        "gradientFrom": "200 12 12 100",
+        "gradientTo": "100 12 12 100"
       },
       "hover": {
         "fill": "140 20 20 255"

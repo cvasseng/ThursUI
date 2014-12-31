@@ -69,10 +69,41 @@ namespace thurs {
 
 
   Color::Color(const std::string& rgba) {
-    std::stringstream ss(rgba);
-    ss >> r >> g >> b >> a;
+    if (rgba.size() > 1) {
+      if (rgba[0] == '#') {
 
-    //printf("color inited to %i %i %i %i from string %s\n", r, g, b, a, rgba.c_str());
+        a = 255;
+
+        //Parse as hex
+        std::stringstream ss;//rgba.substr(1));
+        uint32 col = 0;
+        ss << std::hex << rgba.substr(1);
+        ss >> col;
+
+        printf("Color hex is %x, str is %s\n", col, ss.str().c_str());
+
+        if (ss.str().size() == 6) {
+          r = (col >> 16) & 0xFF;
+          g = (col >> 8) & 0xFF;
+          b = col & 0xFF;
+        } else if (ss.str().size() == 8) {
+          r = (col >> 24) & 0xFF;
+          g = (col >> 16) & 0xFF;
+          b = (col >> 8) & 0xFF;
+          a = col & 0xFF;
+        }
+
+      } else {
+        //Parse as components
+        std::stringstream ss(rgba);
+        ss >> r;
+        if (!ss.eof()) ss >> g;
+        if (!ss.eof()) ss >> b;
+        if (!ss.eof()) ss >> a;
+      }
+    }
+
+    printf("color inited to %i %i %i %i from string %s\n", r, g, b, a, rgba.c_str());
   }
 
   void Color::tween(Color to, uint16 durationMS) {

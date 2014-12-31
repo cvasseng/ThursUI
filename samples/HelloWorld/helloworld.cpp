@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
   GLFWwindow* window;
   int width, height;
   double mouseX, mouseY;
+  float pixelFormat = 1.f;
 
   if (!glfwInit()) {
     printf("Failed to init GLFW.");
@@ -124,6 +125,8 @@ int main(int argc, char** argv) {
    while (!glfwWindowShouldClose(window)) {
     glfwGetFramebufferSize(window, &width, &height);
     glfwGetCursorPos(window, &mouseX, &mouseY);
+
+    pixelFormat = width / 1024.f; 
     
     glViewport(0, 0, width, height);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -131,7 +134,7 @@ int main(int argc, char** argv) {
     //Inject input and render UI  
     input.injectMouseCoords(mouseX, mouseY);
     input.injectMouseButton(thurs::Input::MouseButton(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)));
-    surface->updateAndRender();  
+    surface->updateAndRender(pixelFormat);  
 
     glfwSwapBuffers(window);
     glfwPollEvents();

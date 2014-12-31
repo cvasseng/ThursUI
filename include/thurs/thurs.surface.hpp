@@ -64,7 +64,7 @@ namespace thurs {
     virtual ~Surface(){}
 
     //Update the surface
-    void updateAndRender();
+    void updateAndRender(float pielFormat = 1.f);
 
 		//Returns the attached input handler
 		Input* const input();
@@ -97,7 +97,7 @@ namespace thurs {
     float m_pixelAspect;
 
     //The active tooltip
-    
+
 
     virtual void _onUpdate();
 	private:

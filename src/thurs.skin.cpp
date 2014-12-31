@@ -53,6 +53,14 @@ namespace thurs {
     Attr.textFill.tween(m_attributes[s].textFill, Attr.transitionTime);
     Attr.textStroke.tween(m_attributes[s].textStroke, Attr.transitionTime);
 
+    Attr.gradientA.tween(m_attributes[s].gradientA, Attr.transitionTime);
+    Attr.gradientB.tween(m_attributes[s].gradientB, Attr.transitionTime);
+
+    Attr.strokeWidth = m_attributes[s].strokeWidth;
+
+    Attr.gradient = m_attributes[s].gradient;
+    Attr.hasGradient = m_attributes[s].hasGradient;
+
     Attr.textSize = m_attributes[s].textSize;
     Attr.margins = m_attributes[s].margins;
     Attr.cornerRadius = m_attributes[s].cornerRadius;
@@ -64,6 +72,7 @@ namespace thurs {
 
     Attr.hasImage = m_attributes[s].hasImage;
     Attr.hasStroke = m_attributes[s].hasStroke;
+    Attr.hasTextStroke = m_attributes[s].hasTextStroke;
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.setState(s);
@@ -78,6 +87,8 @@ namespace thurs {
     Attr.stroke.update();
     Attr.textFill.update();
     Attr.textStroke.update();
+    Attr.gradientA.update();
+    Attr.gradientB.update();
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
      // if (!it->second.m_noParentUpdate) {
@@ -97,12 +108,20 @@ namespace thurs {
     Attr.transitionTime = m_attributes[S_NORMAL].transitionTime;
     Attr.imageHandle = m_attributes[S_NORMAL].imageHandle;
 
+    Attr.strokeWidth = m_attributes[S_NORMAL].strokeWidth;
+
     Attr.hasStroke = m_attributes[S_NORMAL].hasStroke;
+    Attr.hasTextStroke = m_attributes[S_NORMAL].hasTextStroke;
     Attr.hasImage = m_attributes[S_NORMAL].hasImage;
 
     Attr.vTextAlign = m_attributes[S_NORMAL].vTextAlign;
     Attr.hTextAlign = m_attributes[S_NORMAL].hTextAlign;
 
+    Attr.gradientA = m_attributes[S_NORMAL].gradientA;
+    Attr.gradientB = m_attributes[S_NORMAL].gradientB;
+    Attr.gradient = m_attributes[S_NORMAL].gradient;
+    Attr.hasGradient = m_attributes[S_NORMAL].hasGradient;
+    
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.reset();
     }
@@ -138,8 +157,15 @@ namespace thurs {
     attr.cornerRadius = sc.m_attributes[S_NORMAL].cornerRadius;
     attr.vTextAlign = sc.m_attributes[S_NORMAL].vTextAlign;
     attr.hTextAlign = sc.m_attributes[S_NORMAL].hTextAlign;
+    attr.gradientA = sc.m_attributes[S_NORMAL].gradientA;
+    attr.gradientB = sc.m_attributes[S_NORMAL].gradientB;
+    attr.gradient = sc.m_attributes[S_NORMAL].gradient;
 
-    attr.stroke = sc.m_attributes[S_NORMAL].hasStroke;
+    attr.strokeWidth = sc.m_attributes[S_NORMAL].strokeWidth;
+
+    attr.hasStroke = sc.m_attributes[S_NORMAL].hasStroke;
+    attr.hasTextStroke = sc.m_attributes[S_NORMAL].hasTextStroke;
+    attr.hasGradient = sc.m_attributes[S_NORMAL].hasGradient;
 
     if (v.isMember("fill")) {
       attr.fill = Color(v.get("fill", "255 255 255 255").asString());
@@ -150,12 +176,17 @@ namespace thurs {
       attr.hasStroke = true;
     } 
 
+    if (v.isMember("strokeWidth")) {
+      attr.strokeWidth = v.get("strokeWidth", "1.0").asFloat();
+    }
+
     if (v.isMember("textFill")) {
       attr.textFill = Color(v.get("textFill", "255 255 255 255").asString());
     } 
 
     if (v.isMember("textStroke")) {
       attr.textStroke = Color(v.get("textStroke", "255 255 255 255").asString());
+      attr.hasTextStroke = true;
     } 
 
     if (v.isMember("margins")) {
@@ -197,6 +228,17 @@ namespace thurs {
       if (t == "center") attr.hTextAlign = HA_CENTER;
       if (t == "left") attr.hTextAlign = HA_LEFT;
       if (t == "right") attr.hTextAlign = HA_RIGHT;
+    }
+
+    if (v.isMember("gradientFrom")) {
+      attr.gradientA = v.get("gradientFrom", "100 100 100 40").asString();
+    }
+    if (v.isMember("gradientTo")) {
+      attr.gradientB = v.get("gradientTo", "10 10 10 10 40").asString();
+    }
+    if (v.isMember("gradient")) {
+      attr.gradient = GT_LINEAR;
+      attr.hasGradient = true;
     }
 
   }

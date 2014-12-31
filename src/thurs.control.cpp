@@ -100,7 +100,7 @@ namespace thurs {
 
       if (!m_mouseWasInside) {
         //on mouse over
-        MouseIn();
+        OnMouseIn(m_id);
         m_mouseWasInside = true;
         if (!m_noStateHandling) {
           m_skinClass.setState(S_HOVER);
@@ -110,12 +110,12 @@ namespace thurs {
 
       if (m_input->mouseClick()) {
         //focus + click
-        Clicked();
+        OnClick(m_id);
       }
 
       if (m_input->mouseDown()) {
         //mouse down
-         MouseDown();
+         OnMouseDown(m_id);
          if (!m_noStateHandling) {
           m_skinClass.setState(S_ACTIVE);
         }
@@ -124,10 +124,9 @@ namespace thurs {
 
       if (m_input->mouseUp()) {
         //Check if there's drop data associated with the mouse event
-        
-
+    
         //mouse up
-        MouseUp();
+        OnMouseUp(m_id);
         if (!m_noStateHandling) {
           m_skinClass.setState(S_HOVER);
         }
@@ -140,7 +139,7 @@ namespace thurs {
 
     } else if (m_mouseWasInside) {
       //on mouse leave
-      MouseOut();
+      OnMouseOut(m_id);
 
       if (!m_noStateHandling) {
         m_skinClass.setState(S_NORMAL);
@@ -204,6 +203,11 @@ namespace thurs {
   void Control::setSkinClass(const std::string& name) {
     m_skinClass = m_surface->m_skin.getClass(name);
     m_tooltipSkinClass = m_surface->m_skin.getClass("Tooltip");
+    m_loadedClassName = name;
+  }
+
+  void Control::reloadSkinClass() {
+    setSkinClass(m_loadedClassName);
   }
 
   /////////////////////////////////////////////////////////////////////////////
