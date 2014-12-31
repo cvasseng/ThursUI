@@ -3,9 +3,9 @@ ThursUI
 
 ![Logo](bin/logo.png)
 
-**Straight-forward, lightweight, pretty, and skinnable UI library.**
+**Straight-forward, lightweight, (potentially) pretty, and skinnable UI library.**
 
-*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine.* 
+*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever - "Make it work, then make it fast."* 
 
 **Currently supported controls:**
   * Button
@@ -13,11 +13,14 @@ ThursUI
   * Slider
   * List Box
   * Checkbox
+  * Image Grid (useful for e.g. inventories in RPG's)
   * Window
 
 **Noteable features:**
-  * JSON-based skinning - no texture maps required
+  * JSON-based CSS-style skinning - no texture maps required (textures are of course supported)
   * Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them when the state changes
+  * Designed around signals/slots (powered by sigslot.h)
+  * Light on dependencies
   * Cross-platform
   * Liberally licensed (Simplified BSD for now, might switch to zlib) 
 
@@ -27,27 +30,21 @@ As of now, there's only a renderer back-end for [NanoVG](https://github.com/memo
 
 ## Hello world
 
-## Motivation
-So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I started shopping around. I found that a lot of the existing libraries are largely undocumented. A lot of them are old and now more or less unmaintained. I also wanted a library that didn't rely on texture maps for its skinning - something that in my opinion makes skin creation that much more complicated.
-
 ## Building
 
-I've only built on OS X so far, but the code should work fine on *NX and Windows. If compiling for windows, you're gonna have to create a VS project file to compile it, or use MinGW. The included makefile might work for Linux, but I have yet to test it. Will use a cross-platform build system eventually.
+I've only built on OS X so far, but the code should work fine on *NX and Windows. If compiling for windows, you're gonna have to create a VS project file to compile it, or use MinGW. The included makefile probably works on Linux, but I have yet to test it. Will convert to a cross-platform build system eventually.
 
 ### Dependencies
 
-Thurs depend on the following libraries to compile:
+Thurs depend on the following libraries:
   * [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
 Note that you also need to link with the libraries needed to support the rendering back-end in your application.
 
-### Compiling
-
-
 ### Installing
 Either copy `include/thurs` and the compiled library from `lib` to your preferred paths, or add `include` and `lib` to your path variable or as search paths in your IDE if you're using one. Running `make install` will move things into `/usr/local/include` and `/usr/local/lib`.
 
-## Documentation
+## Documentation (todo)
   
   * Getting started: installing, compiling, and running samples
   * Skinning
