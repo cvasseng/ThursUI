@@ -3,12 +3,12 @@
   "Scrollbar": {
     "body": {
       "normal": {
-        "fill": "50 50 50 255"
+        "fill": "#616161"
       }
     },
     "bar": {
       "normal": {
-        "fill": "128 128 128 255",
+        "fill": "#E0E0E0",
         "cornerRadius": 4
       }
     }
@@ -16,7 +16,7 @@
 
   "Window": {
     "normal": {
-      "fill": "20 20 20 100",
+      "fill": "#212121",
       "stroke": "100 100 100 255",
       "cornerRadius": 5,
       "gradient": "linear",
@@ -24,18 +24,41 @@
       "gradientTo": "40 40 40 100"
     },
     "hover": {
-      "fill": "20 20 20 255"
+      "fill": "#212121"
     },
     "titlebar" : {
       "normal": {
-        "fill": "#FF00FF99",
+        "fill": "#212121",
         "textFill": "255 255 255 255",
         "height": 70,
         "textSize": 20,
-        "htextAlign": "center"
+        "htextAlign": "center",
+        "cornerRadius": 5,
+        "gradient": "linear",
+        "gradientFrom": "100 100 100 100",
+        "gradientTo": "40 40 40 100"
       },
       "hover": {
-        "fill": "80 80 80 0"
+        "textSize": 20
+      }
+    },
+    "closeIcon": {
+      "normal": {
+        "cornerRadius": 5,
+        "fill": "#F4433600"
+       
+      },
+      "hover": {
+        "fill": "#F44336"
+      }
+    },
+    "collapseIcon": {
+      "normal": {
+        "cornerRadius": 5,
+        "fill": "#FFEB3B00"
+      },
+      "hover": {
+        "fill": "#FFEB3B"
       }
     }
   },
@@ -48,7 +71,10 @@
       "normal": {
         "fill": "255 255 255 200",
         "margins": 4,
-        "cornerRadius": 5
+        "cornerRadius": 5,
+        "vtextAlign": "bottom",
+        "htextAlign": "center",
+        "textFill":"#333333"
       },
       "hover": {
         "margins":2,

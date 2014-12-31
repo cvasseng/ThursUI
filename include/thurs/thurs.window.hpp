@@ -89,6 +89,10 @@ namespace thurs {
     Skin::SkinClass m_skinClass;
     //The title bar skin class
     Skin::SkinClass* m_titlebarClass;
+    //The close icon class
+    Skin::SkinClass* m_closeClass;
+    //The collapse icon class
+    Skin::SkinClass* m_collapseClass;
   };
 
 }

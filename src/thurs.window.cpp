@@ -128,6 +128,15 @@ namespace thurs {
       m_renderer->renderText(m_titlebarClass->Attr, "Window Title", m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
     }
 
+    float s = m_titlebarHeight / 2.f;
+    if (m_closeClass) {
+      m_renderer->renderRect(m_closeClass->Attr, m_winPos + Vector2f(m_winSize.x - (s * 2.0f), s / 2.f), Vector2f(s, s));
+    }
+
+    if (m_collapseClass) {
+      m_renderer->renderRect(m_collapseClass->Attr, m_winPos + Vector2f(m_winSize.x - (s * 4.0f), s / 2.f), Vector2f(s, s));
+    }
+
     //Update the children
     for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
       it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
@@ -141,7 +150,8 @@ namespace thurs {
   void Window::setSkinClass(const std::string& name) {
     m_skinClass = m_skin.getClass(name);
     m_titlebarClass = m_skinClass.findSub("titlebar");
-
+    m_closeClass = m_skinClass.findSub("closeIcon");
+    m_collapseClass = m_skinClass.findSub("collapseIcon");
   }
 
 }
