@@ -114,7 +114,9 @@ int main(int argc, char** argv) {
   igrid->setSize(380, 200);
 
   for (int i = 0; i < 30; i++) {
-    igrid->addImage(i, "logo.png");
+    std::stringstream ss;
+    ss << "Img #" << i;
+    igrid->addImage(i, "logo.png", ss.str());
   }
 
   /////

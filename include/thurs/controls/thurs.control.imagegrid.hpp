@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <string>
 #include <vector>
 
+#include "../sigslot.h"
 #include "../thurs.control.hpp"
 #include "../thurs.scrollbar.hpp"
 #include "../thurs.skin.hpp"
@@ -41,8 +42,13 @@ namespace thurs {
 
   class ImageGrid : public Control {
   public:
-    struct Entry {
+    struct EntryMeta {
       uint32 id;
+      std::string caption;
+    };
+
+    struct Entry {
+      EntryMeta meta;
       std::string image;
       uint32 imageHandle;
       Skin::SkinClass skinClass;
@@ -53,8 +59,10 @@ namespace thurs {
     //Update and draw
     void update();
 
+    sigslot::signal1<EntryMeta&> OnSelect;
+
     //Add an image
-    void addImage(uint32 id, const std::string& image);
+    void addImage(uint32 id, const std::string& image, const std::string& caption = "");
 
   protected:
     //Number of images on the x axis
