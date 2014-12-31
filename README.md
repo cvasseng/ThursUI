@@ -17,6 +17,7 @@ ThursUI
   * Window
 
 **Noteable features:**
+  * Drag 'n drop
   * JSON-based CSS-style skinning - no texture maps required (textures are of course supported)
   * Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them when the state changes
   * Designed around signals/slots (powered by sigslot.h)
@@ -39,7 +40,7 @@ I've only built on OS X so far, but the code should work fine on *NX and Windows
 Thurs depend on the following libraries:
   * [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
-Note that you also need to link with the libraries needed to support the rendering back-end in your application.
+Note that you also need to link with the libraries needed to support the rendering back-end in your application. The default output of the makefile is a thin library, so you need to link with jsoncpp in your final application also.
 
 ### Installing
 Either copy `include/thurs` and the compiled library from `lib` to your preferred paths, or add `include` and `lib` to your path variable or as search paths in your IDE if you're using one. Running `make install` will move things into `/usr/local/include` and `/usr/local/lib`.

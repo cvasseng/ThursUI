@@ -44,6 +44,7 @@ namespace thurs {
     m_isResizing = false;
     m_id = id;
     m_mouseWasInside = false;
+    m_acceptedDropType = 0;
 
     m_size.x = 100;
     m_size.y = 25;
@@ -122,6 +123,9 @@ namespace thurs {
 
 
       if (m_input->mouseUp()) {
+        //Check if there's drop data associated with the mouse event
+        
+
         //mouse up
         MouseUp();
         if (!m_noStateHandling) {

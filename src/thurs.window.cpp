@@ -81,6 +81,10 @@ namespace thurs {
       return;
     }
 
+    if (m_titlebarClass) {
+      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, "Window Title");
+    }
+
     Vector2s mc = m_input->mouseCoords();
     bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
     bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_size.y;
@@ -121,7 +125,7 @@ namespace thurs {
       //Render titlebar
       
       m_renderer->renderRect(m_titlebarClass->Attr, m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
-      m_renderer->renderText(m_titlebarClass->Attr, "Window Title", m_winPos + Vector2f(0, m_titlebarHeight / 2));
+      m_renderer->renderText(m_titlebarClass->Attr, "Window Title", m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
     }
 
     //Update the children
@@ -137,6 +141,7 @@ namespace thurs {
   void Window::setSkinClass(const std::string& name) {
     m_skinClass = m_skin.getClass(name);
     m_titlebarClass = m_skinClass.findSub("titlebar");
+
   }
 
 }

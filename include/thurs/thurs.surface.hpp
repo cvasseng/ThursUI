@@ -96,6 +96,9 @@ namespace thurs {
     //Pixel aspect
     float m_pixelAspect;
 
+    //The active tooltip
+    
+
     virtual void _onUpdate();
 	private:
 	};

@@ -73,14 +73,39 @@ namespace thurs {
     }
 
     //Render text - the implementation should keep track of loaded fonts etc.
-    bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos) {
+    bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos, const Vector2f& bounds) {
       if (!m_inited) return false;
 
+      Vector2f p = pos;
+
+      int alignment = 0;
+
+      if (skinClass.hTextAlign == HA_LEFT) {
+        alignment |= NVG_ALIGN_LEFT;
+      } else if (skinClass.hTextAlign == HA_RIGHT) {
+        alignment |= NVG_ALIGN_RIGHT;
+        p.x += bounds.x;
+      } else if (skinClass.hTextAlign == HA_CENTER) {
+        alignment |= NVG_ALIGN_CENTER;
+        p.x += (bounds.x / 2.f);
+      }
+
+      if (skinClass.vTextAlign == VA_TOP) {
+        alignment |= NVG_ALIGN_TOP;
+      } else if (skinClass.vTextAlign == VA_MIDDLE) {
+        alignment |= NVG_ALIGN_MIDDLE;
+        p.y += (bounds.y / 2.f);
+      } else if (skinClass.vTextAlign == VA_BOTTOM) {
+        alignment |= NVG_ALIGN_BOTTOM;
+        p.y += bounds.y;
+      } 
+
+      nvgTextAlign(m_vg, alignment);
       nvgFillColor(m_vg, nvgRGBA(skinClass.textFill.r, skinClass.textFill.g, skinClass.textFill.b, skinClass.textFill.a));
       nvgFontSize(m_vg, skinClass.textSize);
       nvgFontFace(m_vg, "sans");
 
-      nvgText(m_vg, pos.x, pos.y, text.c_str(), NULL);
+      nvgText(m_vg, p.x, p.y, text.c_str(), NULL);
       return true;
     }
     
@@ -97,9 +122,9 @@ namespace thurs {
         
 
       nvgFillColor(m_vg, col);
-        nvgFill(m_vg);
+      nvgFill(m_vg);
 
-       if (skinClass.hasImage) {
+      if (skinClass.hasImage) {
         int w, h;
         nvgImageSize(m_vg, skinClass.imageHandle, &w, &h);
         NVGpaint img = nvgImagePattern(m_vg, pos.x, pos.y, w, h, 0.f, skinClass.imageHandle, col.a);
@@ -110,9 +135,6 @@ namespace thurs {
       } else {
 
       }
-
-      
-
 
       if (skinClass.hasStroke) {
         nvgStrokeColor(m_vg, nvgRGBA(skinClass.stroke.r, skinClass.stroke.g, skinClass.stroke.b, skinClass.stroke.a));
@@ -143,6 +165,15 @@ namespace thurs {
     uint32 loadImage(const std::string& filename) {
       if (!m_inited) return 0;
       return nvgCreateImage(m_vg, filename.c_str(), NVG_IMAGE_REPEATX | NVG_IMAGE_REPEATY);
+    }
+
+    float getTextHeight(Skin::SkinClass::Attributes &skinClass, const std::string& text) {
+      nvgFontSize(m_vg, skinClass.textSize);
+      nvgFontFace(m_vg, "sans");
+
+      float ascender, descender, lineh;
+      nvgTextMetrics(m_vg, &ascender, &descender, &lineh);
+      return lineh;
     }
   protected:
     //Context

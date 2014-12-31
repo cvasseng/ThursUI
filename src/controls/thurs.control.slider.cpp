@@ -94,7 +94,7 @@ namespace thurs {
       valStr << Value;
       Vector2f pos = m_wposition + m_position + Vector2f(p, 0);
       m_renderer->renderRect(m_knob->Attr, pos, Vector2f(m_size.y, m_size.y));  
-      m_renderer->renderText(m_knob->Attr, valStr.str(), m_position + m_wposition + Vector2f(0, m_size.y + 10));
+      m_renderer->renderText(m_knob->Attr, valStr.str(), m_position + m_wposition + Vector2f(0, m_size.y), Vector2f(m_size.x, 10));
     }
   }
 }

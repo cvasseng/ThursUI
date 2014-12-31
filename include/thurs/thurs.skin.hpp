@@ -49,6 +49,18 @@ namespace thurs {
     S_COUNT, 
   };
 
+  enum HAlignment {
+    HA_LEFT,
+    HA_CENTER,
+    HA_RIGHT
+  };
+
+  enum VAlignment {
+    VA_TOP,
+    VA_MIDDLE,
+    VA_BOTTOM
+  };
+
   class Renderer;
 
   class Skin {
@@ -72,6 +84,9 @@ namespace thurs {
         std::string image;
         uint32 imageHandle;
 
+        VAlignment vTextAlign;
+        HAlignment hTextAlign;
+
         bool hasFill;
         bool hasStroke;
         bool hasTextFill;
@@ -86,6 +101,9 @@ namespace thurs {
           textSize = 12;
           cornerRadius = 0.f;
           transitionTime = 250;
+
+          vTextAlign = VA_MIDDLE;
+          hTextAlign = HA_LEFT;
 
           hasFill = false;
           hasStroke = false;

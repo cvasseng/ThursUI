@@ -32,6 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <string>
 
+#include "../sigslot.h"
 #include "../thurs.control.hpp"
 #include "../thurs.color.hpp"
 
@@ -43,9 +44,14 @@ namespace thurs {
     Checkbox(uint32 id, Surface *surface);
     //Update and draw
     void update();
-
     //Set the currently used skin class
     void setSkinClass(const std::string& name);
+
+    ///////////////////////////////////////////////////////////////////////////
+    
+    sigslot::signal2<int, bool> OnChange;
+
+    ///////////////////////////////////////////////////////////////////////////
 
     //Caption
     std::string Caption;

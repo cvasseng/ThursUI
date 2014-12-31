@@ -85,6 +85,9 @@ namespace thurs {
     //Set the currently used skin class
     virtual void setSkinClass(const std::string& name);
 
+    //Set the accepted drop type
+    void acceptedDropType(uint32 tp);
+
     //Tooltip
     std::string Tooltip;
   protected:
@@ -103,6 +106,8 @@ namespace thurs {
     Vector2f m_position;
     //The world position of the control
     Vector2f m_wposition;
+
+    uint32 m_acceptedDropType;
 
     //The styling assigned to this control
     Skin::SkinClass m_skinClass;

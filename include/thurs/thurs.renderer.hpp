@@ -56,8 +56,8 @@ namespace thurs {
 
     //Initialize the renderer
     virtual bool init() = 0;
-		//Render text - the implementation should keep track of loaded fonts etc.
-		virtual bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos) = 0;
+	//Render text - the implementation should keep track of loaded fonts etc.
+	virtual bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos, const Vector2f& bounds) = 0;
     //Render a rectangle
     virtual bool renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size) = 0;
     //Set the scissor rect
@@ -66,6 +66,8 @@ namespace thurs {
     virtual bool clearScissor() = 0;
     //Load an image
     virtual uint32 loadImage(const std::string& filename) = 0;
+    //Get the height of a string
+    virtual float getTextHeight(Skin::SkinClass::Attributes &skinClass, const std::string& text) = 0;
 
     //Get the length of a string in pixels
    // virtual float getTextWidth(uint32 font, const std::string& text);

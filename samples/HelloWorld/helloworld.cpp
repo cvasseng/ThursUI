@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
 
   glClearColor(0.2, 0.2, 0.2, 1.f);
 
-  //////
+  ////// START UI INIT ///////
 
   thurs::Input input;
   thurs::Renderer* renderer = new thurs::RendererNanoVG();
@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
     igrid->addImage(i, "logo.png", ss.str());
   }
 
-  /////
+  ///// END UI INIT //////
 
    while (!glfwWindowShouldClose(window)) {
     glfwGetFramebufferSize(window, &width, &height);
@@ -128,7 +128,7 @@ int main(int argc, char** argv) {
     glViewport(0, 0, width, height);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-    //Render UI  
+    //Inject input and render UI  
     input.injectMouseCoords(mouseX, mouseY);
     input.injectMouseButton(thurs::Input::MouseButton(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)));
     surface->updateAndRender();  

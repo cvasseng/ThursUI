@@ -59,6 +59,9 @@ namespace thurs {
     Attr.image = m_attributes[s].image;
     Attr.imageHandle = m_attributes[s].imageHandle;
 
+    Attr.vTextAlign = m_attributes[s].vTextAlign;
+    Attr.hTextAlign = m_attributes[s].hTextAlign;
+
     Attr.hasImage = m_attributes[s].hasImage;
     Attr.hasStroke = m_attributes[s].hasStroke;
 
@@ -97,6 +100,8 @@ namespace thurs {
     Attr.hasStroke = m_attributes[S_NORMAL].hasStroke;
     Attr.hasImage = m_attributes[S_NORMAL].hasImage;
 
+    Attr.vTextAlign = m_attributes[S_NORMAL].vTextAlign;
+    Attr.hTextAlign = m_attributes[S_NORMAL].hTextAlign;
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.reset();
@@ -131,6 +136,8 @@ namespace thurs {
     attr.margins = sc.m_attributes[S_NORMAL].margins;
     attr.textSize = sc.m_attributes[S_NORMAL].textSize;
     attr.cornerRadius = sc.m_attributes[S_NORMAL].cornerRadius;
+    attr.vTextAlign = sc.m_attributes[S_NORMAL].vTextAlign;
+    attr.hTextAlign = sc.m_attributes[S_NORMAL].hTextAlign;
 
     attr.stroke = sc.m_attributes[S_NORMAL].hasStroke;
 
@@ -176,6 +183,20 @@ namespace thurs {
         attr.hasImage = false;
         attr.imageHandle = 0;
       }
+    }
+
+    if (v.isMember("vtextAlign")) {
+      std::string t = v.get("vtextAlign", "middle").asString();
+      if (t == "middle") attr.vTextAlign = VA_MIDDLE;
+      if (t == "top") attr.vTextAlign = VA_TOP;
+      if (t == "bottom") attr.vTextAlign = VA_BOTTOM;
+    }
+
+    if (v.isMember("htextAlign")) {
+      std::string t = v.get("htextAlign", "center").asString();
+      if (t == "center") attr.hTextAlign = HA_CENTER;
+      if (t == "left") attr.hTextAlign = HA_LEFT;
+      if (t == "right") attr.hTextAlign = HA_RIGHT;
     }
 
   }

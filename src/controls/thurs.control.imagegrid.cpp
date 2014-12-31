@@ -39,6 +39,10 @@ namespace thurs {
 
     m_imagesX = 5;
   }
+
+  void ImageGrid::setImageCountAlongX(uint16 c) {
+    m_imagesX = c;
+  }
   
   //Update and draw
   void ImageGrid::update() {
@@ -84,7 +88,7 @@ namespace thurs {
       m_renderer->renderRect(m_entries[i].skinClass.Attr, Vector2f(x + m, y + m), Vector2f(w - (m * 2), w - (m * 2)));
 
       if (m_entries[i].meta.caption.size() > 0) {
-        m_renderer->renderText(m_entries[i].skinClass.Attr, m_entries[i].meta.caption, Vector2f(x, y + w));
+        m_renderer->renderText(m_entries[i].skinClass.Attr, m_entries[i].meta.caption, Vector2f(x, y), Vector2f(w, w));
       }
 
       m_entries[i].skinClass.update();

@@ -42,6 +42,8 @@ namespace thurs {
 
   class ImageGrid : public Control {
   public:
+    ///////////////////////////////////////////////////////////////////////////
+    
     struct EntryMeta {
       uint32 id;
       std::string caption;
@@ -54,15 +56,24 @@ namespace thurs {
       Skin::SkinClass skinClass;
     };
 
+    ///////////////////////////////////////////////////////////////////////////
+
     //Constructor. Duh.
     ImageGrid(uint32 id, Surface *surface);
     //Update and draw
     void update();
 
+    ///////////////////////////////////////////////////////////////////////////
+
     sigslot::signal1<EntryMeta&> OnSelect;
+
+    ///////////////////////////////////////////////////////////////////////////
 
     //Add an image
     void addImage(uint32 id, const std::string& image, const std::string& caption = "");
+
+    //Set how many images should be fitted along X
+    void setImageCountAlongX(uint16 c);
 
   protected:
     //Number of images on the x axis

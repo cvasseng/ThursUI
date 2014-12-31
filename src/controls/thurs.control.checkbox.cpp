@@ -67,6 +67,7 @@ namespace thurs {
 
       if (m_input->mouseUp()) {
         Checked = !Checked;
+        OnChange(id(), Checked);
         if (Checked) {
           m_skinClass.setState(S_ACTIVE);
         } else {
@@ -86,7 +87,7 @@ namespace thurs {
     m_renderer->renderRect(m_markClass->Attr, m_position + m_wposition + Vector2f(margins, margins), Vector2f(m_size.y - (margins * 2), m_size.y - (margins * 2)));  
 
     //Text
-    m_renderer->renderText(m_markClass->Attr, Caption, m_position + m_wposition + Vector2f(m_size.y + 5, m_size.y / 2));
+    m_renderer->renderText(m_markClass->Attr, Caption, m_position + m_wposition + Vector2f(m_size.y + 5, 0), Vector2f(5 + m_size.x - m_size.y, m_size.y));
   
   }
 

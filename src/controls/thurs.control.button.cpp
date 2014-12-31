@@ -45,7 +45,7 @@ namespace thurs {
     Control::update();
 
     m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size);  
-    m_renderer->renderText(m_skinClass.Attr, Caption, m_position + m_wposition + Vector2f(0, m_size.y / 2));
+    m_renderer->renderText(m_skinClass.Attr, Caption, m_position + m_wposition, m_size);
   }
 
 

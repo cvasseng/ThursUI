@@ -16,20 +16,23 @@
 
   "Window": {
     "normal": {
-      "fill": "20 20 20 100"
+      "fill": "20 20 20 100",
+      "stroke": "100 100 100 255",
+      "cornerRadius": 5
     },
     "hover": {
       "fill": "20 20 20 255"
     },
     "titlebar" : {
       "normal": {
-        "fill": "10 10 10 255",
+        "fill": "10 10 10 0",
         "textFill": "255 255 255 255",
         "height": 70,
-        "textSize": 40
+        "textSize": 20,
+        "htextAlign": "center"
       },
       "hover": {
-        "fill": "80 80 80 255"
+        "fill": "80 80 80 0"
       }
     }
   },
@@ -55,18 +58,18 @@
       "normal": {
         "stroke": "10 10 10 255",
         "fill": "255 255 255 255",
-        "cornerRadius": 10
+        "cornerRadius": 4
       }
     },
     "mark": {
       "normal":{
         "fill": "255 255 255 255",
-        "cornerRadius": 10,
+        "cornerRadius": 4,
         "textSize": 15,
         "textFill": "150 150 150 255"
       },
        "active": {
-        "cornerRadius": 10,
+        "cornerRadius": 4,
         "fill": "40 140 40 255",
         "textFill": "230 230 230 255"
       },
@@ -126,7 +129,8 @@
       "fill": "80 80 80 255",
       "textFill": "255 255 255 255",
       "textSize": 18,
-      "cornerRadius": 5.5
+      "cornerRadius": 5.5,
+      "htextAlign": "center"
     },
     "hover": {
       "fill": "255 255 150 255",
