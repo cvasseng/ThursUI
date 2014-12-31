@@ -66,13 +66,13 @@ namespace thurs {
     a = 255;
     m_tweaining = false;
   }
-  
+
 
   Color::Color(const std::string& rgba) {
     std::stringstream ss(rgba);
     ss >> r >> g >> b >> a;
 
-    printf("color inited to %i %i %i %i from string %s\n", r, g, b, a, rgba.c_str());
+    //printf("color inited to %i %i %i %i from string %s\n", r, g, b, a, rgba.c_str());
   }
 
   void Color::tween(Color to, uint16 durationMS) {

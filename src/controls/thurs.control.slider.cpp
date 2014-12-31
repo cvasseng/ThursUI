@@ -27,39 +27,75 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
+#include <sstream>
+
 #include "../../include/thurs/thurs.hpp"
-#include "../../include/thurs/controls/thurs.control.progressbar.hpp"
+#include "../../include/thurs/controls/thurs.control.slider.hpp"
 
 namespace thurs {
 
   //Constructor. Duh.
-  ProgressBar::ProgressBar(uint32 id, Surface *surface)  : Control(id, surface) {
+  Slider::Slider(uint32 id, Surface *surface)  : Control(id, surface) {
+    //Set default class
+    setSkinClass("Slider");
     Min = 0;
     Max = 100;
     Value = 50;
+    m_isDragging = false;
 
-    //Set default class
-    setSkinClass("ProgressBar");
+    m_size.y = 15;
   }
 
-  void ProgressBar::setSkinClass(const std::string& name) {
+  void Slider::setSkinClass(const std::string& name) {
     Control::setSkinClass(name);
 
     //Find the subclasses that contain the styling
-    m_background = m_skinClass.findSub("background");
+    m_knob = m_skinClass.findSub("knob");
     m_bar = m_skinClass.findSub("bar");
   }
    
   //Update and draw
-  void ProgressBar::update() {
+  void Slider::update() {
     //Do parent stuff
     Control::update();
 
-    if (m_background && m_bar) {
-      uint16 m = m_bar->Attr.margins;
-      uint16 w = (((float)Value / (float)(Max))) * (m_size.x - (m * 2));
-      m_renderer->renderRect(m_background->Attr, m_position + m_wposition, m_size);  
-      m_renderer->renderRect(m_bar->Attr, m_wposition + m_position + Vector2f(m, m), Vector2f(w, m_size.y - (m * 2)));  
+    float p = ( (float)Value / (float)Max ) * (m_size.x - m_size.y);
+
+    Vector2s mc = m_input->mouseCoords();
+    bool m = mc.x >= m_position.x + m_wposition.x + p && mc.x <= m_position.x + m_wposition.x + p + m_size.y && 
+             mc.y >= m_position.y + m_wposition.y && mc.y <= m_position.y + m_wposition.y + m_size.y;
+
+    //Handle dragging
+    if (m && m_input->mouseDown() && !m_isDragging) {
+      m_isDragging = true;
+      m_preDrag = m_position.x + m_wposition.x + p;
+      m_mdelta = mc;
+    }
+
+    if (m_isDragging) {
+      if (m_input->mouseUp()) {
+        m_isDragging = false;
+      } else {
+        Value = (((m_preDrag + (mc.x - m_mdelta.x)) - m_position.x - m_wposition.x) / (m_size.x - m_size.y)) * Max;
+        if (Value < Min) Value = Min;
+        if (Value > Max) Value = Max;
+        OnChange(Value);
+      }
+    }
+
+    
+    //Draw bar
+    if (m_bar) {
+      m_renderer->renderRect(m_bar->Attr, m_position + m_wposition + Vector2f(0, m_size.y / 4.f), Vector2f(m_size.x, m_size.y / 2.f));  
+    }
+
+    //Draw knob
+    if (m_knob) {
+      std::stringstream valStr;
+      valStr << Value;
+      Vector2f pos = m_wposition + m_position + Vector2f(p, 0);
+      m_renderer->renderRect(m_knob->Attr, pos, Vector2f(m_size.y, m_size.y));  
+      m_renderer->renderText(m_knob->Attr, valStr.str(), m_position + m_wposition + Vector2f(0, m_size.y + 10));
     }
   }
 }

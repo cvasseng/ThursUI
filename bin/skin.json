@@ -1,15 +1,88 @@
 {
   
+  "Scrollbar": {
+    "body": {
+      "normal": {
+        "fill": "50 50 50 255"
+      }
+    },
+    "bar": {
+      "normal": {
+        "fill": "128 128 128 255"
+      }
+    }
+  },
+
   "Window": {
     "normal": {
+      "fill": "20 20 20 120"
+    },
+    "hover": {
       "fill": "20 20 20 255"
+    },
+    "titlebar" : {
+      "normal": {
+        "fill": "10 10 10 255",
+        "textFill": "255 255 255 255",
+        "height": 70,
+        "textSize": 40
+      },
+      "hover": {
+        "fill": "10 10 10 120"
+      }
+    }
+  },
+
+  "ListBox": {
+    "body": {
+      "normal": {
+        "fill": "30 30 30 255",
+        "cornerRadius": 4.0
+      }
+    },
+    "item": {
+      "normal": {
+        "fill": "0 0 0 0",
+        "textFill": "200 200 200 255",
+        "textSize": 15
+      },
+      "hover": {
+        "fill": "80 80 80 255"
+      },
+      "active": {
+        "fill": "40 40 100 255",
+        "textFill":"250 250 250 255",
+        "textSize": 16
+      }
+    }
+  },
+
+  "Slider": {
+    "bar": {
+      "normal": {
+        "fill": "40 40 40 255"
+      }
+    },
+    "knob": {
+      "normal": {
+        "fill": "60 60 60 255",
+        "shape": "circle",
+        "textFill": "0 0 0 0",
+        "cornerRadius": 10.0
+      },
+      "hover": {
+        "fill": "80 80 80 255",
+        "textFill": "140 140 140 255"
+      }
     }
   },
 
   "Button": {
     "normal": {
-      "fill": "255 0 0 255",
-      "textFill": "255 255 255 255"
+      "fill": "80 80 80 255",
+      "textFill": "255 255 255 255",
+      "textSize": 18,
+      "cornerRadius": 5.5
     },
     "hover": {
       "fill": "255 255 150 255",
@@ -24,13 +97,15 @@
   "ProgressBar": {
     "background": {
       "normal": {
-        "fill": "100 100 100 255"
+        "fill": "100 100 100 255",
+        "cornerRadius": 4.0
       }
     },
     "bar": {
       "normal": {
         "fill": "100 12 12 255",
-        "margins": 1
+        "margins": 4,
+        "cornerRadius": 4.0
       },
       "hover": {
         "fill": "140 20 20 255"

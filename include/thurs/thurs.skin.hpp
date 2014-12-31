@@ -64,12 +64,24 @@ namespace thurs {
         Color textFill;
         Color textStroke;
         uint16 margins;
+        uint16 textSize;
+        float cornerRadius;
+        uint32 transitionTime;
 
         bool hasFill;
         bool hasStroke;
         bool hasTextFill;
         bool hasTextStroke;
         bool hasMargins;
+        bool hasTextSize;
+        bool hasCornerRadius;
+
+        Attributes() {
+          margins = 2;
+          textSize = 12;
+          cornerRadius = 0.f;
+          transitionTime = 250;
+        }
       };
 
       SkinClass();
@@ -81,6 +93,8 @@ namespace thurs {
       void reset();
       //Find a sub class
       SkinClass* const findSub(const std::string& name);
+      //Find a sub class and copy it
+      SkinClass findAndCpySub(const std::string& name);
 
       Attributes Attr;
     protected:
@@ -90,6 +104,8 @@ namespace thurs {
       Attributes m_attributes[S_COUNT];
       //Sub classes
       std::map<std::string, SkinClass> m_subs;
+      //No parent update
+      bool m_noParentUpdate;
     private:
     };
 

@@ -27,12 +27,51 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_scrollbar__
+#define h__thurs_scrollbar__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
+#include "thurs.types.hpp"
+#include "thurs.renderer.hpp"
+#include "thurs.input.hpp"
+#include "thurs.skin.hpp"
+
+namespace thurs {
+
+  class Scrollbar {
+  public:
+    Scrollbar(Surface* surface);
+    //Update the current value - handles mouse interactions
+    const float& update(Vector2f size, Vector2f pos);
+    //Return the current scroll position
+    const float& val();
+    //Set the scrollbar class
+    void setClass(const std::string& name);
+  protected:
+    Renderer *m_renderer;
+    Input *m_input;
+    Skin *m_skin;
+
+    Vector2f m_size;
+    Vector2f m_pos;
+
+    //The current scroll factor in pixels
+    float m_scrollVal;
+    //Is scrolling?
+    bool m_scrolling;
+    //Mouse delta
+    Vector2s m_mdelta;
+    //Scroll value prior to scrolling
+    float m_initialVal;
+
+    //kin class
+    Skin::SkinClass m_skinClass;
+    //The body
+    Skin::SkinClass* m_bodyClass;
+    //The bar
+    Skin::SkinClass* m_barClass;
+  private:
+  };
+
+}
 
 #endif

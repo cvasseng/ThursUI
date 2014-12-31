@@ -35,6 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "thurs.types.hpp"
 #include "thurs.color.hpp"
+#include "thurs.skin.hpp"
 
 namespace thurs {
 
@@ -43,6 +44,8 @@ namespace thurs {
 	class Renderer {
 		friend class Surface;
 	public:
+
+    virtual ~Renderer() {}
 
 		///////////////////////////////////////////////////////////////////////////
 
@@ -54,9 +57,14 @@ namespace thurs {
     //Initialize the renderer
     virtual bool init() = 0;
 		//Render text - the implementation should keep track of loaded fonts etc.
-		virtual bool renderText(Color fill, uint32 font, const std::string& text, const Vector2s& pos) = 0;
+		virtual bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos) = 0;
     //Render a rectangle
-    virtual bool renderRect(Color fill, const Vector2s& pos, const Vector2s& size) = 0;
+    virtual bool renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size) = 0;
+    //Set the scissor rect
+    virtual bool setScissor(const Vector2f& pos, const Vector2f& size) = 0;
+    //Clear the scissor rect
+    virtual bool clearScissor() = 0;
+
     //Get the length of a string in pixels
    // virtual float getTextWidth(uint32 font, const std::string& text);
 

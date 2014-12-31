@@ -35,16 +35,28 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace thurs {
 
   Skin::SkinClass::SkinClass() {
-    Attr.margins = 2;
+   
+    m_noParentUpdate = false;
   }
 
   //Set the current state
   void Skin::SkinClass::setState(SkinState s) {
+    if (s == m_state) {
+      return;
+    }
+
+    Attr.transitionTime = m_attributes[s].transitionTime;
+
     //Start tweening
-    Attr.fill.tween(m_attributes[s].fill);
-    Attr.stroke.tween(m_attributes[s].stroke);
-    Attr.textFill.tween(m_attributes[s].textFill);
-    Attr.textStroke.tween(m_attributes[s].textStroke);
+    Attr.fill.tween(m_attributes[s].fill, Attr.transitionTime);
+    Attr.stroke.tween(m_attributes[s].stroke, Attr.transitionTime);
+    Attr.textFill.tween(m_attributes[s].textFill, Attr.transitionTime);
+    Attr.textStroke.tween(m_attributes[s].textStroke, Attr.transitionTime);
+
+    Attr.textSize = m_attributes[s].textSize;
+    Attr.margins = m_attributes[s].margins;
+    Attr.cornerRadius = m_attributes[s].cornerRadius;
+
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.setState(s);
@@ -61,16 +73,21 @@ namespace thurs {
     Attr.textStroke.update();
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
-      it->second.update();
+     // if (!it->second.m_noParentUpdate) {
+        it->second.update();
+     // }
     }
   }
 
   void Skin::SkinClass::reset() {
     Attr.fill = m_attributes[S_NORMAL].fill;
     Attr.stroke = m_attributes[S_NORMAL].stroke;
-    Attr.textFill = m_attributes[S_NORMAL].stroke;
+    Attr.textFill = m_attributes[S_NORMAL].textFill;
     Attr.textStroke = m_attributes[S_NORMAL].textStroke;
     Attr.margins = m_attributes[S_NORMAL].margins;
+    Attr.textSize = m_attributes[S_NORMAL].textSize;
+    Attr.cornerRadius = m_attributes[S_NORMAL].cornerRadius;
+    Attr.transitionTime = m_attributes[S_NORMAL].transitionTime;
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.reset();
@@ -83,6 +100,15 @@ namespace thurs {
       return &it->second;
     }
     return 0;
+  }
+
+  Skin::SkinClass Skin::SkinClass::findAndCpySub(const std::string& name) {
+    Skin::SkinClass ph;
+    ClassMapIt it = m_subs.find(name);
+    if (it != m_subs.end()) {
+      return it->second;
+    }
+    return ph;
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -99,6 +125,10 @@ namespace thurs {
     attr.textStroke = sc.m_attributes[S_NORMAL].textStroke;
     attr.hasMargins = false;
     attr.margins = sc.m_attributes[S_NORMAL].margins;
+    attr.hasTextSize = false;
+    attr.textSize = sc.m_attributes[S_NORMAL].textSize;
+    attr.hasCornerRadius = false;
+    attr.cornerRadius = sc.m_attributes[S_NORMAL].cornerRadius;
 
     if (v.isMember("fill")) {
       attr.fill = Color(v.get("fill", "255 255 255 255").asString());
@@ -118,7 +148,18 @@ namespace thurs {
 
     if (v.isMember("margins")) {
       attr.margins = v.get("margins", "0").asInt();
-      printf("margins is %i\n", attr.margins);
+    }
+
+    if (v.isMember("textSize")) {
+      attr.textSize = v.get("textSize", "12").asInt();
+    }
+
+    if (v.isMember("cornerRadius")) {
+      attr.cornerRadius = v.get("cornerRadius", "0").asFloat();
+    }
+
+    if (v.isMember("transitionTime")) {
+      attr.transitionTime = v.get("transitionTime", "250").asInt();
     }
 
   }

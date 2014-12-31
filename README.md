@@ -10,6 +10,8 @@ ThursUI
 **Currently supported controls:**
   * Button
   * Progressbar
+  * Slider
+  * List Box
   * Window
 
 As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
@@ -19,7 +21,7 @@ As of now, there's only a renderer back-end for [NanoVG](https://github.com/memo
 ## Hello world
 
 ## Motivation
-So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I tried the usual suspects and had major troubles getting everything to compile and work on my box. Also, a lot of the existing libraries are largely undocumented. A lot of them are old and now more or less unmaintained. Finally, I wanted something that suited my coding style more, and so I reluctantly ended up writing my own.
+So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I started shopping around. I found that a lot of the existing libraries are largely undocumented. A lot of them are old and now more or less unmaintained. I also wanted a library that didn't rely on texture maps for its skinning - something that in my opinion makes skin creator that much more complicated.
 
 ## Building
 

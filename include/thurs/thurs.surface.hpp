@@ -61,6 +61,7 @@ namespace thurs {
     ///////////////////////////////////////////////////////////////////////////
 
 		Surface(Renderer *renderer, Input *input);
+    virtual ~Surface(){}
 
     //Update the surface
     void updateAndRender();
@@ -69,6 +70,8 @@ namespace thurs {
 		Input* const input();
     //Returns the attached renderer
     Renderer* const renderer();
+    //Return the attached skin
+    Skin* const skin();
 
     //Load skin - delegates to m_skin.load(..)
     /*

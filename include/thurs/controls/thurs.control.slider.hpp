@@ -27,12 +27,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_slider__
+#define h__thurs_control_slider__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
+#include <string>
+
+#include "../sigslot.h"
+#include "../thurs.control.hpp"
+#include "../thurs.color.hpp"
+
+namespace thurs {
+
+  class Slider : public Control {
+  public:
+    //Constructor. Duh.
+    Slider(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+
+    void setSkinClass(const std::string& name);
+
+    int32 Min;
+    int32 Max;
+    int32 Value;
+
+    sigslot::signal1<int> OnChange;
+
+    //Caption
+    std::string Caption;
+  protected:
+    Skin::SkinClass* m_knob;
+    Skin::SkinClass* m_bar;
+
+    bool m_isDragging;
+    float m_preDrag;
+    Vector2s m_mdelta;
+  private:
+  };
+
+}
 
 #endif

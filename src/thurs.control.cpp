@@ -45,6 +45,9 @@ namespace thurs {
     m_id = id;
     m_mouseWasInside = false;
 
+    m_size.x = 100;
+    m_size.y = 25;
+
     Surface::ControlMapIt it = m_surface->m_controls.find(id);
     if (it == m_surface->m_controls.end()) {
       m_surface->m_controls.insert(ControlMapPair(id, this));
@@ -120,7 +123,7 @@ namespace thurs {
 
       //Render tooltip
       if (Tooltip.size() > 0 && getTime() - m_mouseOverTime > 1000) {
-        m_renderer->renderText(m_tooltipSkinClass.Attr.textFill, 0, Tooltip, m_input->mouseCoords());
+        //m_renderer->renderText(m_tooltipSkinClass.Attr.textFill, 0, Tooltip, m_input->mouseCoords());
       }
 
     } else if (m_mouseWasInside) {
@@ -151,11 +154,11 @@ namespace thurs {
   }
 
   //Set the position of the control
-  void Control::setPosition(const Vector2s& pos) {
+  void Control::setPosition(const Vector2f& pos) {
     m_position = pos;
   }
 
-  void Control::setPosition(Vector2s pos) {
+  void Control::setPosition(Vector2f pos) {
     m_position = pos;
   }
 
@@ -165,12 +168,12 @@ namespace thurs {
   }
 
   //Set the size of the control
-  void Control::setSize(const Vector2s& size) {
+  void Control::setSize(const Vector2f& size) {
     m_size.x = size.x;
     m_size.y = size.y;
   }
 
-  void Control::setSize(Vector2s size) {
+  void Control::setSize(Vector2f size) {
     m_size.x = size.x;
     m_size.y = size.y;
   }
@@ -180,7 +183,7 @@ namespace thurs {
     m_size.y = h;
   }
 
-  void Control::setWPosition(const Vector2s& pos) {
+  void Control::setWPosition(const Vector2f& pos) {
     m_wposition = pos;
   }
 

@@ -61,7 +61,7 @@ namespace thurs {
     ///////////////////////////////////////////////////////////////////////////
 
     //Tween to another color
-    void tween(Color to, uint16 durationMS = 150);
+    void tween(Color to, uint16 durationMS = 250);
     //Update tween
     void update();
   protected:

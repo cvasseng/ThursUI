@@ -57,6 +57,10 @@ namespace thurs {
     m_renderer->end();
   }
 
+  Skin* const Surface::skin() {
+    return &m_skin;
+  }
+
   //Returns the attached input handler
   Input* const Surface::input() {
     return m_input;

@@ -31,6 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace thurs {
 
+
   Window::Window(Surface* surface) : Surface(surface->renderer(), surface->input()) {
     //ugly..
     static uint16 id = 0;
@@ -45,7 +46,13 @@ namespace thurs {
     m_winPos.x = 200;
     m_winPos.y = 200;
 
+    m_titlebarHeight = 40;
+
     m_skin = surface->m_skin;
+
+    m_visible = true;
+
+    m_titlebarClass = 0;
 
     setSkinClass("Window");
 
@@ -59,13 +66,24 @@ namespace thurs {
     }
   }
 
-  void Window::_onUpdate() {
-    Vector2s mc = m_input->mouseCoords();
-    bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + 40;
+  void Window::hide() {
+    m_visible = false;
+    OnHide();
+  }
 
-    //Render the frame
-    m_renderer->renderRect(m_skinClass.Attr.fill, m_winPos, m_winSize);
-    m_renderer->renderText(m_skinClass.Attr.textFill, 0, "Window Title", m_winPos);
+  void Window::show() {
+    m_visible = true;
+    OnShow();
+  }
+
+  void Window::_onUpdate() {
+    if (!m_visible) {
+      return;
+    }
+
+    Vector2s mc = m_input->mouseCoords();
+    bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
+    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_size.y;
 
     if (mt) { //Mouse on titlebar?
       if (!m_moving && m_input->mouseDown()) {
@@ -79,21 +97,46 @@ namespace thurs {
       if (m_input->mouseUp()) {
         m_moving = false;
       } else {
+
         m_winPos.x = m_preMovePos.x + (mc.x - m_mdelta.x);
         m_winPos.y = m_preMovePos.y + (mc.y - m_mdelta.y);
+
+        if (m_winPos.x < 0) m_winPos.x = 0;
+        if (m_winPos.y < 0) m_winPos.y = 0;
+        if (m_winPos.x + m_winSize.x > m_owner->m_size.x) m_winPos.x = m_owner->m_size.x - m_winSize.x;
+        if (m_winPos.y + m_winSize.y > m_owner->m_size.y) m_winPos.y = m_owner->m_size.y - m_winSize.y;
       }
+    }
+
+    if (mo) {
+      m_skinClass.setState(S_HOVER);
+    } else {
+      m_skinClass.setState(S_NORMAL);
+    }
+
+    //Render the frame
+    m_renderer->renderRect(m_skinClass.Attr, m_winPos, m_winSize + Vector2f(0, m_titlebarHeight));
+
+    if (m_titlebarClass) {
+      //Render titlebar
+      
+      m_renderer->renderRect(m_titlebarClass->Attr, m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
+      m_renderer->renderText(m_titlebarClass->Attr, "Window Title", m_winPos + Vector2f(0, m_titlebarHeight / 2));
     }
 
     //Update the children
     for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-      it->second->setWPosition(m_winPos);
+      it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
       it->second->update();
     }
+
+    m_skinClass.update();
 
   }
 
   void Window::setSkinClass(const std::string& name) {
     m_skinClass = m_skin.getClass(name);
+    m_titlebarClass = m_skinClass.findSub("titlebar");
   }
 
 }

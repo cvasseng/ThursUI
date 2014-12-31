@@ -70,17 +70,17 @@ namespace thurs {
     void canResize(bool flag);
 
     //Set the position of the control
-    void setPosition(const Vector2s& pos);
-    void setPosition(Vector2s pos);
+    void setPosition(const Vector2f& pos);
+    void setPosition(Vector2f pos);
     void setPosition(uint16 x, uint16 y);
 
     //Set the size of the control
-    void setSize(const Vector2s& size);
-    void setSize(Vector2s size);
+    void setSize(const Vector2f& size);
+    void setSize(Vector2f size);
     void setSize(uint16 w, uint16 h);
 
     //Set the world position
-    void setWPosition(const Vector2s& pos);
+    void setWPosition(const Vector2f& pos);
 
     //Set the currently used skin class
     virtual void setSkinClass(const std::string& name);
@@ -98,11 +98,11 @@ namespace thurs {
     uint32 m_mouseOverTime;
 
     //The size of the control
-    Vector2s m_size;
+    Vector2f m_size;
     //The position of the control
-    Vector2s m_position;
+    Vector2f m_position;
     //The world position of the control
-    Vector2s m_wposition;
+    Vector2f m_wposition;
 
     //The styling assigned to this control
     Skin::SkinClass m_skinClass;
@@ -124,11 +124,11 @@ namespace thurs {
     //Are we resizing?
     bool m_isResizing;
     //Initial position
-    Vector2s m_initalPos;
+    Vector2f m_initalPos;
     //Start move position
     Vector2s m_startMovePos;
     //Stop move position
-    Vector2s m_stopMovePos;
+    Vector2f m_stopMovePos;
     //Mouse was inside last frame?
     bool m_mouseWasInside;
 

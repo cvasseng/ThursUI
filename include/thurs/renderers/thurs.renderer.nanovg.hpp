@@ -73,11 +73,11 @@ namespace thurs {
     }
 
     //Render text - the implementation should keep track of loaded fonts etc.
-    bool renderText(Color fill, uint32 font, const std::string& text, const Vector2s& pos) {
+    bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos) {
       if (!m_inited) return false;
 
-      nvgFillColor(m_vg, nvgRGBA(fill.r, fill.g, fill.b, fill.a));
-      nvgFontSize(m_vg, 20.0f);
+      nvgFillColor(m_vg, nvgRGBA(skinClass.textFill.r, skinClass.textFill.g, skinClass.textFill.b, skinClass.textFill.a));
+      nvgFontSize(m_vg, skinClass.textSize);
       nvgFontFace(m_vg, "sans");
 
       nvgText(m_vg, pos.x, pos.y, text.c_str(), NULL);
@@ -85,22 +85,36 @@ namespace thurs {
     }
     
     //Render a rectangle
-    bool renderRect(Color fill, const Vector2s& pos, const Vector2s& size) {
+    bool renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size) {
       if (!m_inited) return false;
 
-      NVGcolor col = nvgRGBA(fill.r, fill.g, fill.b, fill.a);
+      NVGcolor col = nvgRGBA(skinClass.fill.r, skinClass.fill.g, skinClass.fill.b, skinClass.fill.a);
       NVGpaint bg = nvgLinearGradient(m_vg, pos.x, pos.y, pos.x, pos.y + size.y, nvgRGBA(255,255,255,isBlack(col)?16:64), nvgRGBA(0,0,0,isBlack(col)?16:64));
 
       nvgBeginPath(m_vg);
-      nvgRoundedRect(m_vg, pos.x, pos.y, size.x, size.y, 4.f);
-      if (!isBlack(col)) {
+      nvgRoundedRect(m_vg, pos.x, pos.y, size.x, size.y, skinClass.cornerRadius);
+      //if (!isBlack(col)) {
         nvgFillColor(m_vg, col);
         nvgFill(m_vg);
-      }
-      nvgFillPaint(m_vg, bg);
-      nvgFill(m_vg);
+      //}
+     // nvgFillPaint(m_vg, bg);
+     // nvgFill(m_vg);
 
       return true;
+    }
+
+    bool setScissor(const Vector2f& pos, const Vector2f& size) {
+      if (!m_inited) return false;
+
+      nvgScissor(m_vg, pos.x, pos.y, size.x, size.y);
+      return true;
+    }
+
+    //Clear the scissor rect
+    bool clearScissor() {
+      if (!m_inited) return false;
+      nvgResetScissor(m_vg);
+      return false;
     }
   protected:
     //Context
