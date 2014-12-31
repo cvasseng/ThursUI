@@ -93,6 +93,8 @@ namespace thurs {
     SurfaceMap m_children;
     //The size of the surface
     Vector2s m_size;
+    //Pixel aspect
+    float m_pixelAspect;
 
     virtual void _onUpdate();
 	private:

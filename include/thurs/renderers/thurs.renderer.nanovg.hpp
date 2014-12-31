@@ -94,23 +94,30 @@ namespace thurs {
       nvgBeginPath(m_vg);
       nvgRoundedRect(m_vg, pos.x, pos.y, size.x, size.y, skinClass.cornerRadius);
       //if (!isBlack(col)) {
-        nvgFillColor(m_vg, col);
+        
+
+      nvgFillColor(m_vg, col);
         nvgFill(m_vg);
 
        if (skinClass.hasImage) {
         int w, h;
         nvgImageSize(m_vg, skinClass.imageHandle, &w, &h);
-        NVGpaint img = nvgImagePattern(m_vg, 0.f, 0.f, w, h, 0.f, skinClass.imageHandle, col.a);
+        NVGpaint img = nvgImagePattern(m_vg, pos.x, pos.y, w, h, 0.f, skinClass.imageHandle, col.a);
         nvgFillPaint(m_vg, img);
         nvgFill(m_vg);
-      } 
+
+        printf("img size %i %i\n", w, h);
+      } else {
+
+      }
+
+      
+
 
       if (skinClass.hasStroke) {
         nvgStrokeColor(m_vg, nvgRGBA(skinClass.stroke.r, skinClass.stroke.g, skinClass.stroke.b, skinClass.stroke.a));
         nvgStroke(m_vg);
       }
-
-         
 
       //}
      // nvgFillPaint(m_vg, bg);
@@ -135,7 +142,7 @@ namespace thurs {
 
     uint32 loadImage(const std::string& filename) {
       if (!m_inited) return 0;
-      return nvgCreateImage(m_vg, filename.c_str(), NVG_IMAGE_GENERATE_MIPMAPS);
+      return nvgCreateImage(m_vg, filename.c_str(), NVG_IMAGE_REPEATX | NVG_IMAGE_REPEATY);
     }
   protected:
     //Context

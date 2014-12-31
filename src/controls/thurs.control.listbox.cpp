@@ -105,7 +105,7 @@ namespace thurs {
 
       //Check if the mouse is over this item
       if (ison && mc.x < m_position.x + m_wposition.x + m_size.x -10 && mc.y >= m_position.y + m_wposition.y + y - scroll && mc.y <= m_position.y + m_wposition.y + y + 20 - scroll) {
-        if (m_input->mouseUp()) {
+        if (m_input->mouseDown()) {
           m_items[i].skinClass.setState(S_ACTIVE);
           m_selItem = i;
           OnSelect(m_items[i].meta.id, m_selItem);

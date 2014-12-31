@@ -27,6 +27,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
+#include <sstream>
+
 #include <GLFW/glfw3.h>
 
 #include <thurs/thurs.hpp>
@@ -97,8 +99,23 @@ int main(int argc, char** argv) {
   box->addItem(4, "It");
   box->addItem(5, "Going?");
 
+  //Add some more entries
+  for (int i = 0; i < 99; i++) {
+    std::stringstream ss;
+    ss << "Item #" << i;
+    box->addItem(i, ss.str());
+  }
+
   thurs::Checkbox *cbox = new thurs::Checkbox(5, win);
   cbox->setPosition(10, 190);
+
+  thurs::ImageGrid *igrid = new thurs::ImageGrid(6, win);
+  igrid->setPosition(10, 220);
+  igrid->setSize(380, 200);
+
+  for (int i = 0; i < 30; i++) {
+    igrid->addImage(i, "logo.png");
+  }
 
   /////
 

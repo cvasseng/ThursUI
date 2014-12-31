@@ -27,14 +27,47 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_imagegrid__
+#define h__thurs_control_imagegrid__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
+#include <string>
+#include <vector>
+
+#include "../thurs.control.hpp"
+#include "../thurs.scrollbar.hpp"
+#include "../thurs.skin.hpp"
+
+namespace thurs {
+
+  class ImageGrid : public Control {
+  public:
+    struct Entry {
+      uint32 id;
+      std::string image;
+      uint32 imageHandle;
+      Skin::SkinClass skinClass;
+    };
+
+    //Constructor. Duh.
+    ImageGrid(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+
+    //Add an image
+    void addImage(uint32 id, const std::string& image);
+
+  protected:
+    //Number of images on the x axis
+    uint16 m_imagesX;
+    //Scrollbar
+    Scrollbar m_scrollbar;
+    //Ref class
+
+    //Entries
+    std::vector<Entry> m_entries;
+  private:
+  };
+
+}
 
 #endif
