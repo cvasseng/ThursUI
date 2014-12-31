@@ -12,6 +12,7 @@ ThursUI
   * Progressbar
   * Slider
   * List Box
+  * Checkbox
   * Window
 
 **Noteable features:**

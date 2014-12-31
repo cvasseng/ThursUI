@@ -36,6 +36,7 @@
   "Checkbox": {
     "background": {
       "normal": {
+        "stroke": "10 10 10 255",
         "fill": "255 255 255 255",
         "cornerRadius": 10
       }
@@ -85,7 +86,8 @@
   "Slider": {
     "bar": {
       "normal": {
-        "fill": "40 40 40 255"
+        "fill": "40 40 40 255",
+        "stroke": "0 0 0 255"
       }
     },
     "knob": {

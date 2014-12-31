@@ -81,6 +81,14 @@ namespace thurs {
           textSize = 12;
           cornerRadius = 0.f;
           transitionTime = 250;
+
+          hasFill = false;
+          hasStroke = false;
+          hasTextFill = false;
+          hasTextStroke = false;
+          hasMargins = false;
+          hasTextSize = false;
+          hasCornerRadius = false;
         }
       };
 

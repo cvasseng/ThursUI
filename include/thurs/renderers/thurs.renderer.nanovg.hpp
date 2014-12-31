@@ -96,6 +96,11 @@ namespace thurs {
       //if (!isBlack(col)) {
         nvgFillColor(m_vg, col);
         nvgFill(m_vg);
+
+      if (skinClass.hasStroke) {
+        nvgStrokeColor(m_vg, nvgRGBA(skinClass.stroke.r, skinClass.stroke.g, skinClass.stroke.b, skinClass.stroke.a));
+        nvgStroke(m_vg);
+      }
       //}
      // nvgFillPaint(m_vg, bg);
      // nvgFill(m_vg);
@@ -114,7 +119,7 @@ namespace thurs {
     bool clearScissor() {
       if (!m_inited) return false;
       nvgResetScissor(m_vg);
-      return false;
+      return true;
     }
   protected:
     //Context

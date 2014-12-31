@@ -89,6 +89,8 @@ namespace thurs {
     Attr.cornerRadius = m_attributes[S_NORMAL].cornerRadius;
     Attr.transitionTime = m_attributes[S_NORMAL].transitionTime;
 
+    Attr.hasStroke = m_attributes[S_NORMAL].hasStroke;
+
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.reset();
     }
@@ -115,20 +117,15 @@ namespace thurs {
 
   void Skin::jsonToAttribute(Json::Value &v, Skin::SkinClass::Attributes& attr, Skin::SkinClass& sc) {
 
-    attr.hasFill = false;
     attr.fill = sc.m_attributes[S_NORMAL].fill;
-    attr.hasStroke = false;
     attr.stroke = sc.m_attributes[S_NORMAL].stroke;
-    attr.hasTextFill = false;
     attr.textFill = sc.m_attributes[S_NORMAL].textFill;
-    attr.hasTextStroke = false;
     attr.textStroke = sc.m_attributes[S_NORMAL].textStroke;
-    attr.hasMargins = false;
     attr.margins = sc.m_attributes[S_NORMAL].margins;
-    attr.hasTextSize = false;
     attr.textSize = sc.m_attributes[S_NORMAL].textSize;
-    attr.hasCornerRadius = false;
     attr.cornerRadius = sc.m_attributes[S_NORMAL].cornerRadius;
+
+    attr.stroke = sc.m_attributes[S_NORMAL].hasStroke;
 
     if (v.isMember("fill")) {
       attr.fill = Color(v.get("fill", "255 255 255 255").asString());
@@ -136,6 +133,7 @@ namespace thurs {
 
     if (v.isMember("stroke")) {
       attr.stroke = Color(v.get("stroke", "255 255 255 255").asString());
+      attr.hasStroke = true;
     } 
 
     if (v.isMember("textFill")) {
