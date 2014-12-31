@@ -97,6 +97,9 @@ int main(int argc, char** argv) {
   box->addItem(4, "It");
   box->addItem(5, "Going?");
 
+  thurs::Checkbox *cbox = new thurs::Checkbox(5, win);
+  cbox->setPosition(10, 190);
+
   /////
 
    while (!glfwWindowShouldClose(window)) {

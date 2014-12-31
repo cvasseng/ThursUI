@@ -33,6 +33,31 @@
     }
   },
 
+  "Checkbox": {
+    "background": {
+      "normal": {
+        "fill": "255 255 255 255",
+        "cornerRadius": 10
+      }
+    },
+    "mark": {
+      "normal":{
+        "fill": "255 255 255 255",
+        "cornerRadius": 10,
+        "textSize": 15,
+        "textFill": "150 150 150 255"
+      },
+       "active": {
+        "cornerRadius": 10,
+        "fill": "40 140 40 255",
+        "textFill": "230 230 230 255"
+      },
+      "hover": {
+        "textFill": "200 200 200 255"
+      }
+    }
+  },
+
   "ListBox": {
     "body": {
       "normal": {

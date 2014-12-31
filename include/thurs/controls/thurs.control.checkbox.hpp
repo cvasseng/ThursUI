@@ -27,13 +27,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_checkbox__
+#define h__thurs_control_checkbox__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
+#include <string>
+
+#include "../thurs.control.hpp"
+#include "../thurs.color.hpp"
+
+namespace thurs {
+
+  class Checkbox : public Control {
+  public:
+    //Constructor. Duh.
+    Checkbox(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+
+    //Set the currently used skin class
+    void setSkinClass(const std::string& name);
+
+    //Caption
+    std::string Caption;
+    //Checked?
+    bool Checked;
+  protected:
+    Skin::SkinClass *m_frame;
+    Skin::SkinClass *m_markClass;
+  private:
+  };
+
+}
 
 #endif

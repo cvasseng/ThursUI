@@ -3,7 +3,7 @@ ThursUI
 
 ![Logo](bin/logo.png)
 
-**Straight-forward, lightweight, pretty, skinnable, immediate-mode UI library.**
+**Straight-forward, lightweight, pretty, and skinnable UI library.**
 
 *This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine.* 
 
@@ -14,6 +14,12 @@ ThursUI
   * List Box
   * Window
 
+**Noteable features:**
+  * JSON-based skinning - no texture maps required
+  * Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them
+  * Cross-platform
+  * Liberally licensed (Simplified BSD for now, might switch to zlib) 
+
 As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
 
 <insert gif here>
@@ -21,7 +27,7 @@ As of now, there's only a renderer back-end for [NanoVG](https://github.com/memo
 ## Hello world
 
 ## Motivation
-So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I started shopping around. I found that a lot of the existing libraries are largely undocumented. A lot of them are old and now more or less unmaintained. I also wanted a library that didn't rely on texture maps for its skinning - something that in my opinion makes skin creator that much more complicated.
+So why another UI library, you might ask? Well, when I finally reached the point where I wanted a UI in my game, I started shopping around. I found that a lot of the existing libraries are largely undocumented. A lot of them are old and now more or less unmaintained. I also wanted a library that didn't rely on texture maps for its skinning - something that in my opinion makes skin creation that much more complicated.
 
 ## Building
 

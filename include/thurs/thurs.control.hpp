@@ -109,6 +109,9 @@ namespace thurs {
     //The tooltip styling
     Skin::SkinClass m_tooltipSkinClass;
 
+    //Set to true to skip state handling
+    bool m_noStateHandling;
+
     //Return true/false if the mouse is inside the control
     bool mouseInside();
 

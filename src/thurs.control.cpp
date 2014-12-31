@@ -54,6 +54,8 @@ namespace thurs {
     } else {
       //Fatal error..
     }
+
+    m_noStateHandling = false;
   }
 
   Control::~Control() {
@@ -99,7 +101,9 @@ namespace thurs {
         //on mouse over
         MouseIn();
         m_mouseWasInside = true;
-        m_skinClass.setState(S_HOVER);
+        if (!m_noStateHandling) {
+          m_skinClass.setState(S_HOVER);
+        }
         m_mouseOverTime = getTime();
       }
 
@@ -111,14 +115,18 @@ namespace thurs {
       if (m_input->mouseDown()) {
         //mouse down
          MouseDown();
-         m_skinClass.setState(S_ACTIVE);
+         if (!m_noStateHandling) {
+          m_skinClass.setState(S_ACTIVE);
+        }
       }
 
 
       if (m_input->mouseUp()) {
         //mouse up
         MouseUp();
-        m_skinClass.setState(S_HOVER);
+        if (!m_noStateHandling) {
+          m_skinClass.setState(S_HOVER);
+        }
       }
 
       //Render tooltip
@@ -130,7 +138,9 @@ namespace thurs {
       //on mouse leave
       MouseOut();
 
-      m_skinClass.setState(S_NORMAL);
+      if (!m_noStateHandling) {
+        m_skinClass.setState(S_NORMAL);
+      }
 
       m_mouseWasInside = false;
     }
