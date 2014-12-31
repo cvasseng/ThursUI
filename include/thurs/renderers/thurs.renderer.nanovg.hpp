@@ -97,10 +97,21 @@ namespace thurs {
         nvgFillColor(m_vg, col);
         nvgFill(m_vg);
 
+       if (skinClass.hasImage) {
+        int w, h;
+        nvgImageSize(m_vg, skinClass.imageHandle, &w, &h);
+        NVGpaint img = nvgImagePattern(m_vg, 0.f, 0.f, w, h, 0.f, skinClass.imageHandle, col.a);
+        nvgFillPaint(m_vg, img);
+        nvgFill(m_vg);
+      } 
+
       if (skinClass.hasStroke) {
         nvgStrokeColor(m_vg, nvgRGBA(skinClass.stroke.r, skinClass.stroke.g, skinClass.stroke.b, skinClass.stroke.a));
         nvgStroke(m_vg);
       }
+
+         
+
       //}
      // nvgFillPaint(m_vg, bg);
      // nvgFill(m_vg);
@@ -120,6 +131,11 @@ namespace thurs {
       if (!m_inited) return false;
       nvgResetScissor(m_vg);
       return true;
+    }
+
+    uint32 loadImage(const std::string& filename) {
+      if (!m_inited) return 0;
+      return nvgCreateImage(m_vg, filename.c_str(), NVG_IMAGE_GENERATE_MIPMAPS);
     }
   protected:
     //Context

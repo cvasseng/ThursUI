@@ -35,7 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace thurs {
 
   Skin::SkinClass::SkinClass() {
-   
+ 
     m_noParentUpdate = false;
   }
 
@@ -56,7 +56,11 @@ namespace thurs {
     Attr.textSize = m_attributes[s].textSize;
     Attr.margins = m_attributes[s].margins;
     Attr.cornerRadius = m_attributes[s].cornerRadius;
+    Attr.image = m_attributes[s].image;
+    Attr.imageHandle = m_attributes[s].imageHandle;
 
+    Attr.hasImage = m_attributes[s].hasImage;
+    Attr.hasStroke = m_attributes[s].hasStroke;
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.setState(s);
@@ -88,8 +92,11 @@ namespace thurs {
     Attr.textSize = m_attributes[S_NORMAL].textSize;
     Attr.cornerRadius = m_attributes[S_NORMAL].cornerRadius;
     Attr.transitionTime = m_attributes[S_NORMAL].transitionTime;
+    Attr.imageHandle = m_attributes[S_NORMAL].imageHandle;
 
     Attr.hasStroke = m_attributes[S_NORMAL].hasStroke;
+    Attr.hasImage = m_attributes[S_NORMAL].hasImage;
+
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.reset();
@@ -158,6 +165,17 @@ namespace thurs {
 
     if (v.isMember("transitionTime")) {
       attr.transitionTime = v.get("transitionTime", "250").asInt();
+    }
+
+    if (v.isMember("image")) {
+      attr.image = v.get("image", "").asString();
+      if (attr.image.size() > 0) {
+        attr.imageHandle = m_renderer->loadImage(attr.image);
+        attr.hasImage = true;
+      } else {
+        attr.hasImage = false;
+        attr.imageHandle = 0;
+      }
     }
 
   }
@@ -255,6 +273,10 @@ namespace thurs {
       return &it->second;
     }
     return 0;
+  }
+
+  Skin::Skin(Renderer* renderer) {
+     m_renderer = renderer;
   }
 
 }

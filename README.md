@@ -17,7 +17,7 @@ ThursUI
 
 **Noteable features:**
   * JSON-based skinning - no texture maps required
-  * Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them
+  * Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them when the state changes
   * Cross-platform
   * Liberally licensed (Simplified BSD for now, might switch to zlib) 
 

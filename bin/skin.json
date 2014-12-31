@@ -15,10 +15,11 @@
 
   "Window": {
     "normal": {
-      "fill": "20 20 20 120"
+      "fill": "20 20 20 100"
     },
     "hover": {
-      "fill": "20 20 20 255"
+      "fill": "20 20 20 255",
+      "image": "logo.png"
     },
     "titlebar" : {
       "normal": {
@@ -28,7 +29,7 @@
         "textSize": 40
       },
       "hover": {
-        "fill": "10 10 10 120"
+        "fill": "80 80 80 255"
       }
     }
   },

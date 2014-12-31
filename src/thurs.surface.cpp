@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace thurs {
 
-  Surface::Surface(Renderer *renderer, Input *input) {
+  Surface::Surface(Renderer *renderer, Input *input) : m_skin(renderer) {
     m_renderer = renderer;
     m_input = input;
     m_size.x = 1024;

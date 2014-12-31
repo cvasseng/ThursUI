@@ -64,6 +64,8 @@ namespace thurs {
     virtual bool setScissor(const Vector2f& pos, const Vector2f& size) = 0;
     //Clear the scissor rect
     virtual bool clearScissor() = 0;
+    //Load an image
+    virtual uint32 loadImage(const std::string& filename) = 0;
 
     //Get the length of a string in pixels
    // virtual float getTextWidth(uint32 font, const std::string& text);

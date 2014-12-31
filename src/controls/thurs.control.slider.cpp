@@ -83,10 +83,9 @@ namespace thurs {
       }
     }
 
-    
     //Draw bar
     if (m_bar) {
-      m_renderer->renderRect(m_bar->Attr, m_position + m_wposition + Vector2f(0, m_size.y / 4.f), Vector2f(m_size.x, m_size.y / 2.f));  
+      m_renderer->renderRect(m_bar->Attr, m_position + m_wposition + Vector2f(0, m_size.y / 3.f), Vector2f(m_size.x, m_size.y / 4.f));  
     }
 
     //Draw knob

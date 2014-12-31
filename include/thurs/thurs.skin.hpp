@@ -49,6 +49,8 @@ namespace thurs {
     S_COUNT, 
   };
 
+  class Renderer;
+
   class Skin {
   public:
 
@@ -67,6 +69,8 @@ namespace thurs {
         uint16 textSize;
         float cornerRadius;
         uint32 transitionTime;
+        std::string image;
+        uint32 imageHandle;
 
         bool hasFill;
         bool hasStroke;
@@ -75,6 +79,7 @@ namespace thurs {
         bool hasMargins;
         bool hasTextSize;
         bool hasCornerRadius;
+        bool hasImage;
 
         Attributes() {
           margins = 2;
@@ -89,6 +94,9 @@ namespace thurs {
           hasMargins = false;
           hasTextSize = false;
           hasCornerRadius = false;
+          hasImage = false;
+
+          imageHandle = 0;
         }
       };
 
@@ -123,6 +131,8 @@ namespace thurs {
 
     ///////////////////////////////////////////////////////////////////////////
     
+    Skin(Renderer *renderer);
+
     //Load skin
     bool load(const std::string& filename);
     //Get a class - this returns a copy
@@ -133,6 +143,8 @@ namespace thurs {
   protected:
     //Class map
     ClassMap m_classes;
+    //Renderer
+    Renderer *m_renderer;
 
     //Parse a json value as a skin class
     void jsonToStates(Json::Value &v, Skin::SkinClass& sc);
