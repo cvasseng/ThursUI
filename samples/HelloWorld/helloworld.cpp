@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
   for (int i = 0; i < 30; i++) {
     std::stringstream ss;
     ss << "Img #" << i;
-    igrid->addImage(i, "panda.jpg", ss.str());
+    igrid->addImage(i, "logo.png", ss.str());
   }
 
   ///// END UI INIT //////

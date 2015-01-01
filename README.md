@@ -5,6 +5,8 @@ ThursUI
 
 **Straight-forward, lightweight, (potentially) pretty, and skinnable UI library.**
 
+![Screenshot](screenshot.png)
+
 *This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever - "Make it work, then make it fast."* 
 
 **Currently supported controls:**
