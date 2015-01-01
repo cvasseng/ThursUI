@@ -13,6 +13,8 @@ ThursUI
   * Slider
   * List Box
   * Checkbox
+  * Label
+  * Rectangle (can be used to display images)
   * Image Grid (useful for e.g. inventories in RPG's)
   * Window
 

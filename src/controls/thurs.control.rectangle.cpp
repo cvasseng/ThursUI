@@ -27,16 +27,23 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#include "../../include/thurs/thurs.hpp"
+#include "../../include/thurs/controls/thurs.control.rectangle.hpp"
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
-#include "thurs.control.label.hpp"
-#include "thurs.control.rectangle.hpp"
+namespace thurs {
 
-#endif
+  //Constructor. Duh.
+  Rectangle::Rectangle(uint32 id, Surface *surface)  : Control(id, surface) {
+    //Set default class
+    setSkinClass("Rectangle");
+  }
+  
+  //Update and draw
+  void Rectangle::update() {
+    //Do parent stuff
+    Control::update();
+    m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size); 
+  }
+
+
+}

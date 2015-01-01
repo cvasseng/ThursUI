@@ -27,16 +27,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_rectangle__
+#define h__thurs_control_rectangle__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
-#include "thurs.control.label.hpp"
-#include "thurs.control.rectangle.hpp"
+#include <string>
+
+#include "../thurs.control.hpp"
+#include "../thurs.color.hpp"
+
+namespace thurs {
+
+  class Rectangle : public Control {
+  public:
+    //Constructor. Duh.
+    Rectangle(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+  protected:
+    
+  private:
+  };
+
+}
 
 #endif
