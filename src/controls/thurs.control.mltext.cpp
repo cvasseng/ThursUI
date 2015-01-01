@@ -69,9 +69,9 @@ namespace thurs {
         TextEntry* entry = &m_lines[j].items[i];
 
         if (mc.x >= pos.x && mc.x <= pos.x + entry->width && mc.y >= pos.y && mc.y <= pos.y + entry->height) {
-          if (m_input->mouseDown()) {
+          if (entry->id.size() > 0 && m_input->mouseDown()) {
             //Click link
-            printf("Clicked %s\n", entry->id.c_str());
+            OnLinkClick(id(), entry->id);
           }
 
           entry->skinClass.setState(S_HOVER);
@@ -135,9 +135,7 @@ namespace thurs {
             break;
           } 
         }
-
-       // className = buffer.substr(2, buffer.size() - 4);
-        printf("\nFound class name: %s id is: %s\n", className.c_str(), active->id.c_str());
+        //printf("\nFound class name: %s id is: %s\n", className.c_str(), active->id.c_str());
 
         TextEntry te;
         te.skinClass = m_skinClass.findAndCpySub(className);

@@ -49,6 +49,8 @@ namespace thurs {
   class MultiLineText : public Control {
   public:
 
+    ///////////////////////////////////////////////////////////////////////////
+
     struct TextEntry {
       Skin::SkinClass skinClass;
       std::string id;
@@ -67,6 +69,7 @@ namespace thurs {
       float width;
       float height;
       std::vector<TextEntry> items;
+      
       TextLine() {
         width = 0.f;
         height = 0.f;
@@ -90,6 +93,10 @@ namespace thurs {
     void clear();
     //Load contents from file
     void loadFromFile(const std::string& filename);
+
+    ///////////////////////////////////////////////////////////////////////////
+    
+    sigslot::signal2<int, const std::string&> OnLinkClick; 
 
     ///////////////////////////////////////////////////////////////////////////
 
