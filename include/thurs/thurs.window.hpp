@@ -61,11 +61,18 @@ namespace thurs {
     ///////////////////////////////////////////////////////////////////////////
 
     virtual void setSkinClass(const std::string& name);
+    bool reloadSkin();
   
     ///////////////////////////////////////////////////////////////////////////
   
     //The window title
     std::string Title;
+    //Can close?
+    bool CanClose;
+    //Can move?
+    bool CanMove;
+    //Can collapse?
+    bool CanCollapse;
   protected:
     //The window size
     Vector2f m_winSize;
@@ -91,6 +98,8 @@ namespace thurs {
     bool m_visible;
     //Collapsed?
     bool m_collapsed;
+    //The class name
+    std::string m_skinClassName;
 
     //The window skin class
     Skin::SkinClass m_skinClass;

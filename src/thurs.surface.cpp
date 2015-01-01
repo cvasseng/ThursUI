@@ -106,6 +106,24 @@ namespace thurs {
     return m_renderer;
   }
 
+  bool Surface::reloadSkin() {
+    if (m_skin.reload()) {
+
+      for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
+        if (!m_focused || m_focused->id() != it->second->id()) {
+          it->second->reloadSkinClass();
+        }
+      }
+
+      for (SurfaceMapIt it = m_children.begin(); it != m_children.end(); it++) {
+        it->second->reloadSkin();
+      }
+
+      return true;
+    }
+    return false;
+  }
+
   bool Surface::loadSkin(const std::string& filename) {
     if (m_skin.load(filename)) {
       m_tooltipClass = m_skin.getClass("Tooltip");

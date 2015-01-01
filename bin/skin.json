@@ -41,7 +41,6 @@
       "normal": {
         "fill": "#212121",
         "textFill": "255 255 255 255",
-        "height": 70,
         "textSize": 20,
         "htextAlign": "center",
         "cornerRadius": 5,
@@ -118,10 +117,12 @@
        "active": {
         "cornerRadius": 4,
         "fill": "27 94 32 255",
-        "textFill": "230 230 230 255"
+        "textFill": "230 230 230 255",
+        "font": "sans-bold"
       },
       "hover": {
-        "fill": "200 200 200 255"
+        "fill": "255 255 255 255",
+        "textFill": "230 230 230 255"
       }
     }
   },
@@ -172,7 +173,8 @@
         "textFill": "0 0 0 0",
         "cornerRadius": 10.0,
         "stroke": "0 0 0 255",
-        "strokeWidth":0.8
+        "strokeWidth":0.8,
+        "htextAlign": "left"
       },
       "hover": {
         "fill": "80 80 80 255",
@@ -190,7 +192,8 @@
       "htextAlign": "center",
       "gradient": "linear",
       "gradientFrom": "100 100 100 100",
-      "gradientTo": "40 40 40 100"
+      "gradientTo": "40 40 40 100",
+      "font": "sans-bold"
     },
     "hover": {
       "fill": "46 125 50 255",
@@ -211,7 +214,8 @@
       "htextAlign": "center",
       "gradient": "linear",
       "gradientFrom": "100 100 100 100",
-      "gradientTo": "40 40 40 100"
+      "gradientTo": "40 40 40 100",
+      "font": "sans-bold"
     },
     "hover": {
       "fill": "#D32F2F",

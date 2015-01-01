@@ -84,6 +84,8 @@ namespace thurs {
       won't have to maintain a bunch of skin classes outside the library.
     */
     bool loadSkin(const std::string& filename);
+    //Reload skin
+    virtual bool reloadSkin();
 
     //Do a tooltip
     virtual void doTooltip(const std::string& text);

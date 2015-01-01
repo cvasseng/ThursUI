@@ -60,6 +60,10 @@ namespace thurs {
     Title = "Window Title";
 
     m_moving = false;
+
+    CanClose = true;
+    CanMove = true;
+    CanCollapse = true;
   }
 
   Window::~Window() {
@@ -173,6 +177,12 @@ namespace thurs {
     m_titlebarClass = m_skinClass.findSub("titlebar");
     m_closeClass = m_skinClass.findSub("closeIcon");
     m_collapseClass = m_skinClass.findSub("collapseIcon");
+    m_skinClassName = name;
   }
+
+  bool Window::reloadSkin() {
+    Surface::reloadSkin();
+    setSkinClass(m_skinClassName);
+  } 
 
 }

@@ -27,15 +27,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#include "../../include/thurs/thurs.hpp"
+#include "../../include/thurs/controls/thurs.control.label.hpp"
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
-#include "thurs.control.label.hpp"
+namespace thurs {
 
-#endif
+  //Constructor. Duh.
+  Label::Label(uint32 id, Surface *surface)  : Control(id, surface) {
+    Caption = "Hello world!";
+    //Set default class
+    setSkinClass("Label");
+  }
+  
+  //Update and draw
+  void Label::update() {
+    //Do parent stuff
+    Control::update();
+    m_renderer->renderText(m_skinClass.Attr, Caption, m_position + m_wposition, m_size);
+  }
+
+
+}

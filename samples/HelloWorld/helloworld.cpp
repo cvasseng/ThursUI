@@ -43,6 +43,22 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 
 }
 
+class EventHandler : public sigslot::has_slots<> {
+  public:
+    EventHandler(thurs::Surface* root) {
+      m_root = root;
+    }
+
+    void ReloadSkins(unsigned int fromid) {
+      printf("HANDLER LOL\n");
+      m_root->reloadSkin();
+    }
+  protected:
+    //Root surface
+    thurs::Surface* m_root;
+  private:
+};
+
 
 int main(int argc, char** argv) {
   GLFWwindow* window;
@@ -84,6 +100,8 @@ int main(int argc, char** argv) {
     printf("Failed to load skin\n");
   }
 
+  EventHandler handler(surface);
+
   thurs::Window* win = new thurs::Window(surface);
 
   win->Title = "My Super Window";
@@ -92,6 +110,7 @@ int main(int argc, char** argv) {
   btn->setSize(100, 25);
   btn->setPosition(10, 10);
   btn->Caption = "OK";
+  btn->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
 
   thurs::Button *btn2 = new thurs::Button(100, win);
   btn2->setSize(100, 25);
@@ -134,7 +153,7 @@ int main(int argc, char** argv) {
   for (int i = 0; i < 30; i++) {
     std::stringstream ss;
     ss << "Img #" << i;
-    igrid->addImage(i, "logo.png", ss.str());
+    igrid->addImage(i, "panda.jpg", ss.str());
   }
 
   ///// END UI INIT //////

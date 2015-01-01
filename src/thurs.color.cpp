@@ -80,7 +80,7 @@ namespace thurs {
         ss << std::hex << rgba.substr(1);
         ss >> col;
 
-        printf("Color hex is %x, str is %s\n", col, ss.str().c_str());
+        //printf("Color hex is %x, str is %s\n", col, ss.str().c_str());
 
         if (ss.str().size() == 6) {
           r = (col >> 16) & 0xFF;
@@ -103,7 +103,7 @@ namespace thurs {
       }
     }
 
-    printf("color inited to %i %i %i %i from string %s\n", r, g, b, a, rgba.c_str());
+    //printf("color inited to %i %i %i %i from string %s\n", r, g, b, a, rgba.c_str());
   }
 
   void Color::tween(Color to, uint16 durationMS) {

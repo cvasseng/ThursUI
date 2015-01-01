@@ -177,11 +177,15 @@ namespace thurs {
     //Get a class pointer - this returns the actual class.
     /* Useful for layout tools. */
     SkinClass* const getClassPtr(const std::string& name);
+    //Reload
+    bool reload();
   protected:
     //Class map
     ClassMap m_classes;
     //Renderer
     Renderer *m_renderer;
+    //Loaded skin filename
+    std::string m_loaded;
 
     //Parse a json value as a skin class
     void jsonToStates(Json::Value &v, Skin::SkinClass& sc);

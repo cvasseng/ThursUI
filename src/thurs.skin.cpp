@@ -284,6 +284,8 @@ namespace thurs {
     Json::Value root;
     Json::Reader reader;
 
+    m_classes.clear();
+
     if (!reader.parse(str, root)) {
       return false;
     }
@@ -321,7 +323,17 @@ namespace thurs {
       m_classes.insert(ClassMapPair(name, sc));
     }
 
+    m_loaded = filename;
+
     return true;
+  }
+
+  bool Skin::Skin::reload() {
+    if (m_loaded.size() > 0) {
+      printf("Reloading skin %s\n", m_loaded.c_str());
+      return load(m_loaded);
+    }
+    return false;
   }
 
   //Get a class - this returns a copy

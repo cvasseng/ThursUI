@@ -27,15 +27,30 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_label__
+#define h__thurs_control_label__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
-#include "thurs.control.label.hpp"
+#include <string>
+
+#include "../thurs.control.hpp"
+#include "../thurs.color.hpp"
+
+namespace thurs {
+
+  class Label : public Control {
+  public:
+    //Constructor. Duh.
+    Label(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+
+    //Caption
+    std::string Caption;
+  protected:
+    
+  private:
+  };
+
+}
 
 #endif
