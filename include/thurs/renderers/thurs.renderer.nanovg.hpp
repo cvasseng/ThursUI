@@ -51,6 +51,8 @@ namespace thurs {
       m_vg = nvgCreateGL2(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);
 
       m_font = nvgCreateFont(m_vg, "sans", "Roboto-Regular.ttf");
+      nvgCreateFont(m_vg, "sans-bold", "Roboto-Bold.ttf");
+      nvgCreateFont(m_vg, "sans-light", "Roboto-Light.ttf");
 
       m_inited = true;
       return true;
@@ -102,9 +104,23 @@ namespace thurs {
       } 
 
       nvgTextAlign(m_vg, alignment);
-      nvgFillColor(m_vg, nvgRGBA(skinClass.textFill.r, skinClass.textFill.g, skinClass.textFill.b, skinClass.textFill.a));
+      
+      nvgFontFace(m_vg, skinClass.font.c_str());
+
+      if (skinClass.hasTextStroke) {
+        //nvgStrokeWidth(m_vg, skinClass.strokeWidth);
+       /* nvgFillColor(m_vg, nvgRGBA(skinClass.stroke.r, skinClass.stroke.g, skinClass.stroke.b, skinClass.stroke.a));
+        //nvgFontBlur(m_vg, skinClass.strokeWidth);
+        nvgFontSize(m_vg, skinClass.textSize + 2);
+        nvgText(m_vg, p.x - 1, p.y - 1, text.c_str(), NULL);
+        nvgFontBlur(m_vg, 0.f);*/
+       // nvgStroke(m_vg);
+      }
+
       nvgFontSize(m_vg, skinClass.textSize);
-      nvgFontFace(m_vg, "sans");
+
+      nvgFillColor(m_vg, nvgRGBA(skinClass.textFill.r, skinClass.textFill.g, skinClass.textFill.b, skinClass.textFill.a));
+    
       nvgText(m_vg, p.x, p.y, text.c_str(), NULL);
       return true;
     }
@@ -164,12 +180,12 @@ namespace thurs {
 
     uint32 loadImage(const std::string& filename) {
       if (!m_inited) return 0;
-      return nvgCreateImage(m_vg, filename.c_str(), NVG_IMAGE_REPEATX | NVG_IMAGE_REPEATY);
+      return nvgCreateImage(m_vg, filename.c_str(), 0);
     }
 
     float getTextHeight(Skin::SkinClass::Attributes &skinClass, const std::string& text) {
       nvgFontSize(m_vg, skinClass.textSize);
-      nvgFontFace(m_vg, "sans");
+      nvgFontFace(m_vg, skinClass.font.c_str());
 
       float ascender, descender, lineh;
       nvgTextMetrics(m_vg, &ascender, &descender, &lineh);

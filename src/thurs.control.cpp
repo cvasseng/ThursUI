@@ -32,6 +32,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace thurs {
 
+  #define PCASE(x, y) case x: { y } break;
+
   /////////////////////////////////////////////////////////////////////////////
 
   Control::Control(uint32 id, Surface *surface) {
@@ -45,9 +47,14 @@ namespace thurs {
     m_id = id;
     m_mouseWasInside = false;
     m_acceptedDropType = 0;
+    m_doingTooltip = false;
+    m_focus = false;
 
     m_size.x = 100;
     m_size.y = 25;
+
+    HAlign = HA_CUSTOM;
+    VAlign = VA_CUSTOM;
 
     Surface::ControlMapIt it = m_surface->m_controls.find(id);
     if (it == m_surface->m_controls.end()) {
@@ -57,6 +64,8 @@ namespace thurs {
     }
 
     m_noStateHandling = false;
+
+    //Tooltip = "I'm a tooltip!";
   }
 
   Control::~Control() {
@@ -76,6 +85,21 @@ namespace thurs {
 
   void Control::update() {
     bool mi = mouseInside();
+
+    switch(VAlign) {
+      PCASE(VA_CLIENT,
+       // m_size.x = m_surface->
+      )
+      PCASE(VA_BOTTOM,
+
+      )
+      PCASE(VA_TOP,
+
+      )
+      PCASE(VA_CENTER,
+
+      )
+    };
 
     //HANDLE CONTROL MOVING
     if (m_canMove) {
@@ -105,12 +129,16 @@ namespace thurs {
         if (!m_noStateHandling) {
           m_skinClass.setState(S_HOVER);
         }
+
         m_mouseOverTime = getTime();
+        m_tooltipPos = m_input->mouseCoords();
       }
 
       if (m_input->mouseClick()) {
         //focus + click
         OnClick(m_id);
+        m_focus = true;
+        m_surface->m_focused = this;
       }
 
       if (m_input->mouseDown()) {
@@ -119,6 +147,15 @@ namespace thurs {
          if (!m_noStateHandling) {
           m_skinClass.setState(S_ACTIVE);
         }
+      }
+
+      if (m_tooltipPos.x != m_input->mouseCoords().x || m_tooltipPos.y != m_input->mouseCoords().y) {
+        if (m_doingTooltip) {
+          m_doingTooltip = false;
+          m_surface->cancelTooltip();
+        }
+        m_tooltipPos = m_input->mouseCoords();
+        m_mouseOverTime = getTime();
       }
 
 
@@ -133,8 +170,9 @@ namespace thurs {
       }
 
       //Render tooltip
-      if (Tooltip.size() > 0 && getTime() - m_mouseOverTime > 1000) {
-        //m_renderer->renderText(m_tooltipSkinClass.Attr.textFill, 0, Tooltip, m_input->mouseCoords());
+      if (!m_doingTooltip && Tooltip.size() > 0 && getTime() - m_mouseOverTime > 1000) {
+        m_surface->doTooltip(Tooltip);
+        m_doingTooltip = true;
       }
 
     } else if (m_mouseWasInside) {

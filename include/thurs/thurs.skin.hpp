@@ -99,6 +99,8 @@ namespace thurs {
         VAlignment vTextAlign;
         HAlignment hTextAlign;
 
+        std::string font;
+
         bool hasFill;
         bool hasStroke;
         bool hasTextFill;
@@ -128,6 +130,8 @@ namespace thurs {
           hasCornerRadius = false;
           hasImage = false;
           hasGradient = false;
+
+          font = "sans";
 
           imageHandle = 0;
         }

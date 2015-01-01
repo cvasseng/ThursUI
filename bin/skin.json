@@ -3,7 +3,8 @@
   "Scrollbar": {
     "body": {
       "normal": {
-        "fill": "#616161"
+        "fill": "#616161",
+        "cornerRadius": 4
       }
     },
     "bar": {
@@ -11,6 +12,16 @@
         "fill": "#E0E0E0",
         "cornerRadius": 4
       }
+    }
+  },
+
+  "Tooltip": {
+    "normal": {
+       "fill": "#616161",
+       "cornerRadius": 4
+    },
+    "active": {
+       "fill": "#616161"
     }
   },
 
@@ -36,7 +47,8 @@
         "cornerRadius": 5,
         "gradient": "linear",
         "gradientFrom": "100 100 100 100",
-        "gradientTo": "40 40 40 100"
+        "gradientTo": "40 40 40 100",
+        "font":"sans-bold"
       },
       "hover": {
         "textSize": 20
@@ -55,10 +67,10 @@
     "collapseIcon": {
       "normal": {
         "cornerRadius": 5,
-        "fill": "#FFEB3B00"
+        "fill": "#FF980000"
       },
       "hover": {
-        "fill": "#FFEB3B"
+        "fill": "#FF9800"
       }
     }
   },
@@ -72,13 +84,18 @@
         "fill": "255 255 255 200",
         "margins": 4,
         "cornerRadius": 5,
+        "font":"sans-bold",
+        "textSize": 25,
         "vtextAlign": "bottom",
         "htextAlign": "center",
-        "textFill":"#333333"
+        "textFill":"#FFC10700",
+        "textStroke": "#00000000"
       },
       "hover": {
         "margins":2,
-        "fill": "255 255 255 255"
+        "fill": "255 255 255 255",
+        "textFill": "#FFC107FF",
+        "textStroke": "#000000FF"
       }
     }
   },
@@ -100,11 +117,11 @@
       },
        "active": {
         "cornerRadius": 4,
-        "fill": "40 140 40 255",
+        "fill": "27 94 32 255",
         "textFill": "230 230 230 255"
       },
       "hover": {
-        "textFill": "200 200 200 255"
+        "fill": "200 200 200 255"
       }
     }
   },
@@ -118,9 +135,13 @@
     },
     "item": {
       "normal": {
+        "margins": 5,
         "fill": "0 0 0 0",
         "textFill": "200 200 200 255",
-        "textSize": 14
+        "textSize": 14,
+        "gradient": "linear",
+        "gradientFrom": "100 100 100 0",
+        "gradientTo": "40 40 40 0"
       },
       "hover": {
         "fill": "80 80 80 255"
@@ -128,7 +149,10 @@
       "active": {
         "fill": "40 40 100 255",
         "textFill":"250 250 250 255",
-        "textSize": 14
+        "textSize": 14,
+        "gradient": "linear",
+        "gradientFrom": "100 100 100 100",
+        "gradientTo": "40 40 40 100"
       }
     }
   },
@@ -137,7 +161,8 @@
     "bar": {
       "normal": {
         "fill": "40 40 40 255",
-        "stroke": "0 0 0 255"
+        "stroke": "0 0 0 255",
+        "cornerRadius": 2
       }
     },
     "knob": {
@@ -176,6 +201,28 @@
       "textFill": "255 255 255 255"
     }
   },
+
+  "ButtonCancel": {
+    "normal": {
+      "fill": "#B71C1C",
+      "textFill": "255 255 255 255",
+      "textSize": 18,
+      "cornerRadius": 5.5,
+      "htextAlign": "center",
+      "gradient": "linear",
+      "gradientFrom": "100 100 100 100",
+      "gradientTo": "40 40 40 100"
+    },
+    "hover": {
+      "fill": "#D32F2F",
+      "textFill": "255 255 255 255"
+    },
+    "active": {
+      "fill": "#FF8A80",
+      "textFill": "255 255 255 255"
+    }
+  },
+
 
   "ProgressBar": {
     "background": {

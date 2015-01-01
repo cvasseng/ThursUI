@@ -36,13 +36,42 @@ namespace thurs {
     m_input = input;
     m_size.x = 1024;
     m_size.y = 1024;
+    m_tooltipActive = false;
+    m_focused = 0;
   } 
+
+  void Surface::resize(const Vector2s& vec) {
+    m_size = vec;
+  }
+
+  void Surface::resize(float w, float h) {
+    m_size.x = w;
+    m_size.y = h;
+  }
 
   void Surface::_onUpdate() {
     //Update the children
     for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-      it->second->update();
+      if (!m_focused || m_focused->id() != it->second->id()) {
+        it->second->update();
+      }
     }
+
+    if (m_focused) {
+      m_focused->update();
+    }
+  }
+
+  void Surface::doTooltip(const std::string& text) {
+    m_tooltipActive = true;
+    m_tooltipClass.setState(S_ACTIVE);
+    m_tooltipPos = m_input->mouseCoords();
+  } 
+
+  void Surface::cancelTooltip() {
+    m_tooltipClass.setState(S_NORMAL);
+    m_tooltipActive = false;
+    m_tooltipClass.reset();
   }
 
   void Surface::updateAndRender(float pixelFormat) {
@@ -50,11 +79,18 @@ namespace thurs {
 
     _onUpdate();
 
-    for (SurfaceMapIt it = m_children.begin(); it != m_children.end(); it++) {
-      it->second->updateAndRender();
+    if (m_tooltipActive) {
+      m_renderer->renderRect(m_tooltipClass.Attr, Vector2f(m_tooltipPos.x, m_tooltipPos.y), Vector2f(100.f, 100.f));
+      m_tooltipClass.update();
     }
 
     m_renderer->end();
+
+    for (SurfaceMapIt it = m_children.begin(); it != m_children.end(); it++) {
+      it->second->m_size = m_size;
+      it->second->updateAndRender(pixelFormat);
+    }
+
   }
 
   Skin* const Surface::skin() {
@@ -71,7 +107,11 @@ namespace thurs {
   }
 
   bool Surface::loadSkin(const std::string& filename) {
-    return m_skin.load(filename);
+    if (m_skin.load(filename)) {
+      m_tooltipClass = m_skin.getClass("Tooltip");
+      return true;
+    }
+    return false;
   }
 
 }

@@ -73,6 +73,7 @@ namespace thurs {
     Attr.hasImage = m_attributes[s].hasImage;
     Attr.hasStroke = m_attributes[s].hasStroke;
     Attr.hasTextStroke = m_attributes[s].hasTextStroke;
+    Attr.font = m_attributes[s].font;
 
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.setState(s);
@@ -121,6 +122,8 @@ namespace thurs {
     Attr.gradientB = m_attributes[S_NORMAL].gradientB;
     Attr.gradient = m_attributes[S_NORMAL].gradient;
     Attr.hasGradient = m_attributes[S_NORMAL].hasGradient;
+
+    Attr.font = m_attributes[S_NORMAL].font;
     
     for (ClassMapIt it = m_subs.begin(); it != m_subs.end(); it++) {
       it->second.reset();
@@ -160,6 +163,7 @@ namespace thurs {
     attr.gradientA = sc.m_attributes[S_NORMAL].gradientA;
     attr.gradientB = sc.m_attributes[S_NORMAL].gradientB;
     attr.gradient = sc.m_attributes[S_NORMAL].gradient;
+    attr.font = sc.m_attributes[S_NORMAL].font;
 
     attr.strokeWidth = sc.m_attributes[S_NORMAL].strokeWidth;
 
@@ -203,6 +207,10 @@ namespace thurs {
 
     if (v.isMember("transitionTime")) {
       attr.transitionTime = v.get("transitionTime", "250").asInt();
+    }
+
+    if (v.isMember("font")) {
+      attr.font = v.get("font", "sans").asString();
     }
 
     if (v.isMember("image")) {

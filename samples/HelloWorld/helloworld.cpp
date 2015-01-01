@@ -39,9 +39,14 @@ void errorcb(int error, const char* desc) {
   printf("GLFW error %d: %s\n", error, desc);
 }
 
+void window_size_callback(GLFWwindow* window, int width, int height) {
+
+}
+
+
 int main(int argc, char** argv) {
   GLFWwindow* window;
-  int width, height;
+  int width, height, wwidth, wheight;
   double mouseX, mouseY;
   float pixelFormat = 1.f;
 
@@ -81,17 +86,29 @@ int main(int argc, char** argv) {
 
   thurs::Window* win = new thurs::Window(surface);
 
+  win->Title = "My Super Window";
+
   thurs::Button *btn = new thurs::Button(1, win);
   btn->setSize(100, 25);
   btn->setPosition(10, 10);
+  btn->Caption = "OK";
+
+  thurs::Button *btn2 = new thurs::Button(100, win);
+  btn2->setSize(100, 25);
+  btn2->setPosition(120, 10);
+  btn2->setSkinClass("ButtonCancel");
+  btn2->Caption = "CANCEL";
 
   thurs::ProgressBar *pbar = new thurs::ProgressBar(2, win);
+  pbar->setSize(380, 25);
   pbar->setPosition(10, 40);
 
   thurs::Slider *slider = new thurs::Slider(3, win);
+  slider->setSize(380, 15);
   slider->setPosition(10, 70);
 
   thurs::ListBox *box = new thurs::ListBox(4, win);
+  box->setSize(380, 80);
   box->setPosition(10, 100);
   box->addItem(0, "Hello");
   box->addItem(1, "World");
@@ -124,16 +141,20 @@ int main(int argc, char** argv) {
 
    while (!glfwWindowShouldClose(window)) {
     glfwGetFramebufferSize(window, &width, &height);
+    glfwGetWindowSize(window, &wwidth, &wheight);
     glfwGetCursorPos(window, &mouseX, &mouseY);
 
-    pixelFormat = width / 1024.f; 
+    pixelFormat = width / (float)wwidth; 
     
     glViewport(0, 0, width, height);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+    //printf("win size %i %i\n", wwidth, wheight);
+
     //Inject input and render UI  
     input.injectMouseCoords(mouseX, mouseY);
     input.injectMouseButton(thurs::Input::MouseButton(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)));
+    surface->resize(wwidth, wheight);
     surface->updateAndRender(pixelFormat);  
 
     glfwSwapBuffers(window);

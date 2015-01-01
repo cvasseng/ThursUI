@@ -57,6 +57,8 @@ namespace thurs {
 
     setSkinClass("Window");
 
+    Title = "Window Title";
+
     m_moving = false;
   }
 
@@ -83,7 +85,7 @@ namespace thurs {
     }
 
     if (m_titlebarClass) {
-      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, "Window Title");
+      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title);
     }
 
     Vector2s mc = m_input->mouseCoords();
@@ -123,10 +125,17 @@ namespace thurs {
     if (!m_collapsed) {
       m_renderer->renderRect(m_skinClass.Attr, m_winPos, m_winSize + Vector2f(0, m_titlebarHeight));
 
+      if (m_focused) {
+        m_focused->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
+        m_focused->update();
+      }
+
       //Update the children
       for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-        it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
-        it->second->update();
+        if (!m_focused || m_focused->id() != it->second->id()) {
+          it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
+          it->second->update();
+        }
       }
     }
 
@@ -134,7 +143,7 @@ namespace thurs {
       //Render titlebar
       
       m_renderer->renderRect(m_titlebarClass->Attr, m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
-      m_renderer->renderText(m_titlebarClass->Attr, "Window Title", m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
+      m_renderer->renderText(m_titlebarClass->Attr, Title, m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
     }
 
     float s = m_titlebarHeight / 2.f;

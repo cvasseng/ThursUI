@@ -73,6 +73,10 @@ namespace thurs {
     //Return the attached skin
     Skin* const skin();
 
+    //Resize the surface
+    virtual void resize(const Vector2s& vec);
+    virtual void resize(float w, float h);
+
     //Load skin - delegates to m_skin.load(..)
     /*
       Having this here rather than injecting a skin makes it a bit more
@@ -80,6 +84,10 @@ namespace thurs {
       won't have to maintain a bunch of skin classes outside the library.
     */
     bool loadSkin(const std::string& filename);
+
+    //Do a tooltip
+    virtual void doTooltip(const std::string& text);
+    virtual void cancelTooltip();
 	protected:
     //Our skin
     Skin m_skin;
@@ -95,8 +103,17 @@ namespace thurs {
     Vector2s m_size;
     //Pixel aspect
     float m_pixelAspect;
+    //Focused control
+    Control *m_focused;
 
     //The active tooltip
+    Skin::SkinClass m_tooltipClass;
+    //Is a tooltip active?
+    bool m_tooltipActive;
+    //Tooltip text
+    std::string m_tooltip;
+    //Tooltip position
+    Vector2s m_tooltipPos;
 
 
     virtual void _onUpdate();

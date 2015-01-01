@@ -53,7 +53,7 @@ namespace thurs {
     float y = pos.y + (m_scrollVal * (size.y - size.x));
 
     Vector2s mc = m_input->mouseCoords();
-    bool mo = mc.x >= pos.x && mc.x <= pos.x + size.x && mc.y >= y && mc.y <= pos.y + y + size.y;
+    bool mo = mc.x >= pos.x && mc.x <= pos.x + size.x && mc.y >= y && mc.y <= y + size.y;
 
     if (mo && m_input->mouseDown() && !m_scrolling) {
         m_scrolling = true;

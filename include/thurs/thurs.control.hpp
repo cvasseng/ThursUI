@@ -39,6 +39,25 @@ namespace thurs {
 
   class Control {
   public:
+
+    ///////////////////////////////////////////////////////////////////////////
+    
+    enum VerticalAlignment {
+      VA_CUSTOM,
+      VA_CLIENT,
+      VA_BOTTOM,
+      VA_TOP,
+      VA_CENTER
+    };
+
+    enum HorizontalAlignment {
+      HA_CUSTOM,
+      HA_CLIENT,
+      HA_LEFT,
+      HA_RIGHT,
+      HA_CENTER
+    };  
+    
     ///////////////////////////////////////////////////////////////////////////
 
     Control(uint32 id, Surface *surface);
@@ -94,6 +113,10 @@ namespace thurs {
 
     //Tooltip
     std::string Tooltip;
+    //Vertical alignment
+    VerticalAlignment VAlign;
+    //Horizontal alignment
+    HorizontalAlignment HAlign;
   protected:
     //Surface
     Surface *m_surface;
@@ -103,6 +126,8 @@ namespace thurs {
     Renderer *m_renderer;
     //Mouse over time
     uint32 m_mouseOverTime;
+    //Focus?
+    bool m_focus;
 
     //The size of the control
     Vector2f m_size;
@@ -122,6 +147,11 @@ namespace thurs {
     bool m_noStateHandling;
     //Loaded class name
     std::string m_loadedClassName;
+    //Tooltip pos
+    Vector2s m_tooltipPos;
+    //Doing tooltip?
+    bool m_doingTooltip;
+    //Mouse hold 
 
     //Return true/false if the mouse is inside the control
     bool mouseInside();

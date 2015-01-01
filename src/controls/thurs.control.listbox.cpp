@@ -94,7 +94,7 @@ namespace thurs {
 
     float lsize = 20.f;
     if (m_items.size() > 0) {
-      lsize = m_renderer->getTextHeight(m_items[0].skinClass.Attr, "m");
+      lsize = m_renderer->getTextHeight(m_items[0].skinClass.Attr, "m") + (m_items[0].skinClass.Attr.margins * 2);
     }
 
     //Render the body
@@ -110,7 +110,7 @@ namespace thurs {
       float y = (i * lsize);
 
       //Check if the mouse is over this item
-      if (ison && mc.x < m_position.x + m_wposition.x + m_size.x -10 && mc.y >= m_position.y + m_wposition.y + y - scroll && mc.y <= m_position.y + m_wposition.y + y + lsize - scroll) {
+      if (ison && mc.x < m_position.x + m_wposition.x + m_size.x -10 && mc.y > m_position.y + m_wposition.y + y - scroll && mc.y < m_position.y + m_wposition.y + y + lsize - scroll) {
         if (m_input->mouseDown()) {
           m_items[i].skinClass.setState(S_ACTIVE);
           m_selItem = i;

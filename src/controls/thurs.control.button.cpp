@@ -34,7 +34,7 @@ namespace thurs {
 
   //Constructor. Duh.
   Button::Button(uint32 id, Surface *surface)  : Control(id, surface) {
-    Caption = "Button";
+    Caption = "BUTTON";
     //Set default class
     setSkinClass("Button");
   }

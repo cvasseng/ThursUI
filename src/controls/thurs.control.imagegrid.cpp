@@ -70,7 +70,7 @@ namespace thurs {
         x = m_position.x + m_wposition.x;
       }
      
-      if (mc.x >+ x && mc.x <+ x + w && mc.y >+ y && mc.y <+ y + w) {
+      if (mouseInside() && mc.x >+ x && mc.x <+ x + w && mc.y >+ y && mc.y <+ y + w) {
         m_entries[i].skinClass.setState(S_HOVER);
         if (m_input->mouseDown()) {
           OnSelect(m_entries[i].meta);
@@ -88,7 +88,7 @@ namespace thurs {
       m_renderer->renderRect(m_entries[i].skinClass.Attr, Vector2f(x + m, y + m), Vector2f(w - (m * 2), w - (m * 2)));
 
       if (m_entries[i].meta.caption.size() > 0) {
-        m_renderer->renderText(m_entries[i].skinClass.Attr, m_entries[i].meta.caption, Vector2f(x, y), Vector2f(w, w));
+        m_renderer->renderText(m_entries[i].skinClass.Attr, m_entries[i].meta.caption, Vector2f(x, y), Vector2f(w - (m * 2), w - (m * 2)));
       }
 
       m_entries[i].skinClass.update();
