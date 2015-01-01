@@ -3,7 +3,7 @@ ThursUI
 
 ![Logo](bin/logo.png)
 
-**Straight-forward, lightweight, (potentially) pretty, and skinnable UI library.**
+**Straight-forward, lightweight, pretty, and skinnable UI library for games and 3d graphics applications.**
 
 ![Screenshot](screenshot.png)
 
