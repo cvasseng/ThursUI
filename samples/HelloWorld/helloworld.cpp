@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
   glfwSwapInterval(0);
   glfwSetTime(0);
 
-  glClearColor(0.2, 0.2, 0.2, 1.f);
+  glClearColor(1.f, 1.f, 1.f, 1.f);
 
   ////// START UI INIT ///////
 

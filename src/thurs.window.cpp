@@ -51,6 +51,7 @@ namespace thurs {
     m_skin = surface->m_skin;
 
     m_visible = true;
+    m_collapsed = false;
 
     m_titlebarClass = 0;
 
@@ -112,14 +113,22 @@ namespace thurs {
       }
     }
 
-    if (mo) {
+    if ( (!m_collapsed && mo) || mt) {
       m_skinClass.setState(S_HOVER);
     } else {
       m_skinClass.setState(S_NORMAL);
     }
 
     //Render the frame
-    m_renderer->renderRect(m_skinClass.Attr, m_winPos, m_winSize + Vector2f(0, m_titlebarHeight));
+    if (!m_collapsed) {
+      m_renderer->renderRect(m_skinClass.Attr, m_winPos, m_winSize + Vector2f(0, m_titlebarHeight));
+
+      //Update the children
+      for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
+        it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
+        it->second->update();
+      }
+    }
 
     if (m_titlebarClass) {
       //Render titlebar
@@ -130,17 +139,20 @@ namespace thurs {
 
     float s = m_titlebarHeight / 2.f;
     if (m_closeClass) {
-      m_renderer->renderRect(m_closeClass->Attr, m_winPos + Vector2f(m_winSize.x - (s * 2.0f), s / 2.f), Vector2f(s, s));
+      Vector2f pos = m_winPos + Vector2f(m_winSize.x - (s * 2.0f), s / 2.f);
+      if (mc.x >= pos.x && mc.x <= pos.x + s && mc.y >= pos.y && mc.y <= pos.y + s && m_input->mouseDown()) {
+        hide();
+      }
+      m_renderer->renderRect(m_closeClass->Attr, pos, Vector2f(s, s));
     }
 
     if (m_collapseClass) {
-      m_renderer->renderRect(m_collapseClass->Attr, m_winPos + Vector2f(m_winSize.x - (s * 4.0f), s / 2.f), Vector2f(s, s));
-    }
-
-    //Update the children
-    for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-      it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
-      it->second->update();
+      Vector2f pos = m_winPos + Vector2f(m_winSize.x - (s * 4.0f), s / 2.f);
+      if (mc.x >= pos.x && mc.x <= pos.x + s && mc.y >= pos.y && mc.y <= pos.y + s && m_input->mouseDown()) {
+        //toggle collapse
+        m_collapsed = !m_collapsed;
+      }
+      m_renderer->renderRect(m_collapseClass->Attr, pos, Vector2f(s, s));
     }
 
     m_skinClass.update();

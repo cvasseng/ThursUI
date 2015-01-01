@@ -84,6 +84,8 @@ namespace thurs {
     uint16 m_titlebarHeight;
     //Showing?
     bool m_visible;
+    //Collapsed?
+    bool m_collapsed;
 
     //The window skin class
     Skin::SkinClass m_skinClass;
