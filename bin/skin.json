@@ -227,6 +227,31 @@
     }
   },
 
+  "MultiLineText": {
+    "normal": {
+      "fill":"0 0 0 0",
+      "stroke": "#EEEEEE",
+      "textStroke": "#FFFFFF",
+      "vtextAlign": "top"
+    },
+    "default": {
+      "normal": {
+        "textFill": "#FFFFFF",
+        "vtextAlign": "top",
+        "textSize":15
+      }
+    },
+    "red": {
+      "normal": {
+        "textFill": "#FF3333",
+        "vtextAlign": "top",
+        "textSize":15
+      },
+      "hover": {
+        "font": "sans-bold"
+      }
+    }
+  },
 
   "ProgressBar": {
     "background": {

@@ -18,6 +18,7 @@
   * Label
   * Rectangle (can be used to display images)
   * Image Grid (useful for e.g. inventories in RPG's)
+  * Multi line text fields with formatting
   * Window
 
 **Noteable features:**

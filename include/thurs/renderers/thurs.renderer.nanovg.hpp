@@ -193,6 +193,10 @@ namespace thurs {
       nvgTextMetrics(m_vg, &ascender, &descender, &lineh);
       return lineh;
     }
+
+    float getTextWidth(Skin::SkinClass::Attributes &skinClass, const std::string& text) {
+      return nvgTextBounds(m_vg, 0.f, 0.f, text.c_str(), 0, 0);
+    }
   protected:
     //Context
     NVGcontext* m_vg;

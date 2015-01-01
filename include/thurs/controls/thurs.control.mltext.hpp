@@ -27,17 +27,76 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_mltext__
+#define h__thurs_control_mltext__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
-#include "thurs.control.label.hpp"
-#include "thurs.control.rectangle.hpp"
-#include "thurs.control.mltext.hpp"
+#include <string>
+#include <vector>
+
+#include "../thurs.control.hpp"
+#include "../thurs.color.hpp"
+#include "../thurs.scrollbar.hpp"
+
+namespace thurs {
+
+  /*
+    Markup:
+    
+    [%classname%] bla bla bla [%otherclass%] 
+
+  */
+
+  class MultiLineText : public Control {
+  public:
+
+    struct TextEntry {
+      Skin::SkinClass skinClass;
+      std::string text;
+      float width;
+      float height;
+      float y;
+    };
+
+    struct TextLine {
+      float width;
+      float height;
+      std::vector<TextEntry> items;
+      TextLine() {
+        width = 0.f;
+        height = 0.f;
+      }
+    };
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    //Constructor. Duh.
+    MultiLineText(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    //Append text
+    void appendText(const std::string& text);
+    //Append text as new line
+    void appendLine(const std::string& text);
+    //Clear it
+    void clear();
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    //Caption
+    std::string Caption;
+  protected:
+    //Lines
+    std::vector<TextLine> m_lines;
+    //Actual height
+    float m_actualHeight;
+    //Scrollbar
+    Scrollbar m_scrollbar;
+  private: 
+  };
+
+}
 
 #endif
