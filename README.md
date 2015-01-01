@@ -1,7 +1,7 @@
-ThursUI
+ThursUI ![Logo](bin/logo.png)
 =======
 
-![Logo](bin/logo.png)
+
 
 **Straight-forward, lightweight, pretty, and skinnable UI library for games and 3d graphics applications.**
 
