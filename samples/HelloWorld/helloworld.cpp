@@ -45,8 +45,14 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 
 class EventHandler : public sigslot::has_slots<> {
   public:
-    EventHandler(thurs::Surface* root) {
+    EventHandler(thurs::Surface* root, thurs::Slider* slider, thurs::ProgressBar* pbar) {
       m_root = root;
+      m_slider = slider;
+      m_bar = pbar;
+    }
+
+    void SliderChange(int v) {
+      m_bar->Value = v;
     }
 
     void ReloadSkins(unsigned int fromid) {
@@ -56,6 +62,8 @@ class EventHandler : public sigslot::has_slots<> {
   protected:
     //Root surface
     thurs::Surface* m_root;
+    thurs::Slider* m_slider;
+    thurs::ProgressBar* m_bar;
   private:
 };
 
@@ -100,11 +108,17 @@ int main(int argc, char** argv) {
     printf("Failed to load skin\n");
   }
 
-  EventHandler handler(surface);
+  
 
   thurs::Window* win = new thurs::Window(surface);
   thurs::Window* win2 = new thurs::Window(surface);
   win2->setPos(0, 0);
+
+  thurs::Rectangle* rect = new thurs::Rectangle(213, surface);
+  rect->HAlign = thurs::Control::HA_RIGHT;
+  rect->VAlign = thurs::Control::VA_BOTTOM;
+  rect->setImage("logo.png");
+  rect->setSize(64, 64);
 
   win->Title = "My Super Window";
   win2->Title = "I Super Window Too";
@@ -114,7 +128,6 @@ int main(int argc, char** argv) {
   btn->setPosition(10, 10);
   btn->Caption = "OK";
   
-
   thurs::Button *btn2 = new thurs::Button(100, win);
   btn2->setSize(100, 25);
   btn2->setPosition(120, 10);
@@ -124,13 +137,18 @@ int main(int argc, char** argv) {
   thurs::Button *btn3 = new thurs::Button(1, surface);
   btn3->setPosition(10, 10);
   btn3->Caption = "RELOAD SKIN";
-  btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
+  
   btn3->HAlign = thurs::Control::HA_CENTER;
  // btn3->VAlign = thurs::Control::VA_CLIENT;
 
   thurs::ProgressBar *pbar = new thurs::ProgressBar(2, win);
   pbar->setSize(380, 25);
   pbar->setPosition(10, 40);
+
+  thurs::ProgressBar *pbar2 = new thurs::ProgressBar(4, win2);
+  pbar2->setSize(380, 25);
+  pbar2->setPosition(10, 10);
+  pbar2->setSkinClass("XPBar");
 
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);
@@ -165,6 +183,10 @@ int main(int argc, char** argv) {
     ss << "Img #" << i;
     igrid->addImage(i, "logo.png", ss.str());
   }
+
+  EventHandler handler(surface, slider, pbar);
+  btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
+  slider->OnChange.connect(&handler, &EventHandler::SliderChange);
 
   ///// END UI INIT //////
 

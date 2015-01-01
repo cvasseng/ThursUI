@@ -43,8 +43,10 @@ namespace thurs {
     Rectangle(uint32 id, Surface *surface);
     //Update and draw
     void update();
+    //Load an image
+    void setImage(const std::string& filename);
   protected:
-    
+    uint32 m_imageHandle;
   private:
   };
 

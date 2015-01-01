@@ -36,12 +36,23 @@ namespace thurs {
   Rectangle::Rectangle(uint32 id, Surface *surface)  : Control(id, surface) {
     //Set default class
     setSkinClass("Rectangle");
+    m_imageHandle = 0;
+  }
+
+  void Rectangle::setImage(const std::string& filename) {
+    m_imageHandle = m_renderer->loadImage(filename);
   }
   
   //Update and draw
   void Rectangle::update() {
     //Do parent stuff
     Control::update();
+
+    if (m_imageHandle > 0) {
+      m_skinClass.Attr.imageHandle = m_imageHandle;
+      m_skinClass.Attr.hasImage = true;
+    }
+
     m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size); 
   }
 

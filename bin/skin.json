@@ -242,10 +242,39 @@
         "cornerRadius": 4.0,
         "gradient": "linear",
         "gradientFrom": "200 12 12 100",
-        "gradientTo": "100 12 12 100"
+        "gradientTo": "100 12 12 100",
+        "font": "sans-bold",
+        "textSize": 15,
+        "htextAlign": "center"
       },
       "hover": {
         "fill": "140 20 20 255"
+      }
+    }
+  },
+
+  "XPBar": {
+    "background": {
+      "normal": {
+        "fill": "#EEEEEE",
+        "cornerRadius": 4.0
+      }
+    },
+    "bar": {
+      "normal": {
+        "fill": "#FF9800",
+        "margins": 2,
+        "cornerRadius": 4.0,
+        "gradient": "linear",
+        "gradientFrom": "#FF9800",
+        "gradientTo": "#FFB74D",
+        "font": "sans-bold",
+        "textSize": 15,
+        "textFill": "#000000FF",
+        "htextAlign": "center"
+      },
+      "hover": {
+        "stroke": "140 20 20 255"
       }
     }
   }

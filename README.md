@@ -3,7 +3,7 @@
 
 
 
-**Straight-forward, lightweight, pretty, and skinnable C++ UI library for games and 3d applications.**
+**Straight-forward, pretty, and skinnable C++ UI library for games and 3d applications.**
 
 ![Screenshot](screenshot.png)
 
