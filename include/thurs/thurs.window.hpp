@@ -65,6 +65,8 @@ namespace thurs {
     void setPos(float x, float y);
     void setPos(const Vector2f& vec);
     bool mouseOver();
+
+    const Vector2f& getSize();
   
     ///////////////////////////////////////////////////////////////////////////
   

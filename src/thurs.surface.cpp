@@ -34,20 +34,20 @@ namespace thurs {
   Surface::Surface(Renderer *renderer, Input *input) : m_skin(renderer) {
     m_renderer = renderer;
     m_input = input;
-    m_size.x = 1024;
-    m_size.y = 1024;
+    m_canvasSize.x = 1024;
+    m_canvasSize.y = 1024;
     m_tooltipActive = false;
     m_focused = 0;
     m_focusedChild = 0;
   } 
 
-  void Surface::resize(const Vector2s& vec) {
-    m_size = vec;
+  void Surface::resize(const Vector2f& vec) {
+    m_canvasSize = vec;
   }
 
   void Surface::resize(float w, float h) {
-    m_size.x = w;
-    m_size.y = h;
+    m_canvasSize.x = w;
+    m_canvasSize.y = h;
   }
 
   void Surface::_onUpdate() {
@@ -82,8 +82,12 @@ namespace thurs {
     m_tooltipClass.reset();
   }
 
+  const Vector2f& Surface::getSize() {
+    return m_canvasSize;
+  }
+
   void Surface::updateAndRender(float pixelFormat) {
-    m_renderer->begin(m_size.x, m_size.y, pixelFormat);
+    m_renderer->begin(m_canvasSize.x, m_canvasSize.y, pixelFormat);
 
     _onUpdate();
 
@@ -96,6 +100,8 @@ namespace thurs {
 
     int32 focusedIndex = -1;
 
+    m_moveFocusedChildToTop = false;
+
     for (uint32 i = 0; i < m_children.size(); i++) {
       if (!m_focusedChild || m_focusedChild == m_children[i]) {
         m_input->enable();
@@ -104,12 +110,12 @@ namespace thurs {
         m_input->disable();
       }
 
-      m_children[i]->m_size = m_size;
+      m_children[i]->m_canvasSize = m_canvasSize;
       m_children[i]->updateAndRender(pixelFormat);
     }
 
     //If the focused child is not on the top of the stack, move it there.
-    if (m_children.size() > 1 && m_children.size() - 1 != focusedIndex) {
+    if ( m_children.size() > 1 && m_children.size() - 1 != focusedIndex) {
       Surface* p = m_children[m_children.size() - 1];
       m_children[m_children.size() - 1] = m_focusedChild;
       m_children[focusedIndex] = p;

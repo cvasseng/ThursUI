@@ -88,16 +88,39 @@ namespace thurs {
 
     switch(VAlign) {
       PCASE(VA_CLIENT,
-       // m_size.x = m_surface->
+        m_size.y = m_surface->getSize().y;
+        m_position.y = 0;
       )
       PCASE(VA_BOTTOM,
-
+        m_position.y = m_surface->getSize().y - m_size.y;
       )
       PCASE(VA_TOP,
+        m_position.y = 0;
+      )
+      PCASE(VA_CENTER,    
+        m_position.y = (m_surface->getSize().y / 2.f) - (m_size.y / 2.f);
+      )
+      PCASE(VA_CUSTOM,
 
       )
-      PCASE(VA_CENTER,
+    };
 
+    switch(HAlign) {
+      PCASE(HA_CUSTOM,
+
+      )
+      PCASE(HA_CLIENT,
+        m_position.x = 0;
+        m_size.x = m_surface->getSize().x;
+      )
+      PCASE(HA_LEFT,
+        m_position.x = 0;
+      )
+      PCASE(HA_RIGHT,
+        m_position.x = m_surface->getSize().x - m_size.x;
+      )
+      PCASE(HA_CENTER,
+        m_position.x = (m_surface->getSize().x / 2.f) - (m_size.x / 2.f);
       )
     };
 

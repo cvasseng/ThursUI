@@ -74,7 +74,7 @@ namespace thurs {
     Skin* const skin();
 
     //Resize the surface
-    virtual void resize(const Vector2s& vec);
+    virtual void resize(const Vector2f& vec);
     virtual void resize(float w, float h);
 
     //Load skin - delegates to m_skin.load(..)
@@ -86,6 +86,8 @@ namespace thurs {
     bool loadSkin(const std::string& filename);
     //Reload skin
     virtual bool reloadSkin();
+    //Get size
+    virtual const Vector2f& getSize();
 
     //Do a tooltip
     virtual void doTooltip(const std::string& text);
@@ -103,13 +105,15 @@ namespace thurs {
     //Children in the surface
     std::vector<Surface*> m_children;
     //The size of the surface
-    Vector2s m_size;
+    Vector2f m_canvasSize;
     //Pixel aspect
     float m_pixelAspect;
     //Focused control
     Control *m_focused;
     //Focused child
     Surface* m_focusedChild;
+    //Set to true to move the focused child to the top the next frame
+    bool m_moveFocusedChildToTop;
 
     //The active tooltip
     Skin::SkinClass m_tooltipClass;

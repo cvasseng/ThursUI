@@ -97,6 +97,10 @@ namespace thurs {
     OnShow();
   }
 
+  const Vector2f& Window::getSize() {
+    return m_winSize;
+  }
+
   bool Window::mouseOver() {
     if (m_titlebarClass) {
       m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title);
@@ -104,7 +108,7 @@ namespace thurs {
 
     Vector2s mc = m_input->mouseCoords();
     bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
-    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_size.y;
+    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_winSize.y;
 
     return (!m_collapsed && mo) || mt;
   }
@@ -120,15 +124,20 @@ namespace thurs {
 
     Vector2s mc = m_input->mouseCoords();
     bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
-    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_size.y;
+    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_winSize.y;
 
     if (mt) { //Mouse on titlebar?
       if (!m_moving && m_input->mouseDown()) {
         m_preMovePos = m_winPos;
         m_mdelta = mc;
         m_moving = true;
+        
        // m_input->markHandled();
       }
+    }
+
+    if (((!m_collapsed && mo) || mt) && m_input->mouseDown()) {
+      m_owner->m_moveFocusedChildToTop = true;
     }
 
     if (m_moving) {
@@ -141,8 +150,8 @@ namespace thurs {
 
         if (m_winPos.x < 0) m_winPos.x = 0;
         if (m_winPos.y < 0) m_winPos.y = 0;
-        if (m_winPos.x + m_winSize.x > m_owner->m_size.x) m_winPos.x = m_owner->m_size.x - m_winSize.x;
-        if (m_winPos.y + m_winSize.y > m_owner->m_size.y) m_winPos.y = m_owner->m_size.y - m_winSize.y;
+        if (m_winPos.x + m_winSize.x > m_owner->m_canvasSize.x) m_winPos.x = m_owner->m_canvasSize.x - m_winSize.x;
+        if (m_winPos.y + m_winSize.y > m_owner->m_canvasSize.y) m_winPos.y = m_owner->m_canvasSize.y - m_winSize.y;
       }
     }
 

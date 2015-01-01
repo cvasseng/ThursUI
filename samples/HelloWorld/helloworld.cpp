@@ -125,6 +125,8 @@ int main(int argc, char** argv) {
   btn3->setPosition(10, 10);
   btn3->Caption = "RELOAD SKIN";
   btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
+  btn3->HAlign = thurs::Control::HA_CENTER;
+ // btn3->VAlign = thurs::Control::VA_CLIENT;
 
   thurs::ProgressBar *pbar = new thurs::ProgressBar(2, win);
   pbar->setSize(380, 25);
