@@ -1,4 +1,4 @@
-ThursUI ![Logo](bin/logo.png)
+![Logo](bin/logo.png) ThursUI 
 =======
 
 
