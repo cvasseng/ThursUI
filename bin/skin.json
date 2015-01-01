@@ -229,8 +229,8 @@
 
   "MultiLineText": {
     "normal": {
-      "fill":"0 0 0 0",
-      "stroke": "#EEEEEE",
+      "fill": "30 30 30 255",
+      "cornerRadius": 4.0,
       "textStroke": "#FFFFFF",
       "vtextAlign": "top"
     },

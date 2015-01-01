@@ -51,10 +51,16 @@ namespace thurs {
 
     struct TextEntry {
       Skin::SkinClass skinClass;
+      std::string id;
       std::string text;
       float width;
       float height;
       float y;
+
+      TextEntry() {
+        width = 0.f;
+        height = 0.f;
+      }
     };
 
     struct TextLine {
@@ -82,6 +88,8 @@ namespace thurs {
     void appendLine(const std::string& text);
     //Clear it
     void clear();
+    //Load contents from file
+    void loadFromFile(const std::string& filename);
 
     ///////////////////////////////////////////////////////////////////////////
 

@@ -153,16 +153,8 @@ int main(int argc, char** argv) {
   thurs::MultiLineText *mt = new thurs::MultiLineText(19, win2);
   mt->setPosition(10, 45);
   mt->setSize(380, 100);
-  mt->appendText("hello world! [$red$] red text [$default$] white text again!! hurray! [$red$] It works maybe! [$default$] onesuperlongword bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla");
-  mt->appendLine("new line #1");
-  mt->appendLine("new line #2");
-  mt->appendLine("new line #3");
-  mt->appendLine("new line #4");
-  mt->appendLine("new line #5");
-  mt->appendLine("new line #6");
-  mt->appendLine("new line #7");
-  mt->appendLine("new line #8");
-
+  mt->loadFromFile("multitext.txt");
+  
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);
   slider->setPosition(10, 70);

@@ -28,6 +28,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
 #include <sstream>
+#include <fstream>
 
 #include "../../include/thurs/thurs.hpp"
 #include "../../include/thurs/controls/thurs.control.mltext.hpp"
@@ -68,6 +69,11 @@ namespace thurs {
         TextEntry* entry = &m_lines[j].items[i];
 
         if (mc.x >= pos.x && mc.x <= pos.x + entry->width && mc.y >= pos.y && mc.y <= pos.y + entry->height) {
+          if (m_input->mouseDown()) {
+            //Click link
+            printf("Clicked %s\n", entry->id.c_str());
+          }
+
           entry->skinClass.setState(S_HOVER);
         } else {
           entry->skinClass.setState(S_NORMAL);
@@ -94,6 +100,7 @@ namespace thurs {
   void MultiLineText::appendText(const std::string& text) {
     std::string buffer;
     std::string className;
+    std::string id;
     bool readingClass = false;
 
     if (m_lines.size() == 0) {
@@ -118,14 +125,27 @@ namespace thurs {
       ss >> buffer;
 
       if (buffer[0] == '[' && buffer[1] == '$' && buffer[buffer.size() - 2] == '$' && buffer[buffer.size()- 1] == ']') {
+        //We need to parse the class name, and ID if it exists.
+        id = "";
         className = buffer.substr(2, buffer.size() - 4);
-        printf("Found class name: %s\n", className.c_str());
+        for (uint32 i = 0; i < buffer.size(); i++) {
+          if (buffer[i] == '#') {
+            className = buffer.substr(2, i - 2);
+            id = buffer.substr(i + 1, buffer.size() - i - 3);
+            break;
+          } 
+        }
+
+       // className = buffer.substr(2, buffer.size() - 4);
+        printf("\nFound class name: %s id is: %s\n", className.c_str(), active->id.c_str());
 
         TextEntry te;
         te.skinClass = m_skinClass.findAndCpySub(className);
         activeLine->items.push_back(te);
         active = &activeLine->items[activeLine->items.size() - 1];
+        active->id = id;
       } else {
+        printf("%s ", buffer.c_str());
         //Check if the width of the buffer causes the line to overflow
         float bufferWidth = m_renderer->getTextWidth(active->skinClass.Attr, buffer + ' ');
         float bufferHeight = m_renderer->getTextHeight(active->skinClass.Attr, buffer);
@@ -137,10 +157,10 @@ namespace thurs {
           e.skinClass = active->skinClass;
           e.text = buffer + ' ';
           e.width = bufferWidth;
+          e.height = bufferHeight;
+          e.id = active->id;
           l.width = bufferWidth;
           l.height = bufferHeight;
-
-        //  m_actualHeight += l.height;
 
           l.items.push_back(e);
           m_lines.push_back(l);
@@ -154,10 +174,7 @@ namespace thurs {
           active->text += buffer + ' ';
           activeLine->width += bufferWidth;
           activeLine->height = activeLine->height > bufferHeight ? activeLine->height : bufferHeight;
-          
-          if (m_actualHeight == 0.f) {
-            //m_actualHeight = bufferHeight;
-          }
+
         }
       }
     }
@@ -172,6 +189,13 @@ namespace thurs {
   void MultiLineText::clear() {
     m_actualHeight = 0.f;
     m_lines.clear();
+  }
+
+  void MultiLineText::loadFromFile(const std::string& filename) {
+    clear();
+    std::ifstream ifs(filename);
+    std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+    appendText(str);
   }
 
 
