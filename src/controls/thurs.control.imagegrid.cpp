@@ -62,6 +62,11 @@ namespace thurs {
     float height = (m_entries.size() / m_imagesX) * w;
     float scroll = m_scrollbar.val() * (height - m_size.y);
 
+    if (height < m_size.y) {
+      w = m_size.x / m_imagesX;
+      height = (m_entries.size() / m_imagesX) * w;
+    }
+
     float y = m_position.y + m_wposition.y - w - scroll;
     float x = m_position.x + m_wposition.x;
     for (uint32 i = 0; i < m_entries.size(); i++) {
@@ -96,7 +101,9 @@ namespace thurs {
       x += w;
     }
 
-    m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
+    if (height > m_size.y) {
+      m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
+    }
 
     m_renderer->clearScissor();
 

@@ -127,7 +127,9 @@ namespace thurs {
       m_renderer->renderText(m_items[i].skinClass.Attr, m_items[i].meta.title, m_position + m_wposition + Vector2f(0,  y - scroll), Vector2f(m_size.x - 10, lsize));
     }
 
-    m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
+    if (height > m_size.y) {
+      m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
+    }
 
     m_renderer->clearScissor();
 

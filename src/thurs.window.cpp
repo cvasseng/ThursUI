@@ -103,7 +103,7 @@ namespace thurs {
 
   bool Window::mouseOver() {
     if (m_titlebarClass) {
-      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title);
+      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title) + 4;
     }
 
     Vector2s mc = m_input->mouseCoords();
@@ -119,7 +119,7 @@ namespace thurs {
     }
 
     if (m_titlebarClass) {
-      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title);
+      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title) + 4;
     }
 
     Vector2s mc = m_input->mouseCoords();

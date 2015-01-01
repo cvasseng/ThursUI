@@ -7,7 +7,7 @@
 
 ![Screenshot](screenshot.png)
 
-*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever - "Make it work, then make it fast."* 
+*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever - "Make it work, then make it fast." It's also a bit hackish right now, but it works.* 
 
 **Currently supported controls:**
   * Button

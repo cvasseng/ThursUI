@@ -178,7 +178,7 @@ int main(int argc, char** argv) {
   igrid->setPosition(10, 220);
   igrid->setSize(380, 200);
 
-  for (int i = 0; i < 30; i++) {
+  for (int i = 0; i < 10; i++) {
     std::stringstream ss;
     ss << "Img #" << i;
     igrid->addImage(i, "logo.png", ss.str());
