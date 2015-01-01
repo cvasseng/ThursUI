@@ -71,6 +71,7 @@ namespace thurs {
     Attr.hTextAlign = m_attributes[s].hTextAlign;
 
     Attr.hasImage = m_attributes[s].hasImage;
+    Attr.hasFill = m_attributes[s].hasFill;
     Attr.hasStroke = m_attributes[s].hasStroke;
     Attr.hasTextStroke = m_attributes[s].hasTextStroke;
     Attr.font = m_attributes[s].font;
@@ -111,6 +112,7 @@ namespace thurs {
 
     Attr.strokeWidth = m_attributes[S_NORMAL].strokeWidth;
 
+    Attr.hasFill = m_attributes[S_NORMAL].hasFill;
     Attr.hasStroke = m_attributes[S_NORMAL].hasStroke;
     Attr.hasTextStroke = m_attributes[S_NORMAL].hasTextStroke;
     Attr.hasImage = m_attributes[S_NORMAL].hasImage;
@@ -167,12 +169,14 @@ namespace thurs {
 
     attr.strokeWidth = sc.m_attributes[S_NORMAL].strokeWidth;
 
+    attr.hasFill = sc.m_attributes[S_NORMAL].hasFill;
     attr.hasStroke = sc.m_attributes[S_NORMAL].hasStroke;
     attr.hasTextStroke = sc.m_attributes[S_NORMAL].hasTextStroke;
     attr.hasGradient = sc.m_attributes[S_NORMAL].hasGradient;
 
     if (v.isMember("fill")) {
       attr.fill = Color(v.get("fill", "255 255 255 255").asString());
+      attr.hasFill = true;
     } 
 
     if (v.isMember("stroke")) {

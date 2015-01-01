@@ -238,7 +238,7 @@
     "bar": {
       "normal": {
         "fill": "100 12 12 255",
-        "margins": 4,
+        "margins": 2,
         "cornerRadius": 4.0,
         "gradient": "linear",
         "gradientFrom": "200 12 12 100",

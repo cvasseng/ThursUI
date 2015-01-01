@@ -103,20 +103,28 @@ int main(int argc, char** argv) {
   EventHandler handler(surface);
 
   thurs::Window* win = new thurs::Window(surface);
+  thurs::Window* win2 = new thurs::Window(surface);
+  win2->setPos(0, 0);
 
   win->Title = "My Super Window";
+  win2->Title = "I Super Window Too";
 
   thurs::Button *btn = new thurs::Button(1, win);
   btn->setSize(100, 25);
   btn->setPosition(10, 10);
   btn->Caption = "OK";
-  btn->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
+  
 
   thurs::Button *btn2 = new thurs::Button(100, win);
   btn2->setSize(100, 25);
   btn2->setPosition(120, 10);
   btn2->setSkinClass("ButtonCancel");
   btn2->Caption = "CANCEL";
+
+  thurs::Button *btn3 = new thurs::Button(1, surface);
+  btn3->setPosition(10, 10);
+  btn3->Caption = "RELOAD SKIN";
+  btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
 
   thurs::ProgressBar *pbar = new thurs::ProgressBar(2, win);
   pbar->setSize(380, 25);

@@ -55,6 +55,7 @@ namespace thurs {
 
   //Get the current mouse position
   const Vector2s& Input::mouseCoords() {
+    if (m_handled) return Vector2s(-1, -1); //:D
     return m_coords;
   }
 
@@ -65,16 +66,19 @@ namespace thurs {
 
   //Returns true if there was a mouse click
   bool Input::mouseClick(MouseButton btn) {
+    if (m_handled) return false;
     return m_mbutton != btn && m_mbuttonl == btn;
   }
 
   //Returns true if the given mouse button was just pressed
   bool Input::mouseDown(MouseButton btn) {
+    if (m_handled) return false;
     return m_mbutton == btn && m_mbuttonl != btn;
   }
 
   //Returns true if the given mouse button was just released
   bool Input::mouseUp(MouseButton btn) {
+    if (m_handled) return false;
     return m_mbutton != btn && m_mbuttonl == btn;
   }
 
@@ -87,6 +91,14 @@ namespace thurs {
   //e.g. character movement etc.
   bool Input::handled() {
     return m_handled;
+  }
+
+  void Input::disable() {
+    m_handled = true;
+  }
+
+  void Input::enable() {
+    m_handled = false;
   }
 
 }

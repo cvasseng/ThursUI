@@ -135,8 +135,10 @@ namespace thurs {
       nvgBeginPath(m_vg);
       nvgRoundedRect(m_vg, pos.x, pos.y, size.x, size.y, skinClass.cornerRadius);
  
-      nvgFillColor(m_vg, col);
-      nvgFill(m_vg);
+      if (!skinClass.hasImage || skinClass.hasFill) {
+        nvgFillColor(m_vg, col);
+        nvgFill(m_vg);
+      }
 
       if (skinClass.hasImage) {
         int w, h;

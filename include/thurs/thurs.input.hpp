@@ -77,6 +77,11 @@ namespace thurs {
     //e.g. character movement etc.
     bool handled();
 
+    //Disable input
+    void disable();
+    //Enable input 
+    void enable();
+
   protected:
     //Current mouse coords
     Vector2s m_coords;

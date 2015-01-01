@@ -90,6 +90,7 @@ namespace thurs {
     //Do a tooltip
     virtual void doTooltip(const std::string& text);
     virtual void cancelTooltip();
+    virtual bool mouseOver() { return true;}
 	protected:
     //Our skin
     Skin m_skin;
@@ -100,13 +101,15 @@ namespace thurs {
     //Controls in the surface
     ControlMap m_controls;
     //Children in the surface
-    SurfaceMap m_children;
+    std::vector<Surface*> m_children;
     //The size of the surface
     Vector2s m_size;
     //Pixel aspect
     float m_pixelAspect;
     //Focused control
     Control *m_focused;
+    //Focused child
+    Surface* m_focusedChild;
 
     //The active tooltip
     Skin::SkinClass m_tooltipClass;

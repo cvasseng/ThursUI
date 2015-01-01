@@ -62,6 +62,9 @@ namespace thurs {
 
     virtual void setSkinClass(const std::string& name);
     bool reloadSkin();
+    void setPos(float x, float y);
+    void setPos(const Vector2f& vec);
+    bool mouseOver();
   
     ///////////////////////////////////////////////////////////////////////////
   

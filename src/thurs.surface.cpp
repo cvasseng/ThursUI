@@ -38,6 +38,7 @@ namespace thurs {
     m_size.y = 1024;
     m_tooltipActive = false;
     m_focused = 0;
+    m_focusedChild = 0;
   } 
 
   void Surface::resize(const Vector2s& vec) {
@@ -50,6 +51,13 @@ namespace thurs {
   }
 
   void Surface::_onUpdate() {
+    //We need to check if the mouse is over the child
+    if (m_focusedChild && m_focusedChild->mouseOver()) {
+      m_input->disable();
+    } else {
+      m_input->enable();
+    }
+
     //Update the children
     for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
       if (!m_focused || m_focused->id() != it->second->id()) {
@@ -86,9 +94,25 @@ namespace thurs {
 
     m_renderer->end();
 
-    for (SurfaceMapIt it = m_children.begin(); it != m_children.end(); it++) {
-      it->second->m_size = m_size;
-      it->second->updateAndRender(pixelFormat);
+    int32 focusedIndex = -1;
+
+    for (uint32 i = 0; i < m_children.size(); i++) {
+      if (!m_focusedChild || m_focusedChild == m_children[i]) {
+        m_input->enable();
+        focusedIndex = i;
+      } else {
+        m_input->disable();
+      }
+
+      m_children[i]->m_size = m_size;
+      m_children[i]->updateAndRender(pixelFormat);
+    }
+
+    //If the focused child is not on the top of the stack, move it there.
+    if (m_children.size() > 1 && m_children.size() - 1 != focusedIndex) {
+      Surface* p = m_children[m_children.size() - 1];
+      m_children[m_children.size() - 1] = m_focusedChild;
+      m_children[focusedIndex] = p;
     }
 
   }
@@ -115,8 +139,8 @@ namespace thurs {
         }
       }
 
-      for (SurfaceMapIt it = m_children.begin(); it != m_children.end(); it++) {
-        it->second->reloadSkin();
+      for (uint32 i = 0; i < m_children.size(); i++) {
+        m_children[i]->reloadSkin();
       }
 
       return true;

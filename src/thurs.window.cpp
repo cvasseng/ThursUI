@@ -37,7 +37,8 @@ namespace thurs {
     static uint16 id = 0;
     m_id = ++id;
 
-    surface->m_children.insert(SurfaceMapPair(m_id, this));
+    surface->m_children.push_back(this);
+
     m_owner = surface;
 
     m_winSize.x = 400;
@@ -67,10 +68,23 @@ namespace thurs {
   }
 
   Window::~Window() {
-    SurfaceMapIt it = m_owner->m_children.find(m_id);
-    if (it != m_owner->m_children.end()) {
-      m_owner->m_children.erase(it);
+    for (uint32 i = 0; i < m_owner->m_children.size(); i++) {
+      if (m_owner->m_children[i] == this) {
+        m_owner->m_children.erase(m_owner->m_children.begin() + i);
+        return;
+      }
     }
+
+    //uh oh..
+  }
+
+  void Window::setPos(float x, float y) {
+    m_winPos.x = x;
+    m_winPos.y = y;
+  }
+
+  void Window::setPos(const Vector2f& vec) {
+    m_winPos = vec;
   }
 
   void Window::hide() {
@@ -81,6 +95,18 @@ namespace thurs {
   void Window::show() {
     m_visible = true;
     OnShow();
+  }
+
+  bool Window::mouseOver() {
+    if (m_titlebarClass) {
+      m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title);
+    }
+
+    Vector2s mc = m_input->mouseCoords();
+    bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
+    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_size.y;
+
+    return (!m_collapsed && mo) || mt;
   }
 
   void Window::_onUpdate() {
@@ -101,6 +127,7 @@ namespace thurs {
         m_preMovePos = m_winPos;
         m_mdelta = mc;
         m_moving = true;
+       // m_input->markHandled();
       }
     }
 
@@ -168,6 +195,14 @@ namespace thurs {
       m_renderer->renderRect(m_collapseClass->Attr, pos, Vector2f(s, s));
     }
 
+    //If mouse is on the window, swallow the input.
+    //This way we only need to mess with
+    if ( (!m_collapsed && mo) || mt) {
+      m_owner->m_focusedChild = this;
+    } else if (m_owner->m_focusedChild == this) {
+      m_owner->m_focusedChild = 0;
+    }
+
     m_skinClass.update();
 
   }
@@ -181,8 +216,11 @@ namespace thurs {
   }
 
   bool Window::reloadSkin() {
-    Surface::reloadSkin();
-    setSkinClass(m_skinClassName);
+    if (Surface::reloadSkin()) {
+      setSkinClass(m_skinClassName);
+      return true;
+    }
+    return false;
   } 
 
 }
