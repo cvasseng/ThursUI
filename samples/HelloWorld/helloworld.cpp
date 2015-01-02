@@ -186,9 +186,14 @@ int main(int argc, char** argv) {
   btn5->setPosition(10, 190);
   btn5->Caption = "YET ANOTHER BUTTON";
 
+  thurs::Label *lbl = new thurs::Label(47, win2);
+  lbl->setSize(380, 25);
+  lbl->setPosition(10, 225);
+  lbl->Caption = "Edit Box";
+
   thurs::EditBox *eb = new thurs::EditBox(45, win2);
   eb->setSize(380, 25);
-  eb->setPosition(10, 225);
+  eb->setPosition(10, 250);
 
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);

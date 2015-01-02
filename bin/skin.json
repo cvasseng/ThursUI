@@ -74,6 +74,13 @@
     }
   },
 
+  "Label": {
+    "normal": {
+      "font": "sans-bold",
+      "textSize": 25
+    }
+  },
+
   "ImageGrid": {
     "normal": {
       "fill":"20 20 20 0"
