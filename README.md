@@ -7,7 +7,8 @@
 
 ![Screenshot](screenshot.png)
 
-*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever. It's bit hackish here and there right now, but it works more or less. **Do not use for actual things yet*** 
+**Do not use for actual things yet!**
+*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever. It's bit hackish here and there right now, but it works more or less. * 
 
 **Currently supported controls:**
   * Button
@@ -34,9 +35,7 @@
 
 As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
 
-<insert gif here>
-
-## Hello world
+Documentation and an actual stable release incoming.
 
 ## Building
 
@@ -51,14 +50,6 @@ Note that you also need to link with the libraries needed to support the renderi
 
 ### Installing
 Either copy `include/thurs` and the compiled library from `lib` to your preferred paths, or add `include` and `lib` to your path variable or as search paths in your IDE if you're using one. Running `make install` will move things into `/usr/local/include` and `/usr/local/lib`.
-
-## Documentation (todo)
-  
-  * Getting started: installing, compiling, and running samples
-  * Skinning
-
-## Planned features
-
 
 ## License
 
