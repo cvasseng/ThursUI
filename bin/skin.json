@@ -81,6 +81,7 @@
     "item": {
       "normal": {
         "fill": "255 255 255 200",
+        "strokeWidth": 0.5,
         "margins": 4,
         "cornerRadius": 5,
         "font":"sans-bold",
