@@ -78,9 +78,8 @@ namespace thurs {
     m_listbox->visible(m_expanded);
     if (m_expanded) {
       m_listbox->setWPosition(m_wposition);
-      m_listbox->setPosition(m_position.x, m_position.y + m_size.y);
+      m_listbox->setPosition(m_position.x, m_position.y + m_size.y + 2);
       m_listbox->setSize(m_size.x, 100.f);
-      //m_listbox->update();
     }
   }
 

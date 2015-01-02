@@ -258,7 +258,8 @@
     "normal": {
       "fill": "30 30 30 255",
       "textFill": "#FFFFFF",
-      "textSize": 20
+      "textSize": 20,
+      "cornerRadius": 4.0
     },
     "icon": {
       "normal": {

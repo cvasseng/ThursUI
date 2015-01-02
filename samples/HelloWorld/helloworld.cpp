@@ -166,14 +166,14 @@ int main(int argc, char** argv) {
   }
 
   thurs::Button *btn5 = new thurs::Button(43, win2);
-  btn5->setSize(380, 125);
+  btn5->setSize(380, 25);
   btn5->setPosition(10, 190);
-
+  btn5->Caption = "YET ANOTHER BUTTON";
 
 
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);
-  slider->setPosition(10, 90);
+  slider->setPosition(10, 70);
 
   thurs::ListBox *box = new thurs::ListBox(4, win);
   box->setSize(380, 80);
@@ -208,7 +208,7 @@ int main(int argc, char** argv) {
   EventHandler handler(surface, slider, pbar);
   btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
   slider->OnChange.connect(&handler, &EventHandler::SliderChange);
-  btn5->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
+  //btn5->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
 
   ///// END UI INIT //////
 

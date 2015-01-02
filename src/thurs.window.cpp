@@ -185,6 +185,7 @@ namespace thurs {
       }
 
       //Update the children
+      bool wasHandled = m_input->handled();
       for (uint32 i = 0; i < m_controls.size(); i++) {
         m_controls[i]->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
         if (inputHogger == i) {
@@ -195,11 +196,16 @@ namespace thurs {
         m_controls[i]->update();
       }
 
+      if (wasHandled) {
+        m_input->disable();
+      } else {
+        m_input->enable();
+      }
+
     }
 
     if (m_titlebarClass) {
       //Render titlebar
-      
       m_renderer->renderRect(m_titlebarClass->Attr, m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
       m_renderer->renderText(m_titlebarClass->Attr, Title, m_winPos, Vector2f(m_winSize.x, m_titlebarHeight));
     }
