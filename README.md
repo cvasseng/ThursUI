@@ -9,7 +9,7 @@
 
 **Do not use for actual things yet!**
 
-*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever. It's bit hackish here and there right now, but it works more or less. * 
+*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever. It's bit hackish here and there right now, but it works more or less.* 
 
 **Currently supported controls:**
   * Button
