@@ -59,7 +59,7 @@ namespace thurs {
     Vector2f pos = m_position + m_wposition;
     pos.x -= scroll;
 
-    m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size);  
+    m_renderer->renderRect(m_skinClass.Attr, m_cposition.x, m_cposition.y, m_size.x, m_size.y);  
     m_renderer->renderText(m_skinClass.Attr, Value, pos, m_size);
 
     if (getTime() - m_blinkTimer > 500) {
@@ -69,6 +69,10 @@ namespace thurs {
 
     //Draw cursor
     if (m_cursorClass && m_blink && m_focus) {
+
+      if (m_input->mouseDown()) {
+        //Figure out where to place the cursor.
+      }
 
       Vector2f cc = Vector2f(cpos, m_cursorClass->Attr.margins);
       if (cc.x > m_size.x) {
@@ -83,8 +87,6 @@ namespace thurs {
 
   bool EditBox::OnKeyPress(uint32 charCode) {
     if (m_focus) {
-      //Value += (char)charCode;
-      //std::string i = (char*)charCode;
       Value.insert(m_cursor, std::string((char*)&charCode));
       m_cursor++;  
       return true;
@@ -94,8 +96,6 @@ namespace thurs {
 
   bool EditBox::OnKeyDown(uint32 scancode) {
     if (scancode == 51) {
-      printf("backspace\n");
-        //Value += (char)charCode;
       if (Value.size() > m_cursor - 1) {
         m_cursor--;
         Value.erase(Value.begin() + m_cursor);

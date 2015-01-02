@@ -129,16 +129,25 @@ namespace thurs {
   protected:
     //Visible?
     bool m_visible;
+     //Focus?
+    bool m_focus;
+    //Set to true to skip state handling
+    bool m_noStateHandling;
+    //Doing tooltip?
+    bool m_doingTooltip;
+
     //Surface
     Surface *m_surface;
     //Input
     Input *m_input;
     //Renderer
     Renderer *m_renderer;
+    
     //Mouse over time
     uint32 m_mouseOverTime;
-    //Focus?
-    bool m_focus;
+    //ID of the accepted drop type
+    uint32 m_acceptedDropType;
+   
 
     //The size of the control
     Vector2f m_size;
@@ -148,26 +157,16 @@ namespace thurs {
     Vector2f m_wposition;
     //The calculated position of the control
     Vector2f m_cposition;
-
-    uint32 m_acceptedDropType;
+    //Tooltip pos
+    Vector2s m_tooltipPos;
 
     //The styling assigned to this control
     Skin::SkinClass m_skinClass;
     //The tooltip styling
     Skin::SkinClass m_tooltipSkinClass;
 
-    //Set to true to skip state handling
-    bool m_noStateHandling;
     //Loaded class name
     std::string m_loadedClassName;
-    //Tooltip pos
-    Vector2s m_tooltipPos;
-    //Doing tooltip?
-    bool m_doingTooltip;
-    //Mouse hold 
-
-    
-
   private:
     //ID
     uint32 m_id; 
@@ -181,12 +180,17 @@ namespace thurs {
     bool m_isMoving;
     //Are we resizing?
     bool m_isResizing;
+    //Render outline?
+    bool m_doOutline;
     //Initial position
     Vector2f m_initalPos;
     //Start move position
     Vector2s m_startMovePos;
     //Stop move position
     Vector2f m_stopMovePos;
+
+    //Render outline
+    void renderOutline();
   };
 
 }

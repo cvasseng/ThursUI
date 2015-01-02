@@ -7,7 +7,7 @@
 
 ![Screenshot](screenshot.png)
 
-*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever - "Make it work, then make it fast." It's also a bit hackish right now, but it works.* 
+*This is very much a work in progress. Widgets/controls are added on a "I need a xxx right now"-basis as I continue the development of my game and engine. Also note that there are currently no optimizations done on the code what-so-ever. It's bit hackish here and there right now, but it works more or less. **Do not use for actual things yet*** 
 
 **Currently supported controls:**
   * Button
@@ -20,7 +20,7 @@
   * Text input box
   * Rectangle (can be used to display images)
   * Image Grid (useful for e.g. inventories in RPG's)
-  * Multi line text fields with formatting
+  * Multi line text field with formatting
   * Window
 
 **Noteable features:**

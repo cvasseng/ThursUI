@@ -54,6 +54,7 @@ namespace thurs {
     m_doingTooltip = false;
     m_focus = false;
     m_visible = true;
+    m_doOutline = false;
 
     m_size.x = 100;
     m_size.y = 25;
@@ -61,19 +62,12 @@ namespace thurs {
     HAlign = HA_CUSTOM;
     VAlign = VA_CUSTOM;
 
-    /*Surface::ControlMapIt it = m_surface->m_controls.find(id);
-    if (it == m_surface->m_controls.end()) {
-      m_surface->m_controls.insert(ControlMapPair(id, this));
-    } else {
-      //Fatal error..
-    }
-*/
-
     //So originally, this was a map. 
     //This is better as it allows for better focus management.
     //Also it allows for multiple elements to have the same ID.
     //Not that doing that is a good idea, but whatever.
     m_surface->m_controls.push_back(this);
+
     __g_reg_controls.push_back(this);
 
     m_noStateHandling = false;
@@ -89,7 +83,6 @@ namespace thurs {
         break;
       }
     }
-
 
     for (uint32 i = 0; i < m_surface->m_controls.size(); i++) {
       if (m_surface->m_controls[i] == this) {
@@ -173,7 +166,6 @@ namespace thurs {
         m_startMovePos = m_input->mouseCoords();
         m_initalPos = m_position;
         m_isMoving = true;
-        m_input->markHandled();
       }
     } 
 
@@ -257,6 +249,37 @@ namespace thurs {
 
     m_cposition = m_position + m_wposition;
 
+    if (m_doOutline && m_focus) {
+      renderOutline();
+    }
+
+  }
+
+  void Control::renderOutline() {
+    Vector2f pos = m_cposition;
+    pos.x -= 10.f;
+    pos.y -= 10.f;
+
+    Vector2f size = m_size;
+    size.x += 20.f;
+    size.y += 20.f;
+
+    Skin::SkinClass::Attributes attr;
+    attr.fill.a = 0;
+    attr.stroke = Color("#FFEB3B");
+    attr.hasStroke = true;
+
+    m_renderer->renderRect(attr, pos.x, pos.y, size.x, size.y);
+
+    //Draw some drag handles
+    attr.fill = attr.stroke;
+    //attr.fill.a = 255;
+   // attr.fill.r = attr.fill.g = attr.fill.b = 100;
+    attr.hasFill = true;
+    m_renderer->renderRect(attr, pos.x - 10.f, pos.y - 10.f, 10.f, 10.f);
+    m_renderer->renderRect(attr, pos.x + size.x, pos.y - 10.f, 10.f, 10.f);
+    m_renderer->renderRect(attr, pos.x + size.x, pos.y + size.y, 10.f, 10.f);
+    m_renderer->renderRect(attr, pos.x - 10.f, pos.y + size.y, 10.f, 10.f);
   }
 
   void Control::toFront() {
