@@ -106,7 +106,7 @@ namespace thurs {
     //Set the currently used skin class
     virtual void setSkinClass(const std::string& name);
     //Reload class
-    void reloadSkinClass();
+    virtual void reloadSkinClass();
 
     //Set the accepted drop type
     void acceptedDropType(uint32 tp);

@@ -52,6 +52,7 @@ namespace thurs {
     ///////////////////////////////////////////////////////////////////////////
 
     struct TextEntry {
+      std::string className;
       Skin::SkinClass skinClass;
       std::string id;
       std::string text;
@@ -62,6 +63,7 @@ namespace thurs {
       TextEntry() {
         width = 0.f;
         height = 0.f;
+        className = "default";
       }
     };
 
@@ -82,6 +84,8 @@ namespace thurs {
     MultiLineText(uint32 id, Surface *surface);
     //Update and draw
     void update();
+    //Reload class
+    void reloadSkinClass();
 
     ///////////////////////////////////////////////////////////////////////////
 

@@ -83,7 +83,6 @@ namespace thurs {
       }
 
       y += m_lines[j].height;
-
     }
 
     m_renderer->clearScissor();
@@ -91,7 +90,15 @@ namespace thurs {
     if (m_actualHeight > m_size.y) {
       m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
     }
+  }
 
+  void MultiLineText::reloadSkinClass() {
+    Control::reloadSkinClass();
+    for (uint32 j = 0; j < m_lines.size(); j++) {
+      for (uint32 i = 0; i < m_lines[j].items.size(); i++) {
+        m_lines[j].items[i].skinClass = m_skinClass.findAndCpySub(m_lines[j].items[i].className);
+      }
+    }
   }
 
   //Append text
@@ -99,7 +106,6 @@ namespace thurs {
     std::string buffer;
     std::string className;
     std::string id;
-    bool readingClass = false;
 
     if (m_lines.size() == 0) {
       TextLine l;
@@ -115,7 +121,6 @@ namespace thurs {
     }
 
     TextEntry *active = &activeLine->items[activeLine->items.size() - 1];
-
 
     std::stringstream ss(text);
 
@@ -139,6 +144,7 @@ namespace thurs {
         activeLine->items.push_back(te);
         active = &activeLine->items[activeLine->items.size() - 1];
         active->id = id;
+        active->className = className;
       } else {
         //Check if the width of the buffer causes the line to overflow
         float bufferWidth = m_renderer->getTextWidth(active->skinClass.Attr, buffer + ' ');
