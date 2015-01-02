@@ -31,6 +31,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace thurs {
 
+  bool Renderer::renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size) {
+    return renderRect(skinClass, pos.x, pos.y, size.x, size.y);
+  }
 
+  bool Renderer::renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos, const Vector2f& bounds) {
+    return renderText(skinClass, text, pos.x, pos.y, bounds.x, bounds.y);
+  }
 
 }

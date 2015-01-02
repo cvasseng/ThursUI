@@ -59,12 +59,11 @@ namespace thurs {
       return;
     }
 
-
+    //Handle state changes for the check mark
     if (mouseInside()) {
       if (!Checked) {
         m_skinClass.setState(S_HOVER);
       }
-
       if (m_input->mouseUp()) {
         Checked = !Checked;
         OnChange(id(), Checked);
@@ -81,13 +80,13 @@ namespace thurs {
     //This component is a bit special as it will only utilize m_size.y.
 
     //Frame:
-    m_renderer->renderRect(m_frame->Attr, m_position + m_wposition, Vector2f(m_size.y, m_size.y));
+    m_renderer->renderRect(m_frame->Attr, m_cposition.x, m_cposition.y, m_size.y, m_size.y);
 
     uint32 margins = m_markClass->Attr.margins;
-    m_renderer->renderRect(m_markClass->Attr, m_position + m_wposition + Vector2f(margins, margins), Vector2f(m_size.y - (margins * 2), m_size.y - (margins * 2)));  
+    m_renderer->renderRect(m_markClass->Attr, m_cposition.x + margins, m_cposition.y + margins, m_size.y - (margins * 2), m_size.y - (margins * 2));  
 
     //Text
-    m_renderer->renderText(m_markClass->Attr, Caption, m_position + m_wposition + Vector2f(m_size.y + 5, 0), Vector2f(5 + m_size.x - m_size.y, m_size.y));
+    m_renderer->renderText(m_markClass->Attr, Caption, m_cposition.x + m_size.y + 5, m_cposition.y, m_size.y, m_size.y);
   
   }
 

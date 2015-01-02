@@ -47,7 +47,12 @@ namespace thurs {
 
     virtual ~Renderer() {}
 
-		///////////////////////////////////////////////////////////////////////////
+    //Render a rectangle - forwards to below version
+    bool renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size);
+    //Render text - forwards to below version
+    bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos, const Vector2f& bounds); 
+
+	///////////////////////////////////////////////////////////////////////////
 
     //Begin rendering
     virtual bool begin(uint16 width, uint16 height, float aspect) = 0;
@@ -57,9 +62,9 @@ namespace thurs {
     //Initialize the renderer
     virtual bool init() = 0;
 	//Render text - the implementation should keep track of loaded fonts etc.
-	virtual bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos, const Vector2f& bounds) = 0;
+    virtual bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, float x, float y, float bw, float bh) = 0;
     //Render a rectangle
-    virtual bool renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size) = 0;
+    virtual bool renderRect(Skin::SkinClass::Attributes &skinClass, float x, float y, float w, float h) = 0;
     //Set the scissor rect
     virtual bool setScissor(const Vector2f& pos, const Vector2f& size) = 0;
     //Clear the scissor rect

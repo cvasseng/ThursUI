@@ -53,7 +53,7 @@ namespace thurs {
       m_skinClass.Attr.hasImage = true;
     }
 
-    m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size); 
+    m_renderer->renderRect(m_skinClass.Attr, m_cposition, m_size); 
   }
 
 

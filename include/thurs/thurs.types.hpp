@@ -68,14 +68,14 @@ namespace thurs {
   		y = _y;
   	}
 
-    Vector2<T> operator-(Vector2<T> other) {
+    inline Vector2<T> operator-(Vector2<T> other) {
       Vector2<T> n;
       n.x = x - other.x;
       n.y = y - other.y;
       return n;
     }
 
-    Vector2<T> operator+(Vector2<T> other) {
+    inline Vector2<T> operator+(Vector2<T> other) {
       Vector2<T> n;
       n.x = x + other.x;
       n.y = y + other.y;

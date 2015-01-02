@@ -146,6 +146,8 @@ namespace thurs {
     Vector2f m_position;
     //The world position of the control
     Vector2f m_wposition;
+    //The calculated position of the control
+    Vector2f m_cposition;
 
     uint32 m_acceptedDropType;
 
@@ -168,7 +170,9 @@ namespace thurs {
 
   private:
     //ID
-    uint32 m_id;
+    uint32 m_id; 
+    //Mouse was inside last frame?
+    bool m_mouseWasInside;
     //Can move?
     bool m_canMove;
     //Can resize?
@@ -183,10 +187,6 @@ namespace thurs {
     Vector2s m_startMovePos;
     //Stop move position
     Vector2f m_stopMovePos;
-    //Mouse was inside last frame?
-    bool m_mouseWasInside;
-
-
   };
 
 }

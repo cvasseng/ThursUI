@@ -255,6 +255,8 @@ namespace thurs {
 
     m_skinClass.update();
 
+    m_cposition = m_position + m_wposition;
+
   }
 
   void Control::toFront() {
@@ -324,7 +326,7 @@ namespace thurs {
   bool Control::mouseInside() {
     if (!m_visible) return false;
 
-    Vector2s c = m_input->mouseCoords();
+    const Vector2s &c = m_input->mouseCoords();
     return c.x >= (m_wposition.x + m_position.x) && 
            c.x <= (m_wposition.x + m_position.x) + m_size.x &&
            c.y >= (m_wposition.y + m_position.y) && 

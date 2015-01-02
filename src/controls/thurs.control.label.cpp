@@ -43,7 +43,7 @@ namespace thurs {
   void Label::update() {
     //Do parent stuff
     Control::update();
-    m_renderer->renderText(m_skinClass.Attr, Caption, m_position + m_wposition, m_size);
+    m_renderer->renderText(m_skinClass.Attr, Caption, m_cposition, m_size);
   }
 
 

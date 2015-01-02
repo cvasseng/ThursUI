@@ -39,6 +39,7 @@ namespace thurs {
     m_cursorClass = 0;
     setSkinClass("EditBox");
     m_cursor = 0;
+    m_blinkTimer = getTime();
   }
   
   //Update and draw

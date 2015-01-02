@@ -35,7 +35,6 @@ namespace thurs {
   //Constructor. Duh.
   Button::Button(uint32 id, Surface *surface)  : Control(id, surface) {
     Caption = "BUTTON";
-    //Set default class
     setSkinClass("Button");
   }
   
@@ -44,8 +43,8 @@ namespace thurs {
     //Do parent stuff
     Control::update();
 
-    m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size);  
-    m_renderer->renderText(m_skinClass.Attr, Caption, m_position + m_wposition, m_size);
+    m_renderer->renderRect(m_skinClass.Attr, m_cposition, m_size);  
+    m_renderer->renderText(m_skinClass.Attr, Caption, m_cposition, m_size);
   }
 
 

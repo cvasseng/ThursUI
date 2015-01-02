@@ -76,31 +76,31 @@ namespace thurs {
     }
 
     //Render text - the implementation should keep track of loaded fonts etc.
-    bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, const Vector2f& pos, const Vector2f& bounds) {
+    bool renderText(Skin::SkinClass::Attributes &skinClass, const std::string& text, float x, float y, float bx, float by) {
       if (!m_inited) return false;
 
-      Vector2f p = pos;
 
-      int alignment = 0;
+      static int alignment = 0;
+      alignment = 0;
 
       if (skinClass.hTextAlign == HA_LEFT) {
         alignment |= NVG_ALIGN_LEFT;
       } else if (skinClass.hTextAlign == HA_RIGHT) {
         alignment |= NVG_ALIGN_RIGHT;
-        p.x += bounds.x;
+        x += bx;
       } else if (skinClass.hTextAlign == HA_CENTER) {
         alignment |= NVG_ALIGN_CENTER;
-        p.x += (bounds.x / 2.f);
+        x += (bx / 2.f);
       }
 
       if (skinClass.vTextAlign == VA_TOP) {
         alignment |= NVG_ALIGN_TOP;
       } else if (skinClass.vTextAlign == VA_MIDDLE) {
         alignment |= NVG_ALIGN_MIDDLE;
-        p.y += (bounds.y / 2.f);
+        y += (by / 2.f);
       } else if (skinClass.vTextAlign == VA_BOTTOM) {
         alignment |= NVG_ALIGN_BOTTOM;
-        p.y += bounds.y;
+        y += by;
       } 
 
       nvgTextAlign(m_vg, alignment);
@@ -121,19 +121,19 @@ namespace thurs {
 
       nvgFillColor(m_vg, nvgRGBA(skinClass.textFill.r, skinClass.textFill.g, skinClass.textFill.b, skinClass.textFill.a));
     
-      nvgText(m_vg, p.x, p.y, text.c_str(), NULL);
+      nvgText(m_vg, x, y, text.c_str(), NULL);
       return true;
     }
     
     //Render a rectangle
-    bool renderRect(Skin::SkinClass::Attributes &skinClass, const Vector2f& pos, const Vector2f& size) {
+    bool renderRect(Skin::SkinClass::Attributes &skinClass, float x, float y, float sw, float sh) {
       if (!m_inited) return false;
 
       NVGcolor col = nvgRGBA(skinClass.fill.r, skinClass.fill.g, skinClass.fill.b, skinClass.fill.a);
       //NVGpaint bg = nvgLinearGradient(m_vg, pos.x, pos.y, pos.x, pos.y + size.y, nvgRGBA(255,255,255,isBlack(col)?16:64), nvgRGBA(0,0,0,isBlack(col)?16:64));
 
       nvgBeginPath(m_vg);
-      nvgRoundedRect(m_vg, pos.x, pos.y, size.x, size.y, skinClass.cornerRadius);
+      nvgRoundedRect(m_vg, x, y, sw, sh, skinClass.cornerRadius);
  
       if (!skinClass.hasImage || skinClass.hasFill) {
         nvgFillColor(m_vg, col);
@@ -141,15 +141,15 @@ namespace thurs {
       }
 
       if (skinClass.hasImage) {
-        int w = size.x, h= size.y;
+        //int w = size.x, h= size.y;
         //nvgImageSize(m_vg, skinClass.imageHandle, &w, &h);
-        NVGpaint img = nvgImagePattern(m_vg, pos.x, pos.y, w, h, 0.f, skinClass.imageHandle, col.a);
+        NVGpaint img = nvgImagePattern(m_vg, x, y, sw, sh, 0.f, skinClass.imageHandle, col.a);
         nvgFillPaint(m_vg, img);
         nvgFill(m_vg);
       } 
 
       if (skinClass.hasGradient) {
-        NVGpaint g = nvgLinearGradient(m_vg, pos.x, pos.y, pos.x, pos.y + size.y, 
+        NVGpaint g = nvgLinearGradient(m_vg, x, y, x, y + sh, 
                           nvgRGBA(skinClass.gradientA.r, skinClass.gradientA.g, skinClass.gradientA.b, skinClass.gradientA.a),
                           nvgRGBA(skinClass.gradientB.r, skinClass.gradientB.g, skinClass.gradientB.b, skinClass.gradientB.a)
                      );
