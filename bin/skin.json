@@ -248,7 +248,22 @@
         "textSize":15
       },
       "hover": {
-        "font": "sans-bold"
+        "font": "sans-bold",
+        "textFill": "#FF6E40"
+      }
+    }
+  },
+
+  "DropDown": {
+    "normal": {
+      "fill": "30 30 30 255",
+      "textFill": "#FFFFFF",
+      "textSize": 20
+    },
+    "icon": {
+      "normal": {
+        "image":"arrow.png",
+        "cornerRadius": 4
       }
     }
   },

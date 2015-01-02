@@ -108,6 +108,8 @@ namespace thurs {
 
     //Set the accepted drop type
     void acceptedDropType(uint32 tp);
+    //Visible?
+    void visible(bool flag);
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -118,6 +120,8 @@ namespace thurs {
     //Horizontal alignment
     HorizontalAlignment HAlign;
   protected:
+    //Visible?
+    bool m_visible;
     //Surface
     Surface *m_surface;
     //Input

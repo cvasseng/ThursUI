@@ -92,6 +92,7 @@ namespace thurs {
     std::vector<ItemFull> m_items;
     int32 m_selItem;
     Scrollbar m_scrollbar;
+ 
   private:
   };
 

@@ -154,7 +154,13 @@ int main(int argc, char** argv) {
   mt->setPosition(10, 45);
   mt->setSize(380, 100);
   mt->loadFromFile("multitext.txt");
-  
+
+  thurs::DropDown *dd = new thurs::DropDown(22, win2);
+  dd->setPosition(10, 155);
+  dd->setSize(380, 25);
+  dd->addItem(0, "Hello world");
+  dd->addItem(1, "What's going on?");
+
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);
   slider->setPosition(10, 70);

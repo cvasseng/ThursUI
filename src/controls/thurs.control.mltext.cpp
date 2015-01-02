@@ -37,7 +37,6 @@ namespace thurs {
 
   //Constructor. Duh.
   MultiLineText::MultiLineText(uint32 id, Surface *surface)  : Control(id, surface), m_scrollbar(surface) {
-    Caption = "BUTTON";
     //Set default class
     setSkinClass("MultiLineText");
   }
@@ -58,7 +57,6 @@ namespace thurs {
     m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size);  
 
     m_renderer->setScissor(m_position + m_wposition, m_size);
-   // m_renderer->renderText(m_skinClass.Attr, Caption, m_position + m_wposition, m_size);
 
     float y = -(m_scrollbar.val() * (m_actualHeight - m_size.y));
     for (uint32 j = 0; j < m_lines.size(); j++) {
@@ -68,9 +66,9 @@ namespace thurs {
       for (uint32 i = 0; i < m_lines[j].items.size(); i++) {
         TextEntry* entry = &m_lines[j].items[i];
 
+        //Check if mouse is over a token
         if (mc.x >= pos.x && mc.x <= pos.x + entry->width && mc.y >= pos.y && mc.y <= pos.y + entry->height) {
           if (entry->id.size() > 0 && m_input->mouseDown()) {
-            //Click link
             OnLinkClick(id(), entry->id);
           }
 
@@ -135,7 +133,6 @@ namespace thurs {
             break;
           } 
         }
-        //printf("\nFound class name: %s id is: %s\n", className.c_str(), active->id.c_str());
 
         TextEntry te;
         te.skinClass = m_skinClass.findAndCpySub(className);
@@ -143,7 +140,6 @@ namespace thurs {
         active = &activeLine->items[activeLine->items.size() - 1];
         active->id = id;
       } else {
-        printf("%s ", buffer.c_str());
         //Check if the width of the buffer causes the line to overflow
         float bufferWidth = m_renderer->getTextWidth(active->skinClass.Attr, buffer + ' ');
         float bufferHeight = m_renderer->getTextHeight(active->skinClass.Attr, buffer);
@@ -195,6 +191,4 @@ namespace thurs {
     std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
     appendText(str);
   }
-
-
 }

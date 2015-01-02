@@ -84,6 +84,8 @@ namespace thurs {
     //Do parent stuff
     Control::update();
 
+    if (!m_visible) return;
+
     Vector2s mc = m_input->mouseCoords();
     bool ison = mouseInside();
 

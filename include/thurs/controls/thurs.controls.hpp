@@ -39,5 +39,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "thurs.control.label.hpp"
 #include "thurs.control.rectangle.hpp"
 #include "thurs.control.mltext.hpp"
+#include "thurs.control.dropdown.hpp"
 
 #endif

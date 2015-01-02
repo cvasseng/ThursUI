@@ -49,6 +49,7 @@ namespace thurs {
     m_acceptedDropType = 0;
     m_doingTooltip = false;
     m_focus = false;
+    m_visible = true;
 
     m_size.x = 100;
     m_size.y = 25;
@@ -83,7 +84,15 @@ namespace thurs {
     return m_id;
   }
 
+  void Control::visible(bool flag) {
+    m_visible = flag;
+  }
+
   void Control::update() {
+    if (!m_visible) {
+      //return;
+    }
+
     bool mi = mouseInside();
 
     switch(VAlign) {

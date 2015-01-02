@@ -27,87 +27,60 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_control_mltext__
-#define h__thurs_control_mltext__
+#ifndef h__thurs_control_dropdown__
+#define h__thurs_control_dropdown__
 
 #include <string>
-#include <vector>
 
 #include "../thurs.control.hpp"
 #include "../thurs.color.hpp"
-#include "../thurs.scrollbar.hpp"
+
+#include "thurs.control.listbox.hpp"
 
 namespace thurs {
 
-  /*
-    Markup:
-    
-    [%classname%] bla bla bla [%otherclass%] 
-
-  */
-
-  class MultiLineText : public Control {
+  //This widget uses containment 
+  class DropDown : public Control, public sigslot::has_slots<> {
   public:
-
-    ///////////////////////////////////////////////////////////////////////////
-
-    struct TextEntry {
-      Skin::SkinClass skinClass;
-      std::string id;
-      std::string text;
-      float width;
-      float height;
-      float y;
-
-      TextEntry() {
-        width = 0.f;
-        height = 0.f;
-      }
-    };
-
-    struct TextLine {
-      float width;
-      float height;
-      std::vector<TextEntry> items;
-
-      TextLine() {
-        width = 0.f;
-        height = 0.f;
-      }
-    };
-
-    ///////////////////////////////////////////////////////////////////////////
-
     //Constructor. Duh.
-    MultiLineText(uint32 id, Surface *surface);
+    DropDown(uint32 id, Surface *surface);
     //Update and draw
     void update();
-
-    ///////////////////////////////////////////////////////////////////////////
-
-    //Append text
-    void appendText(const std::string& text);
-    //Append text as new line
-    void appendLine(const std::string& text);
-    //Clear it
-    void clear();
-    //Load contents from file
-    void loadFromFile(const std::string& filename);
+    //Set the currently used skin class
+    void setSkinClass(const std::string& name);
 
     ///////////////////////////////////////////////////////////////////////////
     
-    sigslot::signal2<uint32, const std::string&> OnLinkClick; 
+    //Add item
+    void addItem(uint32 id, const std::string& title);
+    //Get the number of items
+    uint32 size();
+    //Get the current selected item index
+    uint32 selectedIndex();
+    //Clear the list
+    void clear();
+    //Remove item
+    bool remItem(uint32 index);
 
     ///////////////////////////////////////////////////////////////////////////
 
+    sigslot::signal2<int, int> OnSelect;
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    //Access item
+    ListBox::Item* const operator[](uint32 index) {
+      return (*m_listbox)[index];
+    }
+
+    void handleSelection(int sender, int item);
+
   protected:
-    //Lines
-    std::vector<TextLine> m_lines;
-    //Actual height
-    float m_actualHeight;
-    //Scrollbar
-    Scrollbar m_scrollbar;
-  private: 
+    ListBox *m_listbox;
+    bool m_expanded;
+    std::string m_caption;
+    Skin::SkinClass* m_icon;
+  private:
   };
 
 }

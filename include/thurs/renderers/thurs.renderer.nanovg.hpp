@@ -141,8 +141,8 @@ namespace thurs {
       }
 
       if (skinClass.hasImage) {
-        int w, h;
-        nvgImageSize(m_vg, skinClass.imageHandle, &w, &h);
+        int w = size.x, h= size.y;
+        //nvgImageSize(m_vg, skinClass.imageHandle, &w, &h);
         NVGpaint img = nvgImagePattern(m_vg, pos.x, pos.y, w, h, 0.f, skinClass.imageHandle, col.a);
         nvgFillPaint(m_vg, img);
         nvgFill(m_vg);
