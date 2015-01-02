@@ -103,6 +103,9 @@ namespace thurs {
     //Bring to front
     void toFront();
 
+    //Set focus state
+    void setFocus(bool flag);
+
     //Set the currently used skin class
     virtual void setSkinClass(const std::string& name);
     //Reload class

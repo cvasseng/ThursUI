@@ -34,6 +34,10 @@ namespace thurs {
 
   #define PCASE(x, y) case x: { y } break;
 
+  //This is really frickin' ugly, but we need to have access to all the 
+  //widgets in the app to handle focus states
+  std::vector<Control*> __g_reg_controls;
+
   /////////////////////////////////////////////////////////////////////////////
 
   Control::Control(uint32 id, Surface *surface) {
@@ -70,6 +74,7 @@ namespace thurs {
     //Also it allows for multiple elements to have the same ID.
     //Not that doing that is a good idea, but whatever.
     m_surface->m_controls.push_back(this);
+    __g_reg_controls.push_back(this);
 
     m_noStateHandling = false;
 
@@ -77,6 +82,14 @@ namespace thurs {
   }
 
   Control::~Control() {
+
+    for (uint32 i = 0; i < __g_reg_controls.size(); i++) {
+      if (__g_reg_controls[i] == this) {
+        __g_reg_controls.erase(__g_reg_controls.begin() + i);
+        break;
+      }
+    }
+
 
     for (uint32 i = 0; i < m_surface->m_controls.size(); i++) {
       if (m_surface->m_controls[i] == this) {
@@ -91,6 +104,10 @@ namespace thurs {
 
   uint32 Control::id() {
     return m_id;
+  }
+
+  void Control::setFocus(bool flag) {
+    m_focus = flag;
   }
 
   void Control::visible(bool flag) {
@@ -175,10 +192,15 @@ namespace thurs {
         m_tooltipPos = m_input->mouseCoords();
       }
 
-      if (m_input->mouseClick()) {
+      if (m_input->mouseDown()) {
         //focus + click
         OnClick(m_id);
+        for (uint32 i = 0; i < __g_reg_controls.size(); i++) {
+          __g_reg_controls[i]->m_focus = false;
+          __g_reg_controls[i]->m_skinClass.setState(S_NORMAL);
+        }
         m_focus = true;
+        
        // m_surface->m_focused = this;
       }
 
@@ -225,6 +247,10 @@ namespace thurs {
       }
 
       m_mouseWasInside = false;
+    }
+
+    if (m_focus) {
+      //m_skinClass.setState(S_FOCUS);
     }
 
     m_skinClass.update();
@@ -297,7 +323,7 @@ namespace thurs {
 
   bool Control::mouseInside() {
     if (!m_visible) return false;
-    
+
     Vector2s c = m_input->mouseCoords();
     return c.x >= (m_wposition.x + m_position.x) && 
            c.x <= (m_wposition.x + m_position.x) + m_size.x &&

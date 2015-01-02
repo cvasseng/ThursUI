@@ -190,7 +190,9 @@ namespace thurs {
         m_controls[i]->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
         if (inputHogger == i) {
           m_input->enable();
+         // m_controls[i]->setFocus(true);
         } else {
+         // m_controls[i]->setFocus(false);
           m_input->disable();
         }
         m_controls[i]->update();

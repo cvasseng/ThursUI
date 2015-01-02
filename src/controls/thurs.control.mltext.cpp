@@ -67,7 +67,7 @@ namespace thurs {
         TextEntry* entry = &m_lines[j].items[i];
 
         //Check if mouse is over a token
-        if (mc.x >= pos.x && mc.x <= pos.x + entry->width && mc.y >= pos.y && mc.y <= pos.y + entry->height) {
+        if (mc.x >= pos.x && mc.x <= pos.x + entry->width && mc.y >= pos.y && mc.y <= pos.y + m_lines[j].height) {
           if (entry->id.size() > 0 && m_input->mouseDown()) {
             OnLinkClick(id(), entry->id);
           }
@@ -78,7 +78,7 @@ namespace thurs {
         }
 
         entry->skinClass.update();
-        m_renderer->renderText(entry->skinClass.Attr, entry->text, pos, m_size);
+        m_renderer->renderText(entry->skinClass.Attr, entry->text, pos, Vector2f(m_size.x, m_lines[j].height));
         pos.x += entry->width;
       }
 
@@ -149,16 +149,20 @@ namespace thurs {
         //Check if the width of the buffer causes the line to overflow
         float bufferWidth = m_renderer->getTextWidth(active->skinClass.Attr, buffer + ' ');
         float bufferHeight = m_renderer->getTextHeight(active->skinClass.Attr, buffer);
+
+        //printf("%s is %f width fsize %i\n", buffer.c_str(), bufferWidth, active->skinClass.Attr.textSize);
        
         if (activeLine->width + bufferWidth > m_size.x - 10.f) {
           //Yup.
           TextLine l;
           TextEntry e;
+
           e.skinClass = active->skinClass;
           e.text = buffer + ' ';
           e.width = bufferWidth;
           e.height = bufferHeight;
           e.id = active->id;
+
           l.width = bufferWidth;
           l.height = bufferHeight;
 

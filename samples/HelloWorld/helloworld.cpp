@@ -35,12 +35,28 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <thurs/renderers/thurs.renderer.nanovg.hpp>
 #include <thurs/controls/thurs.controls.hpp>
 
+thurs::Input input;
+
 void errorcb(int error, const char* desc) {
   printf("GLFW error %d: %s\n", error, desc);
 }
 
-void window_size_callback(GLFWwindow* window, int width, int height) {
+void scrollFunc(GLFWwindow* win, double x, double y) {
 
+}
+
+void textFunc(GLFWwindow* win, unsigned int codepoint) {
+  input.injectTextInput(codepoint, 0);
+
+}
+
+void keyFunc(GLFWwindow* win, int key, int scancode, int action, int mods) {
+  printf("%i\n", scancode);
+  if (action == GLFW_PRESS) {
+    input.injectKeyEvent(thurs::Input::KE_PRESS, scancode);
+  } else if (action == GLFW_RELEASE) {
+    input.injectKeyEvent(thurs::Input::KE_RELEASE, scancode);
+  }
 }
 
 class EventHandler : public sigslot::has_slots<> {
@@ -100,7 +116,7 @@ int main(int argc, char** argv) {
 
   ////// START UI INIT ///////
 
-  thurs::Input input;
+  
   thurs::Renderer* renderer = new thurs::RendererNanoVG();
   renderer->init();
   thurs::Surface* surface = new thurs::Surface(renderer, &input);
@@ -170,6 +186,9 @@ int main(int argc, char** argv) {
   btn5->setPosition(10, 190);
   btn5->Caption = "YET ANOTHER BUTTON";
 
+  thurs::EditBox *eb = new thurs::EditBox(45, win2);
+  eb->setSize(380, 25);
+  eb->setPosition(10, 225);
 
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);
@@ -211,6 +230,10 @@ int main(int argc, char** argv) {
   //btn5->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
 
   ///// END UI INIT //////
+
+  glfwSetScrollCallback(window, scrollFunc);
+  glfwSetCharCallback(window, textFunc);
+  glfwSetKeyCallback(window, keyFunc);
 
    while (!glfwWindowShouldClose(window)) {
     glfwGetFramebufferSize(window, &width, &height);

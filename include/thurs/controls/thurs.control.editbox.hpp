@@ -27,19 +27,38 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_controls__
-#define h__thurs_controls__
+#ifndef h__thurs_control_editbox__
+#define h__thurs_control_editbox__
 
-#include "thurs.control.button.hpp"
-#include "thurs.control.progressbar.hpp"
-#include "thurs.control.slider.hpp"
-#include "thurs.control.listbox.hpp"
-#include "thurs.control.checkbox.hpp"
-#include "thurs.control.imagegrid.hpp"
-#include "thurs.control.label.hpp"
-#include "thurs.control.rectangle.hpp"
-#include "thurs.control.mltext.hpp"
-#include "thurs.control.dropdown.hpp"
-#include "thurs.control.editbox.hpp"
+#include <string>
+
+#include "../thurs.control.hpp"
+#include "../thurs.color.hpp"
+
+namespace thurs {
+
+  class EditBox : public Control, public InputListener {
+  public:
+    //Constructor. Duh.
+    EditBox(uint32 id, Surface *surface);
+    //Update and draw
+    void update();
+    void setSkinClass(const std::string& name);
+
+    //Current text
+    std::string Value;
+  protected:
+    bool OnKeyPress(uint32 charCode);
+    bool OnKeyDown(uint32 scancode);
+
+    //The cursor position
+    int32 m_cursor;
+    Skin::SkinClass *m_cursorClass;
+    uint32 m_blinkTimer;
+    bool m_blink;
+  private:
+  };
+
+}
 
 #endif

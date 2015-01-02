@@ -31,10 +31,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace thurs {
 
+  InputListener::InputListener(Input *owner) {
+    m_owner = owner;
+    m_owner->addListener(this);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+
   Input::Input() {
     m_mbutton = MB_NONE;
     m_mbuttonl = MB_NONE;
     m_handled = false;
+    m_wheel = 0.f;
+
+    for (uint32 i = 0; i < 256; i++) {
+      m_keys[i] = false;
+      m_keysLast[i] = false;
+    }
+  }
+
+  void Input::addListener(InputListener* listener) {
+    m_listeners.push_back(listener);
   }
 
   //Inject mouse coordinates
@@ -51,7 +68,40 @@ namespace thurs {
     m_handled = false;
   }
 
+  void Input::injectWheelDelta(float delta) {
+    m_wheel = delta;
+  }
+
+  bool Input::injectTextInput(uint32 code, int32 mods) {
+    for (uint32 i = 0; i < m_listeners.size(); i++) {
+      if (m_listeners[i]->OnKeyPress(code)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void Input::injectKeyEvent(KeyEvent ke, uint8 keyCode) {
+
+    if (ke == KE_PRESS) {
+      for (uint32 i = 0; i < m_listeners.size(); i++) {
+        m_listeners[i]->OnKeyDown(keyCode);
+      }
+    }
+
+    m_keysLast[keyCode] = m_keys[keyCode];
+    if (ke == KE_PRESS) {
+      m_keys[keyCode] = true;
+    } else {
+      m_keys[keyCode] = false;
+    }
+  }
+
   ///////////////////////////////////////////////////////////////////////////
+
+  float Input::mouseWheel() {
+    return m_wheel;
+  }
 
   //Get the current mouse position
   const Vector2s& Input::mouseCoords() {
@@ -85,6 +135,14 @@ namespace thurs {
   //Mark input as handled 
   void Input::markHandled() {
     m_handled = true;
+  }
+
+  bool Input::keyState(uint8 keyCode) {
+    return m_keys[keyCode];
+  }
+
+  bool Input::keyDown(uint8 keyCode) {
+    return m_keys[keyCode] && !m_keysLast[keyCode];
   }
 
   //Is the input handled? - can be used by the game engine to cancel

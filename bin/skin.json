@@ -140,7 +140,7 @@
         "margins": 5,
         "fill": "0 0 0 0",
         "textFill": "200 200 200 255",
-        "textSize": 14,
+        "textSize": 16,
         "gradient": "linear",
         "gradientFrom": "100 100 100 0",
         "gradientTo": "40 40 40 0"
@@ -151,7 +151,7 @@
       "active": {
         "fill": "40 40 100 255",
         "textFill":"250 250 250 255",
-        "textSize": 14,
+        "textSize": 16,
         "gradient": "linear",
         "gradientFrom": "100 100 100 100",
         "gradientTo": "40 40 40 100"
@@ -233,19 +233,19 @@
       "fill": "30 30 30 255",
       "cornerRadius": 4.0,
       "textStroke": "#FFFFFF",
-      "vtextAlign": "top"
+      "vtextAlign": "bottom"
     },
     "default": {
       "normal": {
         "textFill": "#FFFFFF",
-        "vtextAlign": "top",
+        "vtextAlign": "bottom",
         "textSize":15
       }
     },
     "red": {
       "normal": {
         "textFill": "#FF3333",
-        "vtextAlign": "top",
+        "vtextAlign": "bottom",
         "textSize":15
       },
       "hover": {
@@ -295,10 +295,29 @@
     }
   },
 
+  "EditBox": {
+    "normal": {
+      "fill": "30 30 30 255",
+      "cornerRadius": 4,
+      "textFill": "#FFFFFF",
+      "textSize": 20
+    },
+    "focus": {
+      "stroke": "#FFFFFF",
+      "strokeWidth": 0.5
+    },
+    "cursor": {
+      "normal":{
+        "fill": "#FFFFFF",
+        "margins":5
+      }
+    }
+  },
+
   "XPBar": {
     "background": {
       "normal": {
-        "fill": "#EEEEEE",
+        "fill": "#CCCCCC",
         "cornerRadius": 4.0
       }
     },
@@ -316,7 +335,7 @@
         "htextAlign": "center"
       },
       "hover": {
-        "stroke": "140 20 20 255"
+        "textSize": 20
       }
     }
   }

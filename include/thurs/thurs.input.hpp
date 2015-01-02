@@ -30,9 +30,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef h__thurs__input__
 #define h__thurs__input__
 
+#include <vector>
 #include "thurs.types.hpp"
 
 namespace thurs {
+
+  class Input;
+
+  class InputListener {
+    friend class Input;
+  public:
+    InputListener(Input *owner);
+  protected:
+    virtual bool OnKeyPress(uint32 charCode) = 0;
+    virtual bool OnKeyDown(uint32 scancode) = 0;
+  private:
+    //Owner
+    Input* m_owner;
+  };
 
   class Input {
   public:
@@ -46,9 +61,19 @@ namespace thurs {
       MB_MIDDLE,
     };
 
+    //Key event type
+    enum KeyEvent {
+      KE_PRESS,
+      KE_RELEASE
+    };
+
     ///////////////////////////////////////////////////////////////////////////
 
     Input();
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    void addListener(InputListener* listener);
 
     ///////////////////////////////////////////////////////////////////////////
     //INJECTIONS
@@ -57,6 +82,12 @@ namespace thurs {
     void injectMouseCoords(uint16 x, uint16 y);
     //Inject mouse button state
     void injectMouseButton(MouseButton b);
+    //Inject mouse scroll wheel delta
+    void injectWheelDelta(float delta);
+    //Inject text - returns true if it was handled by the UI
+    bool injectTextInput(uint32 code, int32 mods);
+    //Inject standard key events - this is used for 
+    void injectKeyEvent(KeyEvent ke, uint8 keyCode);
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +101,12 @@ namespace thurs {
     bool mouseDown(MouseButton btn = MB_LEFT);
     //Returns true if the given mouse button was just released
     bool mouseUp(MouseButton btn = MB_LEFT);
+    //Wheel delta
+    float mouseWheel();
+    //Key state
+    bool keyState(uint8 keyCode);
+    //Key down?
+    bool keyDown(uint8 keyCode);
 
     //Mark input as handled 
     void markHandled();
@@ -91,6 +128,13 @@ namespace thurs {
     MouseButton m_mbuttonl;
     //Handled?
     bool m_handled;
+    //Delta
+    float m_wheel;
+    //Listeners
+    std::vector<InputListener*> m_listeners;
+    //Key states
+    bool m_keys[256];
+    bool m_keysLast[256];
   private:
   };
 

@@ -195,6 +195,7 @@ namespace thurs {
     }
 
     float getTextWidth(Skin::SkinClass::Attributes &skinClass, const std::string& text) {
+      nvgFontSize(m_vg, skinClass.textSize);
       return nvgTextBounds(m_vg, 0.f, 0.f, text.c_str(), 0, 0);
     }
   protected:

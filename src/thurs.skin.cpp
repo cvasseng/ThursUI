@@ -144,7 +144,9 @@ namespace thurs {
     Skin::SkinClass ph;
     ClassMapIt it = m_subs.find(name);
     if (it != m_subs.end()) {
-      return it->second;
+      ph = it->second;
+      ph.reset();
+      return ph;
     }
     return ph;
   }
