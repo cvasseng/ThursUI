@@ -59,9 +59,9 @@ namespace thurs {
     }
 
     //Update the children
-    for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-      if (!m_focused || m_focused->id() != it->second->id()) {
-        it->second->update();
+    for (uint32 i = 0; i < m_controls.size(); i++) {
+      if (!m_focused || m_focused != m_controls[i]) {
+        m_controls[i]->update();
       }
     }
 
@@ -90,6 +90,19 @@ namespace thurs {
     m_renderer->begin(m_canvasSize.x, m_canvasSize.y, pixelFormat);
 
     _onUpdate();
+
+    //May need to rearrange things
+    //This is a really shitty solution and needs to be patched.
+    if (m_focused && m_controls.size() > 0 && m_controls[m_controls.size() - 1] != m_focused) {
+      Control* ph = m_controls[m_controls.size() - 1];
+      for (uint32 i = 0; i < m_controls.size(); i++) {
+        if (m_controls[i] == m_focused) {
+          m_controls[m_controls.size() - 1] = m_focused;
+          m_controls[i] = ph;
+          break;
+        }
+      }
+    }
 
     if (m_tooltipActive) {
       m_renderer->renderRect(m_tooltipClass.Attr, Vector2f(m_tooltipPos.x, m_tooltipPos.y), Vector2f(100.f, 100.f));
@@ -139,10 +152,8 @@ namespace thurs {
   bool Surface::reloadSkin() {
     if (m_skin.reload()) {
 
-      for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-        if (!m_focused || m_focused->id() != it->second->id()) {
-          it->second->reloadSkinClass();
-        }
+      for (uint32 i = 0; i < m_controls.size(); i++) {
+        m_controls[i]->reloadSkinClass();
       }
 
       for (uint32 i = 0; i < m_children.size(); i++) {

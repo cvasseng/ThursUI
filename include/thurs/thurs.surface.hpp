@@ -101,7 +101,7 @@ namespace thurs {
 		//Input injector
 		Input *m_input;
     //Controls in the surface
-    ControlMap m_controls;
+    std::vector<Control*> m_controls;
     //Children in the surface
     std::vector<Surface*> m_children;
     //The size of the surface

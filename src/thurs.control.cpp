@@ -57,12 +57,19 @@ namespace thurs {
     HAlign = HA_CUSTOM;
     VAlign = VA_CUSTOM;
 
-    Surface::ControlMapIt it = m_surface->m_controls.find(id);
+    /*Surface::ControlMapIt it = m_surface->m_controls.find(id);
     if (it == m_surface->m_controls.end()) {
       m_surface->m_controls.insert(ControlMapPair(id, this));
     } else {
       //Fatal error..
     }
+*/
+
+    //So originally, this was a map. 
+    //This is better as it allows for better focus management.
+    //Also it allows for multiple elements to have the same ID.
+    //Not that doing that is a good idea, but whatever.
+    m_surface->m_controls.push_back(this);
 
     m_noStateHandling = false;
 
@@ -70,12 +77,14 @@ namespace thurs {
   }
 
   Control::~Control() {
-    Surface::ControlMapIt it = m_surface->m_controls.find(m_id);
-    if (it != m_surface->m_controls.end()) {
-      m_surface->m_controls.erase(m_id);
-    } else {
-      //Fatal error..
+
+    for (uint32 i = 0; i < m_surface->m_controls.size(); i++) {
+      if (m_surface->m_controls[i] == this) {
+        m_surface->m_controls.erase(m_surface->m_controls.begin());
+        return;
+      }
     }
+    //Should not get to this point...
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -170,7 +179,7 @@ namespace thurs {
         //focus + click
         OnClick(m_id);
         m_focus = true;
-        m_surface->m_focused = this;
+       // m_surface->m_focused = this;
       }
 
       if (m_input->mouseDown()) {
@@ -220,6 +229,10 @@ namespace thurs {
 
     m_skinClass.update();
 
+  }
+
+  void Control::toFront() {
+    m_surface->m_focused = this;
   }
 
   /////////////////////////////////////////////////////////////////////////////
@@ -283,6 +296,8 @@ namespace thurs {
   /////////////////////////////////////////////////////////////////////////////
 
   bool Control::mouseInside() {
+    if (!m_visible) return false;
+    
     Vector2s c = m_input->mouseCoords();
     return c.x >= (m_wposition.x + m_position.x) && 
            c.x <= (m_wposition.x + m_position.x) + m_size.x &&

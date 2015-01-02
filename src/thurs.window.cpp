@@ -170,13 +170,31 @@ namespace thurs {
         m_focused->update();
       }
 
-      //Update the children
-      for (ControlMapIt it = m_controls.begin(); it != m_controls.end(); it++) {
-        if (!m_focused || m_focused->id() != it->second->id()) {
-          it->second->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
-          it->second->update();
+      //Right, so this is kinda fun - we need to iterate backwards through this map
+      //and check if the mouse is on the widget. The moment we find a widget with the mouse
+      //over it, we need to break the loop. In our actual rendering loop, this is the only
+      //child that should have the input enabled
+      
+      int32 inputHogger = -1;
+      for (int32 i = m_controls.size() - 1; i >= 0; i--) {
+        m_controls[i]->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
+        if (m_controls[i]->mouseInside()) {
+          inputHogger = i;
+          break;
         }
       }
+
+      //Update the children
+      for (uint32 i = 0; i < m_controls.size(); i++) {
+        m_controls[i]->setWPosition(m_winPos + Vector2f(0, m_titlebarHeight));
+        if (inputHogger == i) {
+          m_input->enable();
+        } else {
+          m_input->disable();
+        }
+        m_controls[i]->update();
+      }
+
     }
 
     if (m_titlebarClass) {

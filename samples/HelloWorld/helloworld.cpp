@@ -158,12 +158,22 @@ int main(int argc, char** argv) {
   thurs::DropDown *dd = new thurs::DropDown(22, win2);
   dd->setPosition(10, 155);
   dd->setSize(380, 25);
-  dd->addItem(0, "Hello world");
-  dd->addItem(1, "What's going on?");
+ // dd->addItem(0, "Hello world");
+   for (int i = 0; i < 99; i++) {
+    std::stringstream ss;
+    ss << "Item #" << i;
+    dd->addItem(i, ss.str());
+  }
+
+  thurs::Button *btn5 = new thurs::Button(43, win2);
+  btn5->setSize(380, 125);
+  btn5->setPosition(10, 190);
+
+
 
   thurs::Slider *slider = new thurs::Slider(3, win);
   slider->setSize(380, 15);
-  slider->setPosition(10, 70);
+  slider->setPosition(10, 90);
 
   thurs::ListBox *box = new thurs::ListBox(4, win);
   box->setSize(380, 80);
@@ -198,6 +208,7 @@ int main(int argc, char** argv) {
   EventHandler handler(surface, slider, pbar);
   btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
   slider->OnChange.connect(&handler, &EventHandler::SliderChange);
+  btn5->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
 
   ///// END UI INIT //////
 

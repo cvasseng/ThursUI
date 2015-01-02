@@ -50,6 +50,9 @@ namespace thurs {
 
     if (mouseInside() && m_input->mouseDown()) {
       m_expanded = !m_expanded;
+      if (m_expanded) {
+        m_listbox->toFront();
+      }
     }
 
     Vector2s mc = m_input->mouseCoords();
@@ -76,7 +79,7 @@ namespace thurs {
     if (m_expanded) {
       m_listbox->setWPosition(m_wposition);
       m_listbox->setPosition(m_position.x, m_position.y + m_size.y);
-      m_listbox->setSize(m_size.x, 50.f);
+      m_listbox->setSize(m_size.x, 100.f);
       //m_listbox->update();
     }
   }

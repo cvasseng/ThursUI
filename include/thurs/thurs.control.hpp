@@ -100,6 +100,8 @@ namespace thurs {
 
     //Set the world position
     void setWPosition(const Vector2f& pos);
+    //Bring to front
+    void toFront();
 
     //Set the currently used skin class
     virtual void setSkinClass(const std::string& name);
@@ -110,6 +112,8 @@ namespace thurs {
     void acceptedDropType(uint32 tp);
     //Visible?
     void visible(bool flag);
+    //Return true/false if the mouse is inside the control
+    bool mouseInside();
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -157,8 +161,7 @@ namespace thurs {
     bool m_doingTooltip;
     //Mouse hold 
 
-    //Return true/false if the mouse is inside the control
-    bool mouseInside();
+    
 
   private:
     //ID
