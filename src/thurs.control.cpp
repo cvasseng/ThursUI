@@ -95,6 +95,15 @@ namespace thurs {
 
   /////////////////////////////////////////////////////////////////////////////
 
+  void Control::setOffsetPos(float x, float y) {
+    m_offsetPos.x = x;
+    m_offsetPos.y = y;
+  }
+
+  void Control::setOffsetPos(const Vector2f& vec) {
+    m_offsetPos = vec;
+  }
+
   uint32 Control::id() {
     return m_id;
   }
@@ -247,7 +256,7 @@ namespace thurs {
 
     m_skinClass.update();
 
-    m_cposition = m_position + m_wposition;
+    m_cposition = m_position + m_wposition + m_offsetPos;
 
     if (m_doOutline && m_focus) {
       renderOutline();
@@ -350,9 +359,9 @@ namespace thurs {
     if (!m_visible) return false;
 
     const Vector2s &c = m_input->mouseCoords();
-    return c.x >= (m_wposition.x + m_position.x) && 
-           c.x <= (m_wposition.x + m_position.x) + m_size.x &&
-           c.y >= (m_wposition.y + m_position.y) && 
-           c.y <= (m_wposition.y + m_position.y) + m_size.y;
+    return c.x >= (m_cposition.x) && 
+           c.x <= (m_cposition.x) + m_size.x &&
+           c.y >= (m_cposition.y) && 
+           c.y <= (m_cposition.y) + m_size.y;
   }
 }

@@ -78,6 +78,15 @@ namespace thurs {
     //uh oh..
   }
 
+  void Window::setSize(float x, float y) {
+    m_winSize.x = x;
+    m_winSize.y = y;
+  }
+  
+  void Window::setSize(const Vector2f& vec) {
+    m_winSize = vec;
+  }
+
   void Window::setPos(float x, float y) {
     m_winPos.x = x;
     m_winPos.y = y;
@@ -108,7 +117,7 @@ namespace thurs {
 
     Vector2s mc = m_input->mouseCoords();
     bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
-    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_winSize.y;
+    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_winSize.y + m_titlebarHeight;
 
     return (!m_collapsed && mo) || mt;
   }
@@ -124,7 +133,7 @@ namespace thurs {
 
     Vector2s mc = m_input->mouseCoords();
     bool mt = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_titlebarHeight;
-    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_winSize.y;
+    bool mo = mc.x >= m_winPos.x && mc.x <= m_winPos.x + m_winSize.x && mc.y >= m_winPos.y && mc.y <= m_winPos.y + m_winSize.y + m_titlebarHeight;
 
     if (mt) { //Mouse on titlebar?
       if (!m_moving && m_input->mouseDown()) {

@@ -62,9 +62,9 @@ namespace thurs {
     if (m_background && m_bar) {
       uint16 m = m_bar->Attr.margins;
       uint16 w = (((float)Value / (float)(Max))) * (m_size.x - (m * 2));
-      m_renderer->renderRect(m_background->Attr, m_position + m_wposition, m_size);  
-      m_renderer->renderRect(m_bar->Attr, m_wposition + m_position + Vector2f(m, m), Vector2f(w, m_size.y - (m * 2)));  
-      m_renderer->renderText(m_bar->Attr, ss.str(), m_wposition + m_position, m_size);
+      m_renderer->renderRect(m_background->Attr, m_cposition, m_size);  
+      m_renderer->renderRect(m_bar->Attr, m_cposition + Vector2f(m, m), Vector2f(w, m_size.y - (m * 2)));  
+      m_renderer->renderText(m_bar->Attr, ss.str(), m_cposition, m_size);
     }
   }
 }

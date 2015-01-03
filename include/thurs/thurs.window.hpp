@@ -64,6 +64,8 @@ namespace thurs {
     bool reloadSkin();
     void setPos(float x, float y);
     void setPos(const Vector2f& vec);
+    void setSize(float x, float y);
+    void setSize(const Vector2f& vec);
     bool mouseOver();
 
     const Vector2f& getSize();

@@ -87,6 +87,8 @@ namespace thurs {
   }
 
   void Surface::updateAndRender(float pixelFormat) {
+
+   // printf("W %f H %f\n", m_canvasSize.x, m_canvasSize.y);
     m_renderer->begin(m_canvasSize.x, m_canvasSize.y, pixelFormat);
 
     _onUpdate();

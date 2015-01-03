@@ -59,9 +59,9 @@ namespace thurs {
       en.skinClass = m_skinClass.findAndCpySub("item");
       en.cooldownClass = m_skinClass.findAndCpySub("cooldown");
 
-      std::stringstream ss;
-      ss << (i + 1);
-      en.meta.caption = ss.str();
+     // std::stringstream ss;
+     // ss << (i + 1);
+      //en.meta.caption = ss.str();
 
       m_entries.push_back(en);
     }
@@ -78,9 +78,9 @@ namespace thurs {
     float w = (m_size.x - 10) / m_imagesX;
 
 
-    m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size);  
+    m_renderer->renderRect(m_skinClass.Attr, m_cposition, m_size);  
 
-    m_renderer->setScissor(m_position + m_wposition, m_size);
+    m_renderer->setScissor(m_cposition, m_size);
     
     float height = (m_entries.size() / m_imagesX) * w;
     float scroll = m_scrollbar.val() * (height - m_size.y);
@@ -90,17 +90,17 @@ namespace thurs {
       height = (m_entries.size() / m_imagesX) * w;
     }
 
-    float y = m_position.y + m_wposition.y - w - scroll;
-    float x = m_position.x + m_wposition.x;
+    float y = m_cposition.y - w - scroll;
+    float x = m_cposition.x;
     for (uint32 i = 0; i < m_entries.size(); i++) {
       if (i % m_imagesX == 0) {
         y += w;
-        x = m_position.x + m_wposition.x;
+        x = m_cposition.x;
       }
      
       if (mouseInside() && mc.x >+ x && mc.x <+ x + w && mc.y >+ y && mc.y <+ y + w) {
         m_entries[i].skinClass.setState(S_HOVER);
-        if (m_input->mouseDown()) {
+        if (!m_entries[i].coolingDown && m_input->mouseDown()) {
           //Should maybe check cooldown here
           OnUse(m_entries[i].meta);
           doSkill(m_entries[i].meta.id);
@@ -126,7 +126,6 @@ namespace thurs {
           //Draw it.
           m_renderer->renderRect(m_entries[i].cooldownClass.Attr, x + m, y + m, w - (m * 2), (w - (m * 2)) * (1.f - progress));
         }
-        printf("%f %i %i\n", progress, m_entries[i].activationTime, m_entries[i].meta.cooldownMS);
       }
 
       if (m_entries[i].meta.caption.size() > 0) {
@@ -141,7 +140,7 @@ namespace thurs {
     }
 
     if (height > m_size.y) {
-      m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
+      m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_cposition.x + (m_size.x - 10), m_cposition.y));
     }
 
     m_renderer->clearScissor();

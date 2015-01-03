@@ -54,14 +54,14 @@ namespace thurs {
       m_actualHeight += m_lines[j].height;
     }
 
-    m_renderer->renderRect(m_skinClass.Attr, m_position + m_wposition, m_size);  
+    m_renderer->renderRect(m_skinClass.Attr, m_cposition, m_size);  
 
-    m_renderer->setScissor(m_position + m_wposition, m_size);
+    m_renderer->setScissor(m_cposition, m_size);
 
     float y = -(m_scrollbar.val() * (m_actualHeight - m_size.y));
     for (uint32 j = 0; j < m_lines.size(); j++) {
 
-      Vector2f pos = m_position + m_wposition;
+      Vector2f pos = m_cposition;
       pos.y += y;
       for (uint32 i = 0; i < m_lines[j].items.size(); i++) {
         TextEntry* entry = &m_lines[j].items[i];
@@ -88,7 +88,7 @@ namespace thurs {
     m_renderer->clearScissor();
 
     if (m_actualHeight > m_size.y) {
-      m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_position.x + m_wposition.x + (m_size.x - 10), m_position.y + m_wposition.y));
+      m_scrollbar.update(Vector2f(10, m_size.y), Vector2f(m_cposition.x + (m_size.x - 10), m_cposition.y));
     }
   }
 

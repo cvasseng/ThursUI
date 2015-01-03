@@ -118,6 +118,9 @@ namespace thurs {
     //Return true/false if the mouse is inside the control
     bool mouseInside();
 
+    void setOffsetPos(float x, float y);
+    void setOffsetPos(const Vector2f& vec);
+
     ///////////////////////////////////////////////////////////////////////////
 
     //Tooltip
@@ -157,6 +160,8 @@ namespace thurs {
     Vector2f m_wposition;
     //The calculated position of the control
     Vector2f m_cposition;
+    //Offset position
+    Vector2f m_offsetPos;
     //Tooltip pos
     Vector2s m_tooltipPos;
 
