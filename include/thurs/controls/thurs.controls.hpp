@@ -41,5 +41,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "thurs.control.mltext.hpp"
 #include "thurs.control.dropdown.hpp"
 #include "thurs.control.editbox.hpp"
+#include "thurs.control.skillbar.hpp"
 
 #endif

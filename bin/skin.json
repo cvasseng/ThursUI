@@ -107,6 +107,40 @@
     }
   },
 
+  "SkillBar": {
+    "normal": {
+      "fill":"20 20 20 255",
+      "cornerRadius":5
+    },
+    "item": {
+      "normal": {
+        "fill": "200 200 200 255",
+        "stroke": "#333333",
+        "strokeWidth": 0.5,
+        "margins": 4,
+        "cornerRadius": 5,
+        "font":"sans-bold",
+        "textSize": 12,
+        "vtextAlign": "bottom",
+        "htextAlign": "center",
+        "textFill":"#CCCCCCFF",
+        "textStroke": "#CCCCCCFF"
+      },
+      "hover": {
+        "margins":2,
+        "fill": "200 200 200 255",
+        "textFill": "#FFC107FF",
+        "textStroke": "#CCCCCCFF"
+      }
+    },
+    "cooldown": {
+      "normal": {
+        "fill":"#00000099"
+      }
+    }
+  },
+
+
   "Checkbox": {
     "background": {
       "normal": {

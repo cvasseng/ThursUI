@@ -124,7 +124,10 @@ int main(int argc, char** argv) {
     printf("Failed to load skin\n");
   }
 
-  
+  thurs::SkillBar* sb = new thurs::SkillBar(1, surface);
+  sb->HAlign = thurs::Control::HA_CENTER;
+  sb->VAlign = thurs::Control::VA_BOTTOM;
+  sb->set(0, 0, "logo.png", "1");
 
   thurs::Window* win = new thurs::Window(surface);
   thurs::Window* win2 = new thurs::Window(surface);

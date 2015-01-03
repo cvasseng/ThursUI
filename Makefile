@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -O2 -static -Wall -I/usr/local/include -I/usr/include 
 
-SOURCES=src/thurs.control.cpp src/thurs.input.cpp src/thurs.renderer.cpp src/thurs.surface.cpp src/thurs.color.cpp src/thurs.os.cpp src/controls/thurs.control.button.cpp src/controls/thurs.control.progressbar.cpp src/thurs.skin.cpp src/thurs.window.cpp src/controls/thurs.control.slider.cpp src/controls/thurs.control.listbox.cpp src/thurs.scrollbar.cpp src/controls/thurs.control.checkbox.cpp src/controls/thurs.control.imagegrid.cpp src/controls/thurs.control.label.cpp src/controls/thurs.control.rectangle.cpp src/controls/thurs.control.mltext.cpp src/controls/thurs.control.dropdown.cpp src/controls/thurs.control.editbox.cpp
+SOURCES=src/thurs.control.cpp src/thurs.input.cpp src/thurs.renderer.cpp src/thurs.surface.cpp src/thurs.color.cpp src/thurs.os.cpp src/controls/thurs.control.button.cpp src/controls/thurs.control.progressbar.cpp src/thurs.skin.cpp src/thurs.window.cpp src/controls/thurs.control.slider.cpp src/controls/thurs.control.listbox.cpp src/thurs.scrollbar.cpp src/controls/thurs.control.checkbox.cpp src/controls/thurs.control.imagegrid.cpp src/controls/thurs.control.label.cpp src/controls/thurs.control.rectangle.cpp src/controls/thurs.control.mltext.cpp src/controls/thurs.control.dropdown.cpp src/controls/thurs.control.editbox.cpp src/controls/thurs.control.skillbar.cpp
 
 LIBPATH=/usr/local/lib
 LIBRARIES=-ljsoncpp
