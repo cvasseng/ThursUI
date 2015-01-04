@@ -23,15 +23,14 @@
   * Rectangle (can be used to display images)
   * Image Grid (useful for e.g. inventories in RPG's)
   * Multi line text field with formatting
+  * Skill bar (for RPG's and similar games - supports 1..n clickable icons with optional cooldown indicators)
   * Window
 
 **Noteable features:**
-  * Drag 'n drop
   * JSON-based CSS-style skinning - no texture maps required (textures are of course supported)
   * Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them when the state changes
   * Designed around signals/slots (powered by sigslot.h)
   * Light on dependencies
-  * Cross-platform
   * Liberally licensed (Simplified BSD for now, might switch to zlib) 
 
 As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
