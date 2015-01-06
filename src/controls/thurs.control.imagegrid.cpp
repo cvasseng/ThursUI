@@ -109,6 +109,10 @@ namespace thurs {
 
   }
 
+  void ImageGrid::clear() {
+    m_entries.clear();
+  }
+
   void ImageGrid::addImage(uint32 id, const std::string& image, const std::string& caption) {
     Entry en;
     en.meta.id = id;

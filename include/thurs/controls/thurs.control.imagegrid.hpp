@@ -71,7 +71,8 @@ namespace thurs {
 
     //Add an image
     void addImage(uint32 id, const std::string& image, const std::string& caption = "");
-
+    //Clear
+    void clear();
     //Set how many images should be fitted along X
     void setImageCountAlongX(uint16 c);
 
