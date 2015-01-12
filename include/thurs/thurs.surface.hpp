@@ -96,10 +96,10 @@ namespace thurs {
 	protected:
     //Our skin
     Skin m_skin;
-		//Our renderer 
-		Renderer *m_renderer;
-		//Input injector
-		Input *m_input;
+	//Our renderer 
+	Renderer *m_renderer;
+	//Input injector
+	Input *m_input;
     //Controls in the surface
     std::vector<Control*> m_controls;
     //Children in the surface
@@ -114,6 +114,8 @@ namespace thurs {
     Surface* m_focusedChild;
     //Set to true to move the focused child to the top the next frame
     bool m_moveFocusedChildToTop;
+    //Visible?
+    bool m_visible;
 
     //The active tooltip
     Skin::SkinClass m_tooltipClass;

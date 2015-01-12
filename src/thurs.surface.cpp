@@ -39,6 +39,7 @@ namespace thurs {
     m_tooltipActive = false;
     m_focused = 0;
     m_focusedChild = 0;
+    m_visible = true;
   } 
 
   void Surface::resize(const Vector2f& vec) {
@@ -118,7 +119,7 @@ namespace thurs {
     m_moveFocusedChildToTop = false;
 
     for (uint32 i = 0; i < m_children.size(); i++) {
-      if (!m_focusedChild || m_focusedChild == m_children[i]) {
+      if (!m_focusedChild || (m_focusedChild == m_children[i] || !m_focusedChild->m_visible)) {
         m_input->enable();
         focusedIndex = i;
       } else {

@@ -101,8 +101,6 @@ namespace thurs {
     bool m_moving;
     //Height of titlebar
     uint16 m_titlebarHeight;
-    //Showing?
-    bool m_visible;
     //Collapsed?
     bool m_collapsed;
     //The class name
