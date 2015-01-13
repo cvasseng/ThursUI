@@ -28,6 +28,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
 #include <sstream>
+#include <math.h>
+
 #include "../../include/thurs/thurs.hpp"
 #include "../../include/thurs/controls/thurs.control.progressbar.hpp"
 
@@ -38,6 +40,8 @@ namespace thurs {
     Min = 0;
     Max = 100;
     Value = 50;
+
+    m_showAs = VALUE;
 
     //Set default class
     setSkinClass("ProgressBar");
@@ -50,6 +54,10 @@ namespace thurs {
     m_background = m_skinClass.findSub("background");
     m_bar = m_skinClass.findSub("bar");
   }
+
+  void ProgressBar::showAs(ProgressBar::ShowAs what) {
+    m_showAs = what;
+  }
    
   //Update and draw
   void ProgressBar::update() {
@@ -57,7 +65,11 @@ namespace thurs {
     Control::update();
 
     std::stringstream ss;
-    ss << Value << "/" << Max;
+    if (m_showAs == VALUE) {
+      ss << Value << "/" << Max;
+    } else if (m_showAs == PERCENT) {
+      ss << ( floor(((float)Value / (float)Max) * 100 ) ) << "%%";
+    }
 
     if (m_background && m_bar) {
       uint16 m = m_bar->Attr.margins;

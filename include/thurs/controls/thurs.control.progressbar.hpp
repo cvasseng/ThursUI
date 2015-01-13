@@ -38,6 +38,12 @@ namespace thurs {
 
   class ProgressBar : public Control {
   public:
+    enum ShowAs {
+      PERCENT,
+      VALUE,
+      NONE
+    };
+
     //Constructor. Duh.
     ProgressBar(uint32 id, Surface *surface);
     //Update and draw
@@ -45,6 +51,8 @@ namespace thurs {
 
     //Set the currently used skin class
     void setSkinClass(const std::string& name);
+    //Show as
+    void showAs(ShowAs what);
 
     //Min value
     int32 Min;
@@ -57,6 +65,8 @@ namespace thurs {
     Skin::SkinClass *m_background;
     //Our Bar
     Skin::SkinClass *m_bar;
+    //Show value option
+    ShowAs m_showAs;
   private:
   };
 
