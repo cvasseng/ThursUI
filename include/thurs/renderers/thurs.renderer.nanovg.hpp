@@ -30,10 +30,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef h__thurs_renderer_nanovg_
 #define h__thurs_renderer_nanovg_
 
-#define NANOVG_GL2_IMPLEMENTATION
+#define NANOVG_GL3_IMPLEMENTATION
 
 #include <nanovg.h>
 #include <nanovg_gl.h>
+#include <stdio.h>
 
 #include "../thurs.renderer.hpp"
 
@@ -48,7 +49,12 @@ namespace thurs {
 
     //Initialize the renderer
     bool init() {
-      m_vg = nvgCreateGL2(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);
+      m_vg = nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);
+      
+      if (m_vg == NULL) {
+        printf("error creating nanovg context\n");
+        return false;
+      }
 
       m_font = nvgCreateFont(m_vg, "sans", "Roboto-Regular.ttf");
       nvgCreateFont(m_vg, "sans-bold", "Roboto-Bold.ttf");
