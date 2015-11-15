@@ -38,6 +38,10 @@ namespace thurs {
 
   /////////////////////////////////////////////////////////////////////////////
 
+  void Input::updateLastState() {
+    memcpy(&m_keysLast, &m_keys, 256);
+  }
+
   Input::Input() {
     m_mbutton = MB_NONE;
     m_mbuttonl = MB_NONE;

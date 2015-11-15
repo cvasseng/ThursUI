@@ -107,6 +107,9 @@ namespace thurs {
     bool keyState(uint8 keyCode);
     //Key down?
     bool keyDown(uint8 keyCode);
+    
+    //Update last state 
+    void updateLastState();
 
     //Mark input as handled 
     void markHandled();
