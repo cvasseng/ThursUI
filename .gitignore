@@ -1,3 +1,10 @@
+.DS_Store
+
+CMakeFiles
+CMakeCache.txt
+*.cmake
+Makefile
+
 *.o
 
 bin/hello-world
