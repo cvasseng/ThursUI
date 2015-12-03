@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ThursUI by cvasseng</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>ThursUI</h1>
+        <p>C++ UI library for games and 3d apps</p>
+
+        <p class="view"><a href="https://github.com/cvasseng/ThursUI">View the Project on GitHub <small>cvasseng/ThursUI</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/cvasseng/ThursUI/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cvasseng/ThursUI/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cvasseng/ThursUI">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="-thursui-" class="anchor" href="#-thursui-" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="bin/logo.png" alt="Logo"> ThursUI </h1>
+
+<p><strong>Straight-forward, pretty, and skinnable C++ UI library for games and 3d applications.</strong></p>
+
+<p><img src="screenshot.png" alt="Screenshot"></p>
+
+<p><em>This is very much a work in progress. While it works (more or less), it's not very robust, and is very hackish. Also note that there are currently no optimizations done on the code what-so-ever..</em> </p>
+
+<p><strong>Currently supported controls:</strong></p>
+
+<ul>
+<li>Button</li>
+<li>Progressbar</li>
+<li>Slider</li>
+<li>List Box</li>
+<li>Checkbox</li>
+<li>Label</li>
+<li>Dropdown</li>
+<li>Text input box</li>
+<li>Rectangle (can be used to display images)</li>
+<li>Image Grid (useful for e.g. inventories in RPG's)</li>
+<li>Multi line text field with formatting</li>
+<li>Skill bar (for RPG's and similar games - supports 1..n clickable icons with optional cooldown indicators)</li>
+<li>Window</li>
+</ul>
+
+<p><strong>Noteable features:</strong></p>
+
+<ul>
+<li>JSON-based CSS-style skinning - no texture maps required (textures are of course supported)</li>
+<li>Skins are animated - each UI state (such as active and hover) can be skinned separately, and Thurs will animate between them when the state changes</li>
+<li>Designed around signals/slots (powered by sigslot.h)</li>
+<li>Light on dependencies</li>
+<li>Liberally licensed (Simplified BSD for now, might switch to zlib) </li>
+</ul>
+
+<p>As of now, there's only a renderer back-end for <a href="https://github.com/memononen/nanovg">NanoVG</a>. It should be easy to write a custom renderer - take a look in <a href="include/thurs/renderers/thurs.renderer.nanovg.hpp"><code>include/thurs/renderers/thurs.renderer.nanovg.hpp</code></a> for a place to start. </p>
+
+<p>Documentation and an actual stable release incoming.</p>
+
+<h2>
+<a id="building" class="anchor" href="#building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building</h2>
+
+<p>Build using <code>cmake</code>, e.g. running <code>cmake -DCMAKE_BUILD_TYPE=Release &amp;&amp; make</code> in the project folder.
+Run <code>make install</code> if you want to copy the files to the respective bin and lib folders on your system.</p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>Thurs depend on the following libraries:</p>
+
+<ul>
+<li><a href="https://github.com/open-source-parsers/jsoncpp">jsoncpp</a></li>
+</ul>
+
+<p>Note that you also need to link with the libraries needed to support the rendering back-end in your application. 
+The default output of the makefile is a thin library, so you need to link with jsoncpp in your final application also.</p>
+
+<h3>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h3>
+
+<p>Either copy <code>include/thurs</code> and the compiled library from <code>lib</code> to your preferred paths, or add <code>include</code> and <code>lib</code> to your path variable or as search paths in your IDE if you're using one. Running <code>make install</code> will move things into <code>/usr/local/include</code> and <code>/usr/local/lib</code>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="LICENSE">Simplified BSD</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/cvasseng">cvasseng</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
