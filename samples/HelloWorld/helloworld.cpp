@@ -29,6 +29,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <sstream>
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <thurs/thurs.hpp>
@@ -98,8 +99,10 @@ int main(int argc, char** argv) {
   glfwSetErrorCallback(errorcb);
 
   #ifndef _WIN32 // don't require this on win32, and works with more cards
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint (GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint (GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
   #endif
 
   glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, 1);
@@ -107,6 +110,12 @@ int main(int argc, char** argv) {
   window = glfwCreateWindow(1024, 1024, "Thurs Hello World", NULL, NULL);
 
   glfwMakeContextCurrent(window);
+  
+  glewExperimental = GL_TRUE;
+  if (glewInit() != GLEW_OK) {
+    printf("Could not init glew\n");
+    return -1;
+  }
   //glfwSetKeyCallback(window, keyCallback);
 
   glfwSwapInterval(0);

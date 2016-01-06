@@ -29,7 +29,8 @@
   * Light on dependencies
   * Liberally licensed (Simplified BSD for now, might switch to zlib) 
 
-As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). It should be easy to write a custom renderer - take a look in [`include/thurs/renderers/thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
+As of now, there's only a renderer back-end for [NanoVG](https://github.com/memononen/nanovg). 
+It should be easy to write a custom renderer - take a look at [`thurs.renderer.nanovg.hpp`](include/thurs/renderers/thurs.renderer.nanovg.hpp) for a place to start. 
 
 Documentation and an actual stable release incoming.
 
@@ -44,6 +45,8 @@ Thurs depend on the following libraries:
   * [jsoncpp](https://github.com/open-source-parsers/jsoncpp)
 
 Note that you also need to link with the libraries needed to support the rendering back-end in your application. 
+For the included renderer, that means you have to link with [NanoVG](https://github.com/memononen/nanovg). 
+
 The default output of the makefile is a thin library, so you need to link with jsoncpp in your final application also.
 
 ### Installing
