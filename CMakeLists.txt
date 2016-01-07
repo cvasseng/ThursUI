@@ -20,6 +20,7 @@ add_library(thursui STATIC
   src/thurs.skin.cpp
   src/thurs.surface.cpp
   src/thurs.window.cpp
+  src/thurs.property.cpp
   src/controls/thurs.control.button.cpp
   src/controls/thurs.control.checkbox.cpp
   src/controls/thurs.control.dropdown.cpp
@@ -33,6 +34,10 @@ add_library(thursui STATIC
   src/controls/thurs.control.skillbar.cpp
   src/controls/thurs.control.slider.cpp
 )
+
+target_compile_features(thursui PRIVATE cxx_range_for)
+target_compile_features(thursui PRIVATE cxx_decltype_auto)
+target_compile_features(thursui PRIVATE cxx_generic_lambdas)
 
 target_link_libraries(thursui jsoncpp)
 

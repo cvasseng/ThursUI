@@ -101,7 +101,7 @@ namespace thurs {
 
       if (skinClass.vTextAlign == VA_TOP) {
         alignment |= NVG_ALIGN_TOP;
-      } else if (skinClass.vTextAlign == VA_MIDDLE) {
+      } else if (skinClass.vTextAlign == VA_CENTER) {
         alignment |= NVG_ALIGN_MIDDLE;
         y += (by / 2.f);
       } else if (skinClass.vTextAlign == VA_BOTTOM) {

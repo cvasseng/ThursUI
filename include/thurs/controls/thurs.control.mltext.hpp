@@ -86,6 +86,8 @@ namespace thurs {
     void update();
     //Reload class
     void reloadSkinClass();
+    //Type
+    virtual WidgetType type() { return WT_MLTEXT; }
 
     ///////////////////////////////////////////////////////////////////////////
 

@@ -232,7 +232,7 @@ namespace thurs {
 
     if (v.isMember("vtextAlign")) {
       std::string t = v.get("vtextAlign", "middle").asString();
-      if (t == "middle") attr.vTextAlign = VA_MIDDLE;
+      if (t == "middle") attr.vTextAlign = VA_CENTER;
       if (t == "top") attr.vTextAlign = VA_TOP;
       if (t == "bottom") attr.vTextAlign = VA_BOTTOM;
     }

@@ -31,12 +31,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define h__thursui__
 
 #include "thurs.types.hpp"
+#include "thurs.property.hpp"
 #include "thurs.surface.hpp"
 #include "thurs.renderer.hpp"
 #include "thurs.control.hpp"
 #include "thurs.color.hpp"
 #include "thurs.skin.hpp"
 #include "thurs.window.hpp"
+#include "thurs.ui.hpp"
 
 namespace thurs {
 

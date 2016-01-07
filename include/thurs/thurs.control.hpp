@@ -35,28 +35,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "thurs.surface.hpp"
 #include "thurs.skin.hpp"
 
+#include <functional>
+
 namespace thurs {
 
   class Control {
   public:
-
-    ///////////////////////////////////////////////////////////////////////////
-    
-    enum VerticalAlignment {
-      VA_CUSTOM,
-      VA_CLIENT,
-      VA_BOTTOM,
-      VA_TOP,
-      VA_CENTER
-    };
-
-    enum HorizontalAlignment {
-      HA_CUSTOM,
-      HA_CLIENT,
-      HA_LEFT,
-      HA_RIGHT,
-      HA_CENTER
-    };  
     
     ///////////////////////////////////////////////////////////////////////////
 
@@ -71,6 +55,9 @@ namespace thurs {
     sigslot::signal1<uint32> OnMouseUp;
     sigslot::signal1<uint32> OnMouseIn;
     sigslot::signal1<uint32> OnMouseOut;
+    
+    //Event listener 
+    bool on(UIAction what, ThursCallback &fn);
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -110,6 +97,8 @@ namespace thurs {
     virtual void setSkinClass(const std::string& name);
     //Reload class
     virtual void reloadSkinClass();
+    
+    virtual WidgetType type() { return WT_UNKNOWN; }
 
     //Set the accepted drop type
     void acceptedDropType(uint32 tp);
@@ -120,18 +109,24 @@ namespace thurs {
 
     void setOffsetPos(float x, float y);
     void setOffsetPos(const Vector2f& vec);
+    
+    virtual bool serialize(Json::Value &v);
+    virtual bool unserialize(Json::Value &v);
 
     ///////////////////////////////////////////////////////////////////////////
 
     //Tooltip
-    std::string Tooltip;
+    PropertyString Tooltip;
     //Vertical alignment
-    VerticalAlignment VAlign;
+    PropertyVAlignment VAlign;
     //Horizontal alignment
-    HorizontalAlignment HAlign;
+    PropertyHAlignment HAlign;
+    
+    //Property collection
+    PropertyCollection Properties;
   protected:
     //Visible?
-    bool m_visible;
+    PropertyBool m_visible;
      //Focus?
     bool m_focus;
     //Set to true to skip state handling
@@ -153,9 +148,9 @@ namespace thurs {
    
 
     //The size of the control
-    Vector2f m_size;
+    PropertyVec2f m_size;
     //The position of the control
-    Vector2f m_position;
+    PropertyVec2f m_position;
     //The world position of the control
     Vector2f m_wposition;
     //The calculated position of the control
@@ -171,16 +166,17 @@ namespace thurs {
     Skin::SkinClass m_tooltipSkinClass;
 
     //Loaded class name
-    std::string m_loadedClassName;
+    PropertyString m_loadedClassName;
+    
   private:
     //ID
     uint32 m_id; 
     //Mouse was inside last frame?
     bool m_mouseWasInside;
     //Can move?
-    bool m_canMove;
+    PropertyBool m_canMove;
     //Can resize?
-    bool m_canResize;
+    PropertyBool m_canResize;
     //Are we moving?
     bool m_isMoving;
     //Are we resizing?
@@ -196,6 +192,9 @@ namespace thurs {
 
     //Render outline
     void renderOutline();
+    
+    //Emit event
+    bool emit(UIAction what);
   };
 
 }

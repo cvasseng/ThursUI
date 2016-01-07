@@ -65,6 +65,11 @@ namespace thurs {
     CanClose = true;
     CanMove = true;
     CanCollapse = true;
+    
+    Properties.add("canClose", CanClose);
+    Properties.add("canMove", CanMove);
+    Properties.add("canCollapse", CanCollapse);
+    Properties.add("title", Title);
   }
 
   Window::~Window() {
@@ -76,6 +81,18 @@ namespace thurs {
     }
 
     //uh oh..
+  }
+  
+  bool Window::serialize(Json::Value &root) {
+    root["type"] = "window";
+    Surface::serialize(root);
+    //Add window properties to root here..  
+    return Properties.toJSON(root["properties"]);
+  }
+  
+  bool Window::unserialize(Json::Value &root) {
+    Surface::unserialize(root);
+    return Properties.fromJSON(root["properties"]);
   }
 
   void Window::setSize(float x, float y) {

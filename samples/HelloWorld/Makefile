@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -O2 -static -Wall -I../../include -I/usr/local/include -I/usr/include 
+CFLAGS=-c -O2 -static -Wall -I../../include -I/usr/local/include -I/usr/include -std=c++11
 
 SOURCES=helloworld.cpp
 

@@ -59,6 +59,17 @@ namespace thurs {
     #define SurfaceMapPair(x, y) std::pair<uint16, Surface*>(x, y)
 
     ///////////////////////////////////////////////////////////////////////////
+    
+    //Serialize the surface to file 
+    bool serialize(const std::string& filename);
+    //Serialize to json value 
+    virtual bool serialize(Json::Value &root);
+    //Unserialize the surface from file 
+    bool unserialize(const std::string& filename);
+    //Unserialize from json value 
+    virtual bool unserialize(Json::Value &root);
+    
+    ///////////////////////////////////////////////////////////////////////////
 
 		Surface(Renderer *renderer, Input *input);
     virtual ~Surface(){}

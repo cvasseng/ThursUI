@@ -48,18 +48,7 @@ namespace thurs {
     S_FOCUS,
     S_COUNT, 
   };
-
-  enum HAlignment {
-    HA_LEFT,
-    HA_CENTER,
-    HA_RIGHT
-  };
-
-  enum VAlignment {
-    VA_TOP,
-    VA_MIDDLE,
-    VA_BOTTOM
-  };
+ 
 
   enum GradientType {
     GT_LINEAR,
@@ -96,8 +85,8 @@ namespace thurs {
         std::string image;
         uint32 imageHandle;
 
-        VAlignment vTextAlign;
-        HAlignment hTextAlign;
+        VerticalAlignment vTextAlign;
+        HorizontalAlignment hTextAlign;
 
         std::string font;
 
@@ -118,7 +107,7 @@ namespace thurs {
           transitionTime = 250;
           strokeWidth = 1.f;
 
-          vTextAlign = VA_MIDDLE;
+          vTextAlign = VA_CENTER;
           hTextAlign = HA_LEFT;
 
           hasFill = false;

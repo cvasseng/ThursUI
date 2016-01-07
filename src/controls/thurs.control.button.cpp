@@ -33,9 +33,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace thurs {
 
   //Constructor. Duh.
-  Button::Button(uint32 id, Surface *surface)  : Control(id, surface) {
+  Button::Button(uint32 id, Surface *surface)  : 
+    Control(id, surface),
+    Caption("title") 
+  {
     Caption = "BUTTON";
     setSkinClass("Button");
+    
+    Properties.add(Caption);
   }
   
   //Update and draw

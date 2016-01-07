@@ -62,6 +62,8 @@ namespace thurs {
     ImageGrid(uint32 id, Surface *surface);
     //Update and draw
     void update();
+    //Type
+    virtual WidgetType type() { return WT_IMAGEGRID; }
 
     ///////////////////////////////////////////////////////////////////////////
 

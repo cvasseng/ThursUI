@@ -77,6 +77,8 @@ namespace thurs {
     void set(uint32 slot, uint32 id, const std::string& image, const std::string& caption = "");
     //Execute a skill
     void doSkill(uint32 id, bool ignoreCooldown = false);
+    //Type
+    virtual WidgetType type() { return WT_SKILLBAR; }
 
     //Set how many slots should be fitted along X
     void setSlotCount(uint16 c);

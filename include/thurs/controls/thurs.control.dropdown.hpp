@@ -48,6 +48,8 @@ namespace thurs {
     void update();
     //Set the currently used skin class
     void setSkinClass(const std::string& name);
+    //Type
+    virtual WidgetType type() { return WT_DROPDOWN; }
 
     ///////////////////////////////////////////////////////////////////////////
     

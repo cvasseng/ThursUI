@@ -33,7 +33,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace thurs {
 
   //Constructor. Duh.
-  Checkbox::Checkbox(uint32 id, Surface *surface)  : Control(id, surface) {
+  Checkbox::Checkbox(uint32 id, Surface *surface)  : 
+    Control(id, surface),
+    Caption("title") 
+  {
     Caption = "Check me!";
     Checked = false;
     //Set default class
@@ -41,6 +44,7 @@ namespace thurs {
     setSkinClass("Checkbox");
 
     m_noStateHandling = true;
+    Properties.add(Caption);
   }
 
   void Checkbox::setSkinClass(const std::string& name) {

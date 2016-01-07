@@ -45,6 +45,8 @@ namespace thurs {
     void update();
     //Load an image
     void setImage(const std::string& filename);
+    //Type
+    virtual WidgetType type() { return WT_RECTANGLE; }
   protected:
     uint32 m_imageHandle;
   private:

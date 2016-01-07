@@ -77,6 +77,8 @@ namespace thurs {
     void clear();
     //Remove item
     bool remItem(uint32 index);
+    //Type
+    virtual WidgetType type() { return WT_LISTBOX; }
 
     ///////////////////////////////////////////////////////////////////////////
 

@@ -27,44 +27,50 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ******************************************************************************/
 
-#ifndef h__thurs_control_slider__
-#define h__thurs_control_slider__
+#ifndef h__thursui__ui__
+#define h__thursui__ui__
 
-#include <string>
+#include "thurs.types.hpp"
+#include "thurs.surface.hpp"
+#include "thurs.renderer.hpp"
+#include "thurs.control.hpp"
+#include "thurs.color.hpp"
+#include "thurs.skin.hpp"
+#include "thurs.window.hpp"
 
-#include "../sigslot.h"
-#include "../thurs.control.hpp"
-#include "../thurs.color.hpp"
+#include "controls/thurs.controls.hpp"
 
 namespace thurs {
-
-  class Slider : public Control {
+  
+  class Heirarchy {
   public:
-    //Constructor. Duh.
-    Slider(uint32 id, Surface *surface);
-    //Update and draw
-    void update();
-
-    void setSkinClass(const std::string& name);
-    //Type
-    virtual WidgetType type() { return WT_SLIDER; }
-
-    int32 Min;
-    int32 Max;
-    int32 Value;
-
-    sigslot::signal1<int> OnChange;
-
-    //Caption
-    std::string Caption;
   protected:
-    Skin::SkinClass* m_knob;
-    Skin::SkinClass* m_bar;
+  private:  
+  };
 
-    bool m_isDragging;
-    float m_preDrag;
-    Vector2s m_mdelta;
-  private:
+  class UI {
+  public:
+    //Constructor
+    UI(Renderer * const renderer);
+    //Destructor
+    virtual ~UI();
+    
+    //Load main skin 
+    bool loadSkin(const std::string& filename);    
+    //Include UI definition
+    bool include(const std::string& filename);
+    
+    
+    
+    //Input handler 
+    Input InputHandler;
+  protected:
+    //Renderer 
+    Renderer* m_renderer;
+    //Main surface 
+    Surface* m_surface;
+  private:  
+    
   };
 
 }

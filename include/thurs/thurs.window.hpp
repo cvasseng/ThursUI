@@ -69,17 +69,23 @@ namespace thurs {
     bool mouseOver();
 
     const Vector2f& getSize();
+    
+    bool serialize(Json::Value &root);
+    bool unserialize(Json::Value &root);
   
     ///////////////////////////////////////////////////////////////////////////
   
     //The window title
-    std::string Title;
+    PropertyString Title;
     //Can close?
-    bool CanClose;
+    PropertyBool CanClose;
     //Can move?
-    bool CanMove;
+    PropertyBool CanMove;
     //Can collapse?
-    bool CanCollapse;
+    PropertyBool CanCollapse;
+    
+    //Properties
+    PropertyCollection Properties;
   protected:
     //The window size
     Vector2f m_winSize;

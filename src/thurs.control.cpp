@@ -40,7 +40,18 @@ namespace thurs {
 
   /////////////////////////////////////////////////////////////////////////////
 
-  Control::Control(uint32 id, Surface *surface) {
+  Control::Control(uint32 id, Surface *surface) :
+    Tooltip("tooltip"),
+    VAlign("valign"),
+    HAlign("halign"),
+    m_visible("visible"),
+    m_canMove("canMove"),
+    m_canResize("canResize"),
+    m_size("size"),
+    m_position("position"),
+    m_loadedClassName("class")
+  
+  {
     m_surface = surface;
     m_input = surface->input();
     m_renderer = surface->renderer();
@@ -61,6 +72,16 @@ namespace thurs {
 
     HAlign = HA_CUSTOM;
     VAlign = VA_CUSTOM;
+    
+    Properties.add(Tooltip);
+    Properties.add(VAlign);
+    Properties.add(HAlign);
+    Properties.add(m_visible);
+    Properties.add(m_canMove);
+    Properties.add(m_canResize);
+    Properties.add(m_size);
+    Properties.add(m_position);
+    Properties.add(m_loadedClassName);
 
     //So originally, this was a map. 
     //This is better as it allows for better focus management.
@@ -93,6 +114,18 @@ namespace thurs {
     //Should not get to this point...
   }
 
+  /////////////////////////////////////////////////////////////////////////////
+  
+  //Listen to event 
+  bool Control::on(UIAction what, ThursCallback &fn) {
+    return false;
+  }
+  
+  //Emit event 
+  bool Control::emit(UIAction what) {
+    return false;
+  }
+  
   /////////////////////////////////////////////////////////////////////////////
 
   void Control::setOffsetPos(float x, float y) {
@@ -184,6 +217,9 @@ namespace thurs {
       if (!m_mouseWasInside) {
         //on mouse over
         OnMouseIn(m_id);
+        
+        emit(AC_MOUSE_IN);
+        
         m_mouseWasInside = true;
         if (!m_noStateHandling) {
           m_skinClass.setState(S_HOVER);
@@ -196,8 +232,16 @@ namespace thurs {
       if (m_input->mouseDown()) {
         //focus + click
         OnClick(m_id);
+        
+        emit(AC_CLICK);
+        emit(AC_FOCUS);
+        
         for (uint32 i = 0; i < __g_reg_controls.size(); i++) {
+          if (__g_reg_controls[i]->m_focus) {
+            __g_reg_controls[i]->emit(AC_BLUR); 
+          }
           __g_reg_controls[i]->m_focus = false;
+         
           __g_reg_controls[i]->m_skinClass.setState(S_NORMAL);
         }
         m_focus = true;
@@ -208,6 +252,9 @@ namespace thurs {
       if (m_input->mouseDown()) {
         //mouse down
          OnMouseDown(m_id);
+         
+         emit(AC_MOUSE_DOWN);
+         
          if (!m_noStateHandling) {
           m_skinClass.setState(S_ACTIVE);
         }
@@ -228,13 +275,16 @@ namespace thurs {
     
         //mouse up
         OnMouseUp(m_id);
+        
+        emit(AC_MOUSE_UP);
+        
         if (!m_noStateHandling) {
           m_skinClass.setState(S_HOVER);
         }
       }
 
       //Render tooltip
-      if (!m_doingTooltip && Tooltip.size() > 0 && getTime() - m_mouseOverTime > 1000) {
+      if (!m_doingTooltip && Tooltip.get().size() > 0 && getTime() - m_mouseOverTime > 1000) {
         m_surface->doTooltip(Tooltip);
         m_doingTooltip = true;
       }
@@ -242,6 +292,8 @@ namespace thurs {
     } else if (m_mouseWasInside) {
       //on mouse leave
       OnMouseOut(m_id);
+      
+      emit(AC_MOUSE_OUT);
 
       if (!m_noStateHandling) {
         m_skinClass.setState(S_NORMAL);
@@ -295,6 +347,22 @@ namespace thurs {
     m_surface->m_focused = this;
   }
 
+  /////////////////////////////////////////////////////////////////////////////
+  
+  
+  bool Control::serialize(Json::Value &v) {
+    v["type"] = std::to_string(type());
+    return Properties.toJSON(v);
+  }
+  
+  bool Control::unserialize(Json::Value &v) {
+    if (Properties.fromJSON(v)) {
+      setSkinClass(m_loadedClassName.get());   
+      return true;
+    }
+    return false;
+  }
+  
   /////////////////////////////////////////////////////////////////////////////
 
   bool Control::focused() {

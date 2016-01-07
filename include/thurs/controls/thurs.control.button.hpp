@@ -43,9 +43,12 @@ namespace thurs {
     Button(uint32 id, Surface *surface);
     //Update and draw
     void update();
+    
+    //Type
+    virtual WidgetType type() { return WT_BUTTON; }
 
     //Caption
-    std::string Caption;
+    PropertyString Caption;
   protected:
     
   private:

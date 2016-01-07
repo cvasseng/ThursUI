@@ -44,6 +44,8 @@ namespace thurs {
     //Update and draw
     void update();
     void setSkinClass(const std::string& name);
+    //Type
+    virtual WidgetType type() { return WT_EDITBOX; }
 
     //Current text
     std::string Value;

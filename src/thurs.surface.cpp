@@ -28,6 +28,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
 #include "../include/thurs/thurs.hpp"
+#include "../include/thurs/controls/thurs.controls.hpp"
+
+#include <fstream>
+#include <sstream>
+#include <json/writer.h>
 
 namespace thurs {
 
@@ -41,6 +46,128 @@ namespace thurs {
     m_focusedChild = 0;
     m_visible = true;
   } 
+  
+  bool Surface::serialize(Json::Value &root) {
+    Json::Value childWidgets;
+    
+    
+     for (auto it : m_controls) {
+      Json::Value c;
+      it->serialize(c);
+      childWidgets[std::to_string(it->id())] = c;  
+    }
+    
+    Json::Value childSurfaces(Json::arrayValue);
+    
+    for (auto it : m_children) {
+      Json::Value s;
+      it->serialize(s);
+      childSurfaces.append(s);
+    }
+    
+    root["children"] = childSurfaces;
+    root["widgets"] = childWidgets;
+    
+    return true;
+  }
+  
+  //Serialize the surface to file 
+  bool Surface::serialize(const std::string& filename) {
+    std::filebuf fb;
+    fb.open(filename.c_str(),std::ios::out);
+    std::ostream os(&fb);
+    
+    if (!os.good()) {
+      return false;
+    }
+    
+    Json::Value root;
+    
+    serialize(root);
+    
+    os << root;
+    
+    fb.close();
+    
+    return true;
+  }
+  
+  bool Surface::unserialize(Json::Value &root) {    
+    Json::Value widgets = root["widgets"];
+    Json::Value::Members wids = widgets.getMemberNames();
+    
+    for (uint32 i = 0; i < wids.size(); i++) {
+      Json::Value child = widgets[wids[i]];
+      uint32 id = 0;
+      Control* c = 0;
+      
+      std::stringstream ss(wids[i]);
+      ss >> id;
+      
+      if (child.isMember("type")) {
+        std::string t = child.get("type", WT_UNKNOWN).asString();
+        uint32 type = 0;
+        std::stringstream ss(t);
+        ss >> type;
+        
+        WidgetType tp = WidgetType(type);
+        
+        if (tp == WT_BUTTON) {
+          c = new Button(id, this);
+        } else if (tp == WT_CHECKBOX) {
+          c = new Checkbox(id, this);
+        } else if (tp == WT_DROPDOWN) {
+          c = new DropDown(id, this);
+        } else if (tp == WT_EDITBOX) {
+          c = new EditBox(id, this);
+        } else if (tp == WT_IMAGEGRID) {
+          c = new ImageGrid(id, this);
+        } else if (tp == WT_LABEL) {
+          c = new Label(id, this);
+        } else if (tp == WT_LISTBOX) {
+          c = new ListBox(id, this);
+        } else if (tp == WT_PROGRESSBAR) {
+          c = new ProgressBar(id, this);
+        } else if (tp == WT_RECTANGLE) {
+          c = new Rectangle(id, this);
+        } else if (tp == WT_SKILLBAR) {
+          c = new SkillBar(id, this);
+        } else if (tp == WT_SLIDER) {
+          c = new Slider(id, this);
+        }
+          
+        if (c) {
+          c->unserialize(child);
+        }  
+      }
+    }
+    
+    Json::Value children = root["children"];
+    for (uint32 i = 0; i < children.size(); i++) {
+      Json::Value child = children[i];
+      if (child["type"].asString() == "window") {
+        thurs::Window* win = new thurs::Window(this);
+        win->unserialize(child);
+      }
+    }
+    
+    return false;
+  }
+  
+  //Unserialize the surface from file 
+  bool Surface::unserialize(const std::string& filename) {
+    std::ifstream ifs(filename);
+    std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+
+    Json::Value root;
+    Json::Reader reader;
+
+    if (!reader.parse(str, root)) {
+      return false;
+    }
+
+    return unserialize(root);
+  }
 
   void Surface::resize(const Vector2f& vec) {
     m_canvasSize = vec;

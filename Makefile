@@ -143,24 +143,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tursui
+# Target rules for targets named thursui
 
 # Build rule for target.
-tursui: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tursui
-.PHONY : tursui
+thursui: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 thursui
+.PHONY : thursui
 
 # fast build rule for target.
-tursui/fast:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/build
-.PHONY : tursui/fast
+thursui/fast:
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/build
+.PHONY : thursui/fast
 
 src/controls/thurs.control.button.o: src/controls/thurs.control.button.cpp.o
 .PHONY : src/controls/thurs.control.button.o
 
 # target to build an object file
 src/controls/thurs.control.button.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.button.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.button.cpp.o
 .PHONY : src/controls/thurs.control.button.cpp.o
 
 src/controls/thurs.control.button.i: src/controls/thurs.control.button.cpp.i
@@ -168,7 +168,7 @@ src/controls/thurs.control.button.i: src/controls/thurs.control.button.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.button.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.button.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.button.cpp.i
 .PHONY : src/controls/thurs.control.button.cpp.i
 
 src/controls/thurs.control.button.s: src/controls/thurs.control.button.cpp.s
@@ -176,7 +176,7 @@ src/controls/thurs.control.button.s: src/controls/thurs.control.button.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.button.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.button.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.button.cpp.s
 .PHONY : src/controls/thurs.control.button.cpp.s
 
 src/controls/thurs.control.checkbox.o: src/controls/thurs.control.checkbox.cpp.o
@@ -184,7 +184,7 @@ src/controls/thurs.control.checkbox.o: src/controls/thurs.control.checkbox.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.checkbox.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.checkbox.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.checkbox.cpp.o
 .PHONY : src/controls/thurs.control.checkbox.cpp.o
 
 src/controls/thurs.control.checkbox.i: src/controls/thurs.control.checkbox.cpp.i
@@ -192,7 +192,7 @@ src/controls/thurs.control.checkbox.i: src/controls/thurs.control.checkbox.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.checkbox.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.checkbox.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.checkbox.cpp.i
 .PHONY : src/controls/thurs.control.checkbox.cpp.i
 
 src/controls/thurs.control.checkbox.s: src/controls/thurs.control.checkbox.cpp.s
@@ -200,7 +200,7 @@ src/controls/thurs.control.checkbox.s: src/controls/thurs.control.checkbox.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.checkbox.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.checkbox.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.checkbox.cpp.s
 .PHONY : src/controls/thurs.control.checkbox.cpp.s
 
 src/controls/thurs.control.dropdown.o: src/controls/thurs.control.dropdown.cpp.o
@@ -208,7 +208,7 @@ src/controls/thurs.control.dropdown.o: src/controls/thurs.control.dropdown.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.dropdown.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.dropdown.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.dropdown.cpp.o
 .PHONY : src/controls/thurs.control.dropdown.cpp.o
 
 src/controls/thurs.control.dropdown.i: src/controls/thurs.control.dropdown.cpp.i
@@ -216,7 +216,7 @@ src/controls/thurs.control.dropdown.i: src/controls/thurs.control.dropdown.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.dropdown.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.dropdown.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.dropdown.cpp.i
 .PHONY : src/controls/thurs.control.dropdown.cpp.i
 
 src/controls/thurs.control.dropdown.s: src/controls/thurs.control.dropdown.cpp.s
@@ -224,7 +224,7 @@ src/controls/thurs.control.dropdown.s: src/controls/thurs.control.dropdown.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.dropdown.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.dropdown.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.dropdown.cpp.s
 .PHONY : src/controls/thurs.control.dropdown.cpp.s
 
 src/controls/thurs.control.editbox.o: src/controls/thurs.control.editbox.cpp.o
@@ -232,7 +232,7 @@ src/controls/thurs.control.editbox.o: src/controls/thurs.control.editbox.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.editbox.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.editbox.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.editbox.cpp.o
 .PHONY : src/controls/thurs.control.editbox.cpp.o
 
 src/controls/thurs.control.editbox.i: src/controls/thurs.control.editbox.cpp.i
@@ -240,7 +240,7 @@ src/controls/thurs.control.editbox.i: src/controls/thurs.control.editbox.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.editbox.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.editbox.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.editbox.cpp.i
 .PHONY : src/controls/thurs.control.editbox.cpp.i
 
 src/controls/thurs.control.editbox.s: src/controls/thurs.control.editbox.cpp.s
@@ -248,7 +248,7 @@ src/controls/thurs.control.editbox.s: src/controls/thurs.control.editbox.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.editbox.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.editbox.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.editbox.cpp.s
 .PHONY : src/controls/thurs.control.editbox.cpp.s
 
 src/controls/thurs.control.imagegrid.o: src/controls/thurs.control.imagegrid.cpp.o
@@ -256,7 +256,7 @@ src/controls/thurs.control.imagegrid.o: src/controls/thurs.control.imagegrid.cpp
 
 # target to build an object file
 src/controls/thurs.control.imagegrid.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.imagegrid.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.imagegrid.cpp.o
 .PHONY : src/controls/thurs.control.imagegrid.cpp.o
 
 src/controls/thurs.control.imagegrid.i: src/controls/thurs.control.imagegrid.cpp.i
@@ -264,7 +264,7 @@ src/controls/thurs.control.imagegrid.i: src/controls/thurs.control.imagegrid.cpp
 
 # target to preprocess a source file
 src/controls/thurs.control.imagegrid.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.imagegrid.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.imagegrid.cpp.i
 .PHONY : src/controls/thurs.control.imagegrid.cpp.i
 
 src/controls/thurs.control.imagegrid.s: src/controls/thurs.control.imagegrid.cpp.s
@@ -272,7 +272,7 @@ src/controls/thurs.control.imagegrid.s: src/controls/thurs.control.imagegrid.cpp
 
 # target to generate assembly for a file
 src/controls/thurs.control.imagegrid.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.imagegrid.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.imagegrid.cpp.s
 .PHONY : src/controls/thurs.control.imagegrid.cpp.s
 
 src/controls/thurs.control.label.o: src/controls/thurs.control.label.cpp.o
@@ -280,7 +280,7 @@ src/controls/thurs.control.label.o: src/controls/thurs.control.label.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.label.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.label.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.label.cpp.o
 .PHONY : src/controls/thurs.control.label.cpp.o
 
 src/controls/thurs.control.label.i: src/controls/thurs.control.label.cpp.i
@@ -288,7 +288,7 @@ src/controls/thurs.control.label.i: src/controls/thurs.control.label.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.label.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.label.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.label.cpp.i
 .PHONY : src/controls/thurs.control.label.cpp.i
 
 src/controls/thurs.control.label.s: src/controls/thurs.control.label.cpp.s
@@ -296,7 +296,7 @@ src/controls/thurs.control.label.s: src/controls/thurs.control.label.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.label.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.label.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.label.cpp.s
 .PHONY : src/controls/thurs.control.label.cpp.s
 
 src/controls/thurs.control.listbox.o: src/controls/thurs.control.listbox.cpp.o
@@ -304,7 +304,7 @@ src/controls/thurs.control.listbox.o: src/controls/thurs.control.listbox.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.listbox.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.listbox.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.listbox.cpp.o
 .PHONY : src/controls/thurs.control.listbox.cpp.o
 
 src/controls/thurs.control.listbox.i: src/controls/thurs.control.listbox.cpp.i
@@ -312,7 +312,7 @@ src/controls/thurs.control.listbox.i: src/controls/thurs.control.listbox.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.listbox.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.listbox.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.listbox.cpp.i
 .PHONY : src/controls/thurs.control.listbox.cpp.i
 
 src/controls/thurs.control.listbox.s: src/controls/thurs.control.listbox.cpp.s
@@ -320,7 +320,7 @@ src/controls/thurs.control.listbox.s: src/controls/thurs.control.listbox.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.listbox.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.listbox.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.listbox.cpp.s
 .PHONY : src/controls/thurs.control.listbox.cpp.s
 
 src/controls/thurs.control.mltext.o: src/controls/thurs.control.mltext.cpp.o
@@ -328,7 +328,7 @@ src/controls/thurs.control.mltext.o: src/controls/thurs.control.mltext.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.mltext.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.mltext.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.mltext.cpp.o
 .PHONY : src/controls/thurs.control.mltext.cpp.o
 
 src/controls/thurs.control.mltext.i: src/controls/thurs.control.mltext.cpp.i
@@ -336,7 +336,7 @@ src/controls/thurs.control.mltext.i: src/controls/thurs.control.mltext.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.mltext.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.mltext.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.mltext.cpp.i
 .PHONY : src/controls/thurs.control.mltext.cpp.i
 
 src/controls/thurs.control.mltext.s: src/controls/thurs.control.mltext.cpp.s
@@ -344,7 +344,7 @@ src/controls/thurs.control.mltext.s: src/controls/thurs.control.mltext.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.mltext.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.mltext.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.mltext.cpp.s
 .PHONY : src/controls/thurs.control.mltext.cpp.s
 
 src/controls/thurs.control.progressbar.o: src/controls/thurs.control.progressbar.cpp.o
@@ -352,7 +352,7 @@ src/controls/thurs.control.progressbar.o: src/controls/thurs.control.progressbar
 
 # target to build an object file
 src/controls/thurs.control.progressbar.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.progressbar.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.progressbar.cpp.o
 .PHONY : src/controls/thurs.control.progressbar.cpp.o
 
 src/controls/thurs.control.progressbar.i: src/controls/thurs.control.progressbar.cpp.i
@@ -360,7 +360,7 @@ src/controls/thurs.control.progressbar.i: src/controls/thurs.control.progressbar
 
 # target to preprocess a source file
 src/controls/thurs.control.progressbar.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.progressbar.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.progressbar.cpp.i
 .PHONY : src/controls/thurs.control.progressbar.cpp.i
 
 src/controls/thurs.control.progressbar.s: src/controls/thurs.control.progressbar.cpp.s
@@ -368,7 +368,7 @@ src/controls/thurs.control.progressbar.s: src/controls/thurs.control.progressbar
 
 # target to generate assembly for a file
 src/controls/thurs.control.progressbar.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.progressbar.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.progressbar.cpp.s
 .PHONY : src/controls/thurs.control.progressbar.cpp.s
 
 src/controls/thurs.control.rectangle.o: src/controls/thurs.control.rectangle.cpp.o
@@ -376,7 +376,7 @@ src/controls/thurs.control.rectangle.o: src/controls/thurs.control.rectangle.cpp
 
 # target to build an object file
 src/controls/thurs.control.rectangle.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.rectangle.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.rectangle.cpp.o
 .PHONY : src/controls/thurs.control.rectangle.cpp.o
 
 src/controls/thurs.control.rectangle.i: src/controls/thurs.control.rectangle.cpp.i
@@ -384,7 +384,7 @@ src/controls/thurs.control.rectangle.i: src/controls/thurs.control.rectangle.cpp
 
 # target to preprocess a source file
 src/controls/thurs.control.rectangle.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.rectangle.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.rectangle.cpp.i
 .PHONY : src/controls/thurs.control.rectangle.cpp.i
 
 src/controls/thurs.control.rectangle.s: src/controls/thurs.control.rectangle.cpp.s
@@ -392,7 +392,7 @@ src/controls/thurs.control.rectangle.s: src/controls/thurs.control.rectangle.cpp
 
 # target to generate assembly for a file
 src/controls/thurs.control.rectangle.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.rectangle.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.rectangle.cpp.s
 .PHONY : src/controls/thurs.control.rectangle.cpp.s
 
 src/controls/thurs.control.skillbar.o: src/controls/thurs.control.skillbar.cpp.o
@@ -400,7 +400,7 @@ src/controls/thurs.control.skillbar.o: src/controls/thurs.control.skillbar.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.skillbar.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.skillbar.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.skillbar.cpp.o
 .PHONY : src/controls/thurs.control.skillbar.cpp.o
 
 src/controls/thurs.control.skillbar.i: src/controls/thurs.control.skillbar.cpp.i
@@ -408,7 +408,7 @@ src/controls/thurs.control.skillbar.i: src/controls/thurs.control.skillbar.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.skillbar.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.skillbar.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.skillbar.cpp.i
 .PHONY : src/controls/thurs.control.skillbar.cpp.i
 
 src/controls/thurs.control.skillbar.s: src/controls/thurs.control.skillbar.cpp.s
@@ -416,7 +416,7 @@ src/controls/thurs.control.skillbar.s: src/controls/thurs.control.skillbar.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.skillbar.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.skillbar.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.skillbar.cpp.s
 .PHONY : src/controls/thurs.control.skillbar.cpp.s
 
 src/controls/thurs.control.slider.o: src/controls/thurs.control.slider.cpp.o
@@ -424,7 +424,7 @@ src/controls/thurs.control.slider.o: src/controls/thurs.control.slider.cpp.o
 
 # target to build an object file
 src/controls/thurs.control.slider.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.slider.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.slider.cpp.o
 .PHONY : src/controls/thurs.control.slider.cpp.o
 
 src/controls/thurs.control.slider.i: src/controls/thurs.control.slider.cpp.i
@@ -432,7 +432,7 @@ src/controls/thurs.control.slider.i: src/controls/thurs.control.slider.cpp.i
 
 # target to preprocess a source file
 src/controls/thurs.control.slider.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.slider.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.slider.cpp.i
 .PHONY : src/controls/thurs.control.slider.cpp.i
 
 src/controls/thurs.control.slider.s: src/controls/thurs.control.slider.cpp.s
@@ -440,7 +440,7 @@ src/controls/thurs.control.slider.s: src/controls/thurs.control.slider.cpp.s
 
 # target to generate assembly for a file
 src/controls/thurs.control.slider.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/controls/thurs.control.slider.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/controls/thurs.control.slider.cpp.s
 .PHONY : src/controls/thurs.control.slider.cpp.s
 
 src/thurs.color.o: src/thurs.color.cpp.o
@@ -448,7 +448,7 @@ src/thurs.color.o: src/thurs.color.cpp.o
 
 # target to build an object file
 src/thurs.color.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.color.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.color.cpp.o
 .PHONY : src/thurs.color.cpp.o
 
 src/thurs.color.i: src/thurs.color.cpp.i
@@ -456,7 +456,7 @@ src/thurs.color.i: src/thurs.color.cpp.i
 
 # target to preprocess a source file
 src/thurs.color.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.color.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.color.cpp.i
 .PHONY : src/thurs.color.cpp.i
 
 src/thurs.color.s: src/thurs.color.cpp.s
@@ -464,7 +464,7 @@ src/thurs.color.s: src/thurs.color.cpp.s
 
 # target to generate assembly for a file
 src/thurs.color.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.color.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.color.cpp.s
 .PHONY : src/thurs.color.cpp.s
 
 src/thurs.control.o: src/thurs.control.cpp.o
@@ -472,7 +472,7 @@ src/thurs.control.o: src/thurs.control.cpp.o
 
 # target to build an object file
 src/thurs.control.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.control.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.control.cpp.o
 .PHONY : src/thurs.control.cpp.o
 
 src/thurs.control.i: src/thurs.control.cpp.i
@@ -480,7 +480,7 @@ src/thurs.control.i: src/thurs.control.cpp.i
 
 # target to preprocess a source file
 src/thurs.control.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.control.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.control.cpp.i
 .PHONY : src/thurs.control.cpp.i
 
 src/thurs.control.s: src/thurs.control.cpp.s
@@ -488,7 +488,7 @@ src/thurs.control.s: src/thurs.control.cpp.s
 
 # target to generate assembly for a file
 src/thurs.control.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.control.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.control.cpp.s
 .PHONY : src/thurs.control.cpp.s
 
 src/thurs.input.o: src/thurs.input.cpp.o
@@ -496,7 +496,7 @@ src/thurs.input.o: src/thurs.input.cpp.o
 
 # target to build an object file
 src/thurs.input.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.input.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.input.cpp.o
 .PHONY : src/thurs.input.cpp.o
 
 src/thurs.input.i: src/thurs.input.cpp.i
@@ -504,7 +504,7 @@ src/thurs.input.i: src/thurs.input.cpp.i
 
 # target to preprocess a source file
 src/thurs.input.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.input.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.input.cpp.i
 .PHONY : src/thurs.input.cpp.i
 
 src/thurs.input.s: src/thurs.input.cpp.s
@@ -512,7 +512,7 @@ src/thurs.input.s: src/thurs.input.cpp.s
 
 # target to generate assembly for a file
 src/thurs.input.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.input.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.input.cpp.s
 .PHONY : src/thurs.input.cpp.s
 
 src/thurs.os.o: src/thurs.os.cpp.o
@@ -520,7 +520,7 @@ src/thurs.os.o: src/thurs.os.cpp.o
 
 # target to build an object file
 src/thurs.os.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.os.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.os.cpp.o
 .PHONY : src/thurs.os.cpp.o
 
 src/thurs.os.i: src/thurs.os.cpp.i
@@ -528,7 +528,7 @@ src/thurs.os.i: src/thurs.os.cpp.i
 
 # target to preprocess a source file
 src/thurs.os.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.os.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.os.cpp.i
 .PHONY : src/thurs.os.cpp.i
 
 src/thurs.os.s: src/thurs.os.cpp.s
@@ -536,15 +536,39 @@ src/thurs.os.s: src/thurs.os.cpp.s
 
 # target to generate assembly for a file
 src/thurs.os.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.os.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.os.cpp.s
 .PHONY : src/thurs.os.cpp.s
+
+src/thurs.property.o: src/thurs.property.cpp.o
+.PHONY : src/thurs.property.o
+
+# target to build an object file
+src/thurs.property.cpp.o:
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.property.cpp.o
+.PHONY : src/thurs.property.cpp.o
+
+src/thurs.property.i: src/thurs.property.cpp.i
+.PHONY : src/thurs.property.i
+
+# target to preprocess a source file
+src/thurs.property.cpp.i:
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.property.cpp.i
+.PHONY : src/thurs.property.cpp.i
+
+src/thurs.property.s: src/thurs.property.cpp.s
+.PHONY : src/thurs.property.s
+
+# target to generate assembly for a file
+src/thurs.property.cpp.s:
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.property.cpp.s
+.PHONY : src/thurs.property.cpp.s
 
 src/thurs.renderer.o: src/thurs.renderer.cpp.o
 .PHONY : src/thurs.renderer.o
 
 # target to build an object file
 src/thurs.renderer.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.renderer.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.renderer.cpp.o
 .PHONY : src/thurs.renderer.cpp.o
 
 src/thurs.renderer.i: src/thurs.renderer.cpp.i
@@ -552,7 +576,7 @@ src/thurs.renderer.i: src/thurs.renderer.cpp.i
 
 # target to preprocess a source file
 src/thurs.renderer.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.renderer.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.renderer.cpp.i
 .PHONY : src/thurs.renderer.cpp.i
 
 src/thurs.renderer.s: src/thurs.renderer.cpp.s
@@ -560,7 +584,7 @@ src/thurs.renderer.s: src/thurs.renderer.cpp.s
 
 # target to generate assembly for a file
 src/thurs.renderer.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.renderer.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.renderer.cpp.s
 .PHONY : src/thurs.renderer.cpp.s
 
 src/thurs.scrollbar.o: src/thurs.scrollbar.cpp.o
@@ -568,7 +592,7 @@ src/thurs.scrollbar.o: src/thurs.scrollbar.cpp.o
 
 # target to build an object file
 src/thurs.scrollbar.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.scrollbar.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.scrollbar.cpp.o
 .PHONY : src/thurs.scrollbar.cpp.o
 
 src/thurs.scrollbar.i: src/thurs.scrollbar.cpp.i
@@ -576,7 +600,7 @@ src/thurs.scrollbar.i: src/thurs.scrollbar.cpp.i
 
 # target to preprocess a source file
 src/thurs.scrollbar.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.scrollbar.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.scrollbar.cpp.i
 .PHONY : src/thurs.scrollbar.cpp.i
 
 src/thurs.scrollbar.s: src/thurs.scrollbar.cpp.s
@@ -584,7 +608,7 @@ src/thurs.scrollbar.s: src/thurs.scrollbar.cpp.s
 
 # target to generate assembly for a file
 src/thurs.scrollbar.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.scrollbar.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.scrollbar.cpp.s
 .PHONY : src/thurs.scrollbar.cpp.s
 
 src/thurs.skin.o: src/thurs.skin.cpp.o
@@ -592,7 +616,7 @@ src/thurs.skin.o: src/thurs.skin.cpp.o
 
 # target to build an object file
 src/thurs.skin.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.skin.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.skin.cpp.o
 .PHONY : src/thurs.skin.cpp.o
 
 src/thurs.skin.i: src/thurs.skin.cpp.i
@@ -600,7 +624,7 @@ src/thurs.skin.i: src/thurs.skin.cpp.i
 
 # target to preprocess a source file
 src/thurs.skin.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.skin.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.skin.cpp.i
 .PHONY : src/thurs.skin.cpp.i
 
 src/thurs.skin.s: src/thurs.skin.cpp.s
@@ -608,7 +632,7 @@ src/thurs.skin.s: src/thurs.skin.cpp.s
 
 # target to generate assembly for a file
 src/thurs.skin.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.skin.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.skin.cpp.s
 .PHONY : src/thurs.skin.cpp.s
 
 src/thurs.surface.o: src/thurs.surface.cpp.o
@@ -616,7 +640,7 @@ src/thurs.surface.o: src/thurs.surface.cpp.o
 
 # target to build an object file
 src/thurs.surface.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.surface.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.surface.cpp.o
 .PHONY : src/thurs.surface.cpp.o
 
 src/thurs.surface.i: src/thurs.surface.cpp.i
@@ -624,7 +648,7 @@ src/thurs.surface.i: src/thurs.surface.cpp.i
 
 # target to preprocess a source file
 src/thurs.surface.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.surface.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.surface.cpp.i
 .PHONY : src/thurs.surface.cpp.i
 
 src/thurs.surface.s: src/thurs.surface.cpp.s
@@ -632,7 +656,7 @@ src/thurs.surface.s: src/thurs.surface.cpp.s
 
 # target to generate assembly for a file
 src/thurs.surface.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.surface.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.surface.cpp.s
 .PHONY : src/thurs.surface.cpp.s
 
 src/thurs.window.o: src/thurs.window.cpp.o
@@ -640,7 +664,7 @@ src/thurs.window.o: src/thurs.window.cpp.o
 
 # target to build an object file
 src/thurs.window.cpp.o:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.window.cpp.o
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.window.cpp.o
 .PHONY : src/thurs.window.cpp.o
 
 src/thurs.window.i: src/thurs.window.cpp.i
@@ -648,7 +672,7 @@ src/thurs.window.i: src/thurs.window.cpp.i
 
 # target to preprocess a source file
 src/thurs.window.cpp.i:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.window.cpp.i
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.window.cpp.i
 .PHONY : src/thurs.window.cpp.i
 
 src/thurs.window.s: src/thurs.window.cpp.s
@@ -656,7 +680,7 @@ src/thurs.window.s: src/thurs.window.cpp.s
 
 # target to generate assembly for a file
 src/thurs.window.cpp.s:
-	$(MAKE) -f CMakeFiles/tursui.dir/build.make CMakeFiles/tursui.dir/src/thurs.window.cpp.s
+	$(MAKE) -f CMakeFiles/thursui.dir/build.make CMakeFiles/thursui.dir/src/thurs.window.cpp.s
 .PHONY : src/thurs.window.cpp.s
 
 # Help Target
@@ -669,7 +693,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... install"
-	@echo "... tursui"
+	@echo "... thursui"
 	@echo "... list_install_components"
 	@echo "... install/local"
 	@echo "... src/controls/thurs.control.button.o"
@@ -720,6 +744,9 @@ help:
 	@echo "... src/thurs.os.o"
 	@echo "... src/thurs.os.i"
 	@echo "... src/thurs.os.s"
+	@echo "... src/thurs.property.o"
+	@echo "... src/thurs.property.i"
+	@echo "... src/thurs.property.s"
 	@echo "... src/thurs.renderer.o"
 	@echo "... src/thurs.renderer.i"
 	@echo "... src/thurs.renderer.s"

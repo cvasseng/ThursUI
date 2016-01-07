@@ -46,7 +46,9 @@ namespace thurs {
     void update();
     //Set the currently used skin class
     void setSkinClass(const std::string& name);
-
+    //Type
+    virtual WidgetType type() { return WT_CHECKBOX; }
+    
     ///////////////////////////////////////////////////////////////////////////
     
     sigslot::signal2<int, bool> OnChange;
@@ -54,7 +56,7 @@ namespace thurs {
     ///////////////////////////////////////////////////////////////////////////
 
     //Caption
-    std::string Caption;
+    PropertyString Caption;
     //Checked?
     bool Checked;
   protected:

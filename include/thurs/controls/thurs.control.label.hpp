@@ -43,6 +43,8 @@ namespace thurs {
     Label(uint32 id, Surface *surface);
     //Update and draw
     void update();
+    //Type
+    virtual WidgetType type() { return WT_LABEL; }
 
     //Caption
     std::string Caption;

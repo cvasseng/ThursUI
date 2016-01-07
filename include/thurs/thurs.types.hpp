@@ -31,19 +31,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define h__thurs__types__
 
 #include <string>
+#include <functional>
+#include <initializer_list>
 
 //Basic type definitions
 
 namespace thurs {
 
-	typedef char int8;
-  typedef unsigned char uint8;
-  typedef short int16;
-  typedef unsigned short uint16;
-  typedef int int32;
-  typedef unsigned int uint32;
-  typedef long int64;
-  typedef unsigned long uint64;
+	typedef char            int8;
+  typedef unsigned char   uint8;
+  typedef short           int16;
+  typedef unsigned short  uint16;
+  typedef int             int32;
+  typedef unsigned int    uint32;
+  typedef long            int64;
+  typedef unsigned long   uint64;
 
   typedef struct {
   	std::string filename;
@@ -52,6 +54,52 @@ namespace thurs {
   	bool italic;
   } Font;
 
+  enum UIAction {
+    AC_CLICK,
+    AC_CHANGE,
+    AC_MOUSE_DOWN,
+    AC_MOUSE_UP,
+    AC_MOUSE_IN,
+    AC_MOUSE_OUT,  
+    AC_FOCUS,
+    AC_BLUR, 
+  };
+  
+  enum VerticalAlignment {
+    VA_CUSTOM,
+    VA_CLIENT,
+    VA_BOTTOM,
+    VA_TOP,
+    VA_CENTER
+  };
+
+  enum HorizontalAlignment {
+    HA_CUSTOM,
+    HA_CLIENT,
+    HA_LEFT,
+    HA_RIGHT,
+    HA_CENTER
+  };
+  
+  enum WidgetType {
+    WT_BUTTON,
+    WT_CHECKBOX,
+    WT_DROPDOWN,
+    WT_EDITBOX,
+    WT_IMAGEGRID,
+    WT_LABEL,
+    WT_LISTBOX,
+    WT_MLTEXT,
+    WT_PROGRESSBAR,
+    WT_RECTANGLE,
+    WT_SKILLBAR,
+    WT_SLIDER,
+    WT_UNKNOWN
+  };
+  
+  class Control;
+
+  typedef std::function<void(Control * const)> ThursCallback;
 
   template<typename T> class Vector2 {
   public:
@@ -81,6 +129,7 @@ namespace thurs {
       n.y = y + other.y;
       return n;
     }
+        
 
 	};
 

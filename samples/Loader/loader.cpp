@@ -60,31 +60,6 @@ void keyFunc(GLFWwindow* win, int key, int scancode, int action, int mods) {
   }
 }
 
-class EventHandler : public sigslot::has_slots<> {
-  public:
-    EventHandler(thurs::Surface* root, thurs::Slider* slider, thurs::ProgressBar* pbar) {
-      m_root = root;
-      m_slider = slider;
-      m_bar = pbar;
-    }
-
-    void SliderChange(int v) {
-      m_bar->Value = v;
-    }
-
-    void ReloadSkins(unsigned int fromid) {
-      printf("HANDLER LOL\n");
-      m_root->reloadSkin();
-    }
-  protected:
-    //Root surface
-    thurs::Surface* m_root;
-    thurs::Slider* m_slider;
-    thurs::ProgressBar* m_bar;
-  private:
-};
-
-
 int main(int argc, char** argv) {
   GLFWwindow* window;
   int width, height, wwidth, wheight;
@@ -132,121 +107,8 @@ int main(int argc, char** argv) {
   if (!surface->loadSkin("skin.json")) {
     printf("Failed to load skin\n");
   }
-
-  thurs::SkillBar* sb = new thurs::SkillBar(1, surface);
-  sb->HAlign = thurs::HA_CENTER;
-  sb->VAlign = thurs::VA_BOTTOM;
-  sb->set(0, 0, "logo.png", "1");
-
-  thurs::Window* win = new thurs::Window(surface);
-  thurs::Window* win2 = new thurs::Window(surface);
-  win2->setPos(0, 0);
-
-  thurs::Rectangle* rect = new thurs::Rectangle(213, surface);
-  rect->HAlign = thurs::HA_RIGHT;
-  rect->VAlign = thurs::VA_BOTTOM;
-  rect->setImage("logo.png");
-  rect->setSize(64, 64);
-
-  win->Title = "My Super Window";
-  win2->Title = "I Super Window Too";
-
-  thurs::Button *btn = new thurs::Button(1, win);
-  btn->setSize(100, 25);
-  btn->setPosition(10, 10);
-  btn->Caption = "OK";
   
-  thurs::Button *btn2 = new thurs::Button(100, win);
-  btn2->setSize(100, 25);
-  btn2->setPosition(120, 10);
-  btn2->setSkinClass("ButtonCancel");
-  btn2->Caption = "CANCEL";
-
-  thurs::Button *btn3 = new thurs::Button(1, surface);
-  btn3->setPosition(10, 10);
-  btn3->Caption = "RELOAD SKIN";
-  
-  btn3->HAlign = thurs::HA_CENTER;
- // btn3->VAlign = thurs::VA_CLIENT;
-
-  thurs::ProgressBar *pbar = new thurs::ProgressBar(2, win);
-  pbar->setSize(380, 25);
-  pbar->setPosition(10, 40);
-
-  thurs::ProgressBar *pbar2 = new thurs::ProgressBar(4, win2);
-  pbar2->setSize(380, 25);
-  pbar2->setPosition(10, 10);
-  pbar2->setSkinClass("XPBar");
-
-  thurs::MultiLineText *mt = new thurs::MultiLineText(19, win2);
-  mt->setPosition(10, 45);
-  mt->setSize(380, 100);
-  mt->loadFromFile("multitext.txt");
-
-  thurs::DropDown *dd = new thurs::DropDown(22, win2);
-  dd->setPosition(10, 155);
-  dd->setSize(380, 25);
- // dd->addItem(0, "Hello world");
-   for (int i = 0; i < 99; i++) {
-    std::stringstream ss;
-    ss << "Item #" << i;
-    dd->addItem(i, ss.str());
-  }
-
-  thurs::Button *btn5 = new thurs::Button(43, win2);
-  btn5->setSize(380, 25);
-  btn5->setPosition(10, 190);
-  btn5->Caption = "YET ANOTHER BUTTON";
-
-  thurs::Label *lbl = new thurs::Label(47, win2);
-  lbl->setSize(380, 25);
-  lbl->setPosition(10, 225);
-  lbl->Caption = "Edit Box";
-
-  thurs::EditBox *eb = new thurs::EditBox(45, win2);
-  eb->setSize(380, 25);
-  eb->setPosition(10, 250);
-
-  thurs::Slider *slider = new thurs::Slider(3, win);
-  slider->setSize(380, 15);
-  slider->setPosition(10, 70);
-
-  thurs::ListBox *box = new thurs::ListBox(4, win);
-  box->setSize(380, 80);
-  box->setPosition(10, 100);
-  box->addItem(0, "Hello");
-  box->addItem(1, "World");
-  box->addItem(2, "How");
-  box->addItem(3, "Is");
-  box->addItem(4, "It");
-  box->addItem(5, "Going?");
-
-  //Add some more entries
-  for (int i = 0; i < 99; i++) {
-    std::stringstream ss;
-    ss << "Item #" << i;
-    box->addItem(i, ss.str());
-  }
-
-  thurs::Checkbox *cbox = new thurs::Checkbox(5, win);
-  cbox->setPosition(10, 190);
-
-  thurs::ImageGrid *igrid = new thurs::ImageGrid(6, win);
-  igrid->setPosition(10, 220);
-  igrid->setSize(380, 200);
-
-  for (int i = 0; i < 10; i++) {
-    std::stringstream ss;
-    ss << "Img #" << i;
-    igrid->addImage(i, "logo.png", ss.str());
-  }
-  
-  surface->serialize("ui.test.json");
-
-  EventHandler handler(surface, slider, pbar);
-  btn3->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
-  slider->OnChange.connect(&handler, &EventHandler::SliderChange);
-  //btn5->OnMouseDown.connect(&handler, &EventHandler::ReloadSkins);
+  surface->unserialize("ui.test.json");
 
   ///// END UI INIT //////
 
@@ -275,11 +137,6 @@ int main(int argc, char** argv) {
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
-
-  delete btn;
-  delete win;
-  delete surface;
-  delete renderer;
 
   glfwTerminate();
 

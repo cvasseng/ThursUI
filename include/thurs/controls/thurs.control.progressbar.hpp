@@ -53,6 +53,8 @@ namespace thurs {
     void setSkinClass(const std::string& name);
     //Show as
     void showAs(ShowAs what);
+    //Type
+    virtual WidgetType type() { return WT_PROGRESSBAR; }
 
     //Min value
     int32 Min;
