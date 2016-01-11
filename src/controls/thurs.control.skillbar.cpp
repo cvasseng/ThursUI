@@ -44,6 +44,7 @@ namespace thurs {
     m_size.y = 50;
     //Start out with a 10 slot bar - one for each number + 0
     setSlotCount(10);
+    
   }
 
   void SkillBar::setSlotCount(uint16 c) {

@@ -39,6 +39,8 @@ namespace thurs {
   MultiLineText::MultiLineText(uint32 id, Surface *surface)  : Control(id, surface), m_scrollbar(surface) {
     //Set default class
     setSkinClass("MultiLineText");
+    
+    loadFromFile("multitext.txt");
   }
   
   //Update and draw

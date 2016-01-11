@@ -213,19 +213,19 @@ namespace thurs {
       return ss.str();
     }
     
-    inline Vector2<T> operator-(Vector2<T> other) {
-      Vector2<T> n;
-      n.x = this->x - other.x;
-      n.y = this->y - other.y;
-      return n;
-    }
+    // inline Vector2<T> operator-(Vector2<T> other) {
+    //   Vector2<T> n;
+    //   n.x = this->x - other.x;
+    //   n.y = this->y - other.y;
+    //   return n;
+    // }
 
-    inline Vector2<T> operator+(Vector2<T> other) {
-      Vector2<T> n;
-      n.x = this->x + other.x;
-      n.y = this->y + other.y;
-      return n;
-    }
+    // inline Vector2<T> operator+(Vector2<T> other) {
+    //   Vector2<T> n;
+    //   n.x = this->x + other.x;
+    //   n.y = this->y + other.y;
+    //   return n;
+    // }
 
     void operator = (T v) {
       this->x = v.x;

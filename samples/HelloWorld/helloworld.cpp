@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
     printf("Failed to load skin\n");
   }
 
-  thurs::SkillBar* sb = new thurs::SkillBar(1, surface);
+  thurs::SkillBar* sb = new thurs::SkillBar(1321, surface);
   sb->HAlign = thurs::HA_CENTER;
   sb->VAlign = thurs::VA_BOTTOM;
   sb->set(0, 0, "logo.png", "1");
@@ -178,7 +178,7 @@ int main(int argc, char** argv) {
   pbar2->setPosition(10, 10);
   pbar2->setSkinClass("XPBar");
 
-  thurs::MultiLineText *mt = new thurs::MultiLineText(19, win2);
+  thurs::MultiLineText *mt = new thurs::MultiLineText(1972, win2);
   mt->setPosition(10, 45);
   mt->setSize(380, 100);
   mt->loadFromFile("multitext.txt");
