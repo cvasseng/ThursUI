@@ -36,6 +36,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "thurs.skin.hpp"
 
 #include <functional>
+#include <vector>
 
 namespace thurs {
 
@@ -57,7 +58,7 @@ namespace thurs {
     sigslot::signal1<uint32> OnMouseOut;
     
     //Event listener 
-    bool on(UIAction what, ThursCallback &fn);
+    bool on(UIAction what, ThursCallback fn);
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -195,6 +196,9 @@ namespace thurs {
     
     //Emit event
     bool emit(UIAction what);
+
+    //Listeners
+    std::vector<ThursCallback> m_listeners[AC_COUNT + 1];
   };
 
 }

@@ -47,6 +47,11 @@ namespace thurs {
       m_vg = 0;
     }
 
+    void addFont(const std::string& internalName, const std::string& filename) {
+      printf("Loading font: %s %s", internalName.c_str(), filename.c_str());
+      nvgCreateFont(m_vg, internalName.c_str(), filename.c_str());
+    }
+
     //Initialize the renderer
     bool init() {
       m_vg = nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES | NVG_DEBUG);

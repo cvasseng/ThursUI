@@ -296,14 +296,28 @@ namespace thurs {
       return false;
     }
 
+    if (root.isMember("fonts")) {
+      Json::Value v = root["fonts"];
+      Json::Value::Members subs = v.getMemberNames();
+      for (uint32 j = 0; j < subs.size(); j++) {
+        Skin::Font f;
+        f.name = subs[j];
+        f.filename = v.get(subs[j], "").asString();
+        Fonts.push_back(f);
+      }
+    }
+
     Json::Value::Members classes = root.getMemberNames();
     for (uint32 i = 0; i < classes.size(); i++) {
+      if (classes[i] == "fonts") {
+        continue;
+      }
       std::string name = classes[i];
       Json::Value v = root[name];
 
       Skin::SkinClass sc;
 
-      bool addP = false;
+      bool addP = false;      
 
       //We need to figure out if we're dealing with sub classes.
       Json::Value::Members subs = v.getMemberNames();

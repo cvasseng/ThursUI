@@ -30,6 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef h__thurs__skin__
 #define h__thurs__skin__
 
+#include <vector>
 #include <string>
 #include <map>
 
@@ -59,6 +60,10 @@ namespace thurs {
 
   class Skin {
   public:
+    struct Font {
+      std::string name;
+      std::string filename;
+    };
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -66,6 +71,8 @@ namespace thurs {
     class SkinClass {
     public:
       friend class Skin;
+      
+
       struct Attributes {
         Color fill;
         Color stroke;
@@ -139,6 +146,7 @@ namespace thurs {
       SkinClass findAndCpySub(const std::string& name);
 
       Attributes Attr;
+      
     protected:
       //Current state
       SkinState m_state;
@@ -168,6 +176,8 @@ namespace thurs {
     SkinClass* const getClassPtr(const std::string& name);
     //Reload
     bool reload();
+
+    std::vector<Font> Fonts;
   protected:
     //Class map
     ClassMap m_classes;

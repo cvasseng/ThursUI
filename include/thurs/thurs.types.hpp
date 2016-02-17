@@ -63,6 +63,8 @@ namespace thurs {
     AC_MOUSE_OUT,  
     AC_FOCUS,
     AC_BLUR, 
+
+    AC_COUNT,
   };
   
   enum VerticalAlignment {

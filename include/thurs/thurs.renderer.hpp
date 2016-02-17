@@ -77,6 +77,9 @@ namespace thurs {
     //Get the length of a string in pixels
     virtual float getTextWidth(Skin::SkinClass::Attributes &skinClass, const std::string& text) = 0;
 
+    //Add font
+    virtual void addFont(const std::string& internalName, const std::string& filename) = 0;
+
 
 		///////////////////////////////////////////////////////////////////////////
 

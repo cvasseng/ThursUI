@@ -154,13 +154,15 @@ namespace thurs {
 
         //printf("%s is %f width fsize %i\n", buffer.c_str(), bufferWidth, active->skinClass.Attr.textSize);
        
-        if (activeLine->width + bufferWidth > m_size.x - 10.f) {
+        if (activeLine->width + bufferWidth > m_size.x - 10.f || buffer == "<br>") {
           //Yup.
           TextLine l;
           TextEntry e;
 
           e.skinClass = active->skinClass;
-          e.text = buffer + ' ';
+          if (buffer != "<br>") {
+            e.text = buffer + ' ';            
+          }
           e.width = bufferWidth;
           e.height = bufferHeight;
           e.id = active->id;

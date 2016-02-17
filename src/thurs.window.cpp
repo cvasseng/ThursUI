@@ -113,15 +113,7 @@ namespace thurs {
     m_winPos = vec;
   }
 
-  void Window::hide() {
-    m_visible = false;
-    OnHide();
-  }
 
-  void Window::show() {
-    m_visible = true;
-    OnShow();
-  }
 
   const Vector2f& Window::getSize() {
     return m_winSize;
@@ -140,9 +132,6 @@ namespace thurs {
   }
 
   void Window::_onUpdate() {
-    if (!m_visible) {
-      return;
-    }
 
     if (m_titlebarClass) {
       m_titlebarHeight = m_renderer->getTextHeight(m_titlebarClass->Attr, Title) + 4;

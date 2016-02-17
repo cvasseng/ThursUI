@@ -42,11 +42,11 @@ namespace thurs {
   class Control;
   class Window;
 
-	//A UI Surface
-	/*
-		All controls live inside a surface.
-	*/
-	class Surface {
+//A UI Surface
+/*
+	All controls live inside a surface.
+*/
+class Surface {
     friend class Control;
     friend class Window;
 	public:
@@ -100,6 +100,9 @@ namespace thurs {
     //Get size
     virtual const Vector2f& getSize();
 
+    void hide();
+    void show();
+
     //Do a tooltip
     virtual void doTooltip(const std::string& text);
     virtual void cancelTooltip();
@@ -136,8 +139,7 @@ namespace thurs {
     std::string m_tooltip;
     //Tooltip position
     Vector2s m_tooltipPos;
-
-
+    
     virtual void _onUpdate();
 	private:
 	};

@@ -214,7 +214,19 @@ namespace thurs {
     return m_canvasSize;
   }
 
+
+  void Surface::hide() {
+    m_visible = false;
+  }
+  
+  void Surface::show() {
+    m_visible = true;
+  }
+
   void Surface::updateAndRender(float pixelFormat) {
+    if (!m_visible) {
+      return;
+    }
 
    // printf("W %f H %f\n", m_canvasSize.x, m_canvasSize.y);
     m_renderer->begin(m_canvasSize.x, m_canvasSize.y, pixelFormat);
@@ -298,6 +310,9 @@ namespace thurs {
   bool Surface::loadSkin(const std::string& filename) {
     if (m_skin.load(filename)) {
       m_tooltipClass = m_skin.getClass("Tooltip");
+      for (auto it : m_skin.Fonts) {
+        m_renderer->addFont(it.name, it.filename);
+      }
       return true;
     }
     return false;

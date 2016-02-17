@@ -117,13 +117,17 @@ namespace thurs {
   /////////////////////////////////////////////////////////////////////////////
   
   //Listen to event 
-  bool Control::on(UIAction what, ThursCallback &fn) {
-    return false;
+  bool Control::on(UIAction what, ThursCallback fn) {
+    m_listeners[what].push_back(fn);
+    return true;
   }
   
   //Emit event 
   bool Control::emit(UIAction what) {
-    return false;
+    for (uint32 i = 0; i < m_listeners[what].size(); i++) {
+      m_listeners[what][i](this);
+    }
+    return true;
   }
   
   /////////////////////////////////////////////////////////////////////////////

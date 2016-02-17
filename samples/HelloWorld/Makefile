@@ -1,11 +1,11 @@
 CC=g++
-CFLAGS=-c -O2 -static -Wall -I../../include -I/usr/local/include -I/usr/include -std=c++11
+CFLAGS=-c -O2 -static -Wall -I../../include -I/usr/local/include -I/usr/include -I/usr/local/opt/glew/include -std=c++11
 
 SOURCES=helloworld.cpp
 
-LIBRARIES=-ljsoncpp -lpng -lnanovg -lglfw3 -lglew
+LIBRARIES=-ljsoncpp -lpng -lnanovg -lglfw3 -lGLEW
 
-LDFLAGS=-L../../lib -L/usr/local/lib -L/opt/local/lib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo -L.
+LDFLAGS=-L../../lib -L/usr/local/opt/glew/lib -L/usr/local/lib -L/opt/local/lib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo -L.
 OBJECTS=$(SOURCES:.cpp=.o)
 OUT=../../bin/hello-world
 
